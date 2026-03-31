@@ -501,63 +501,13 @@ body.light-mode #canvas-container {
     
     </a>
 <!-- Core Tools Grid -->
-<div id="tools-section" class="tools-grid">
-    <!-- Text to PDF -->
-    <div class="glass-card" style="padding:1.5rem; text-align:center;">
-        <i class="fas fa-file-alt" style="font-size:3rem; color:#60a5fa; margin-bottom:1rem;"></i>
-        <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Text to PDF</h3>
-        <a href="text-to-pdf.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Convert Now</a>
-    </div>
-    <!-- Image to PDF -->
-    <div class="glass-card" style="padding:1.5rem; text-align:center;">
-        <i class="fas fa-image" style="font-size:3rem; color:#c084fc; margin-bottom:1rem;"></i>
-        <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Image to PDF</h3>
-        <a href="image-to-pdf.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Convert Image</a>
-    </div>
-    <!-- Merge PDF -->
-    <div class="glass-card" style="padding:1.5rem; text-align:center;">
-        <i class="fas fa-object-group" style="font-size:3rem; color:#34d399; margin-bottom:1rem;"></i>
-        <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Merge PDF</h3>
-        <a href="merge-pdf.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Merge Files</a>
-    </div>
-    <!-- Compress PDF -->
-    <div class="glass-card" style="padding:1.5rem; text-align:center;">
-        <i class="fas fa-compress-alt" style="font-size:3rem; color:#fbbf24; margin-bottom:1rem;"></i>
-        <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Compress PDF</h3>
-        <a href="compress-pdf.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Compress PDF</a>
+
     </div>
 </div>          
 <!-- Advanced Tools Grid -->
 <div class="tools-grid">
-    <!-- PDF Editor -->
-    <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-        <i class="fas fa-edit" style="font-size: 3rem; color: #f97316; margin-bottom: 1rem;"></i>
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">PDF Editor</h3>
-        <p style="font-size: 0.85rem; margin-bottom: 1rem;">Edit PDF: add text, delete pages, rotate, add images</p>
-        <a href="pdf-editor.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Edit PDF Now</a>
-    </div>
-    <!-- Image Compressor -->
-    <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-        <i class="fas fa-compress" style="font-size: 3rem; color: #10b981; margin-bottom: 1rem;"></i>
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Image Compressor</h3>
-        <p style="font-size: 0.85rem; margin-bottom: 1rem;">Reduce image size while maintaining quality</p>
-        <a href="image-compressor.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Compress Image</a>
-    </div>
-    <!-- JPG to PNG -->
-    <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-        <i class="fas fa-exchange-alt" style="font-size: 3rem; color: #8b5cf6; margin-bottom: 1rem;"></i>
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">JPG to PNG</h3>
-        <p style="font-size: 0.85rem; margin-bottom: 1rem;">Convert JPG/JPEG images to transparent PNG format</p>
-        <a href="jpg-to-png.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Convert to PNG</a>
-    </div>
-    <!-- PNG to JPG -->
-    <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-        <i class="fas fa-sync-alt" style="font-size: 3rem; color: #ec489a; margin-bottom: 1rem;"></i>
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">PNG to JPG</h3>
-        <p style="font-size: 0.85rem; margin-bottom: 1rem;">Convert PNG images to JPG format (smaller size)</p>
-        <a href="png-to-jpg.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Convert to JPG</a>
-    </div>
-</div>
+
+
     <!-- ABOUT SECTION -->
     <div id="about-section" class="section" style="display:none;">
         <div class="glass-card" style="padding:2rem;">
@@ -588,7 +538,6 @@ body.light-mode #canvas-container {
                 <p>Our PDF Editor allows you to add text, insert images, delete pages, and rotate pages. All edits happen locally - your files stay private and secure.</p>
             </div>
         </div>
-    </div>
 
 
     <!-- CONTACT SECTION -->
@@ -774,74 +723,6 @@ If you have any questions about this Privacy Policy, please contact us.
     </footer>
 </div>
    
-<!-- MODALS -->
-<div id="textModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; align-items:center; justify-content:center;">
-    <div class="glass-card" style="width:90%; max-width:500px; padding:1.5rem; position:relative;">
-        <button class="closeModal" style="position:absolute; top:15px; right:20px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
-        <h3>Text to PDF</h3>
-        <textarea id="textInputArea" rows="6" style="width:100%; margin:1rem 0; padding:0.5rem; border-radius:0.5rem;"></textarea>
-        <button id="generateTextPdf" class="btn-glow">Create PDF</button>
-    </div>
-</div>
-<div id="imageModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; align-items:center; justify-content:center;">
-    <div class="glass-card" style="width:90%; max-width:500px; padding:1.5rem;">
-        <button class="closeModal" style="position:absolute; top:15px; right:20px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
-        <h3>Image to PDF</h3>
-        <input type="file" id="imageUploadInput" accept="image/*">
-        <button id="convertImageToPdf" class="btn-glow" style="margin-top:1rem;">Convert</button>
-    </div>
-</div>
-<div id="mergeModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; align-items:center; justify-content:center;">
-    <div class="glass-card" style="width:90%; max-width:500px; padding:1.5rem;">
-        <button class="closeModal" style="position:absolute; top:15px; right:20px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
-        <h3>Merge PDF</h3>
-        <input type="file" id="mergeFilesInput" multiple accept="application/pdf">
-        <button id="performMerge" class="btn-glow" style="margin-top:1rem;">Merge & Download</button>
-    </div>
-</div>
-<!-- IMAGE COMPRESSOR MODAL -->
-<div id="imageCompressorModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85);z-index:1000; align-items:center; justify-content:center;">
-  <div class="glass-card" style="width:90%; max-width:500px; margin:10% auto; padding:1.5rem; position:relative;">
-    <button class="closeModal" style="position:absolute; top:15px; right:20px;">❎</button>
-        
-    <h3>Image Compressor</h3>
-    <input type="file" id="imageInput"><br><br>
-    <input type="number" id="compressPercent" placeholder="Enter %"><br><br>
-    <button id="previewBtn" class="btn-glow">Preview</button>
-    <button id="downloadBtn" class="btn-glow">Download</button>
-    <br><br>
-    <img id="previewImage" style="max-width:100%; display:none;">
-  </div>
-</div>
-
-<!-- JPG TO PNG MODAL -->
-<div id="jpgToPngModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; align-items:center; justify-content:center;">
-    <div class="glass-card" style="width:90%; max-width:500px; padding:1.5rem; position:relative;">
-        <button class="closeModal" style="position:absolute; top:15px; right:20px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
-        <h3 style="margin-bottom: 1rem;"><i class="fas fa-exchange-alt" style="color:#8b5cf6;"></i> JPG to PNG Converter</h3>
-        <p style="font-size: 0.85rem; margin-bottom: 1rem;">Convert JPG/JPEG images to transparent PNG format</p>
-        <input type="file" id="jpgToPngInput" accept="image/jpeg,image/jpg" style="margin-bottom: 1rem;">
-        <button id="convertJpgToPng" class="btn-glow" style="width: 100%; justify-content: center;">Convert to PNG</button>
-        <div id="jpgToPngResult" style="margin-top: 1rem; display: none;"></div>
-    </div>
-</div>
-
-<!-- PNG TO JPG MODAL -->
-<div id="pngToJpgModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; align-items:center; justify-content:center;">
-    <div class="glass-card" style="width:90%; max-width:500px; padding:1.5rem; position:relative;">
-        <button class="closeModal" style="position:absolute; top:15px; right:20px; background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
-        <h3 style="margin-bottom: 1rem;"><i class="fas fa-sync-alt" style="color:#ec489a;"></i> PNG to JPG Converter</h3>
-        <p style="font-size: 0.85rem; margin-bottom: 1rem;">Convert PNG images to JPG format (smaller size)</p>
-        <input type="file" id="pngToJpgInput" accept="image/png" style="margin-bottom: 0.8rem;">
-        <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin: 0.5rem 0;">
-            <label>Background Color:</label>
-            <input type="color" id="bgColor" value="#ffffff" style="width: 50px; height: 35px; border-radius: 8px;">
-        </div>
-        <button id="convertPngToJpg" class="btn-glow" style="width: 100%; margin-top: 0.5rem; justify-content: center;">Convert to JPG</button>
-        <div id="pngToJpgResult" style="margin-top: 1rem; display: none;"></div>
-    </div>
-</div>
-
 <script type="importmap">
     {
         "imports": {
@@ -850,8 +731,6 @@ If you have any questions about this Privacy Policy, please contact us.
         }
     }
 </script>
-
-<script type="module">
     import * as THREE from 'three';
 
     // 3D Scene Setup
@@ -967,111 +846,7 @@ If you have any questions about this Privacy Policy, please contact us.
         });
     });
 
-    // Text to PDF
-    document.getElementById('generateTextPdf')?.addEventListener('click', async () => {
-        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
-        const text = document.getElementById('textInputArea').value || 'Master PDF Editor - Your PDF solution.';
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.text(text, 10, 10, { maxWidth: 180 });
-        doc.save('text_to_pdf.pdf');
-        document.getElementById('textModal').style.display = 'none';
-    });
-
-    // Image to PDF
-    document.getElementById('convertImageToPdf')?.addEventListener('click', () => {
-        const file = document.getElementById('imageUploadInput').files[0];
-        if (!file) { alert('Select an image'); return; }
-        const reader = new FileReader();
-        reader.onload = async function(e) {
-            await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            const img = new Image();
-            img.src = e.target.result;
-            img.onload = () => {
-                doc.addImage(img, 'JPEG', 0, 0, 180, 160);
-                doc.save('image_to_pdf.pdf');
-            };
-        };
-        reader.readAsDataURL(file);
-        document.getElementById('imageModal').style.display = 'none';
-    });
-
-    // Merge PDF
-    document.getElementById('performMerge')?.addEventListener('click', async () => {
-        await loadScript('https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js');
-        const files = document.getElementById('mergeFilesInput').files;
-        if (files.length < 2) { alert('Select at least 2 PDF files.'); return; }
-        const { PDFDocument } = window.PDFLib;
-        const mergedPdf = await PDFDocument.create();
-        for (const file of files) {
-            const bytes = await file.arrayBuffer();
-            const pdf = await PDFDocument.load(bytes);
-            const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-            pages.forEach(p => mergedPdf.addPage(p));
-        }
-        const mergedBytes = await mergedPdf.save();
-        const blob = new Blob([mergedBytes], { type: 'application/pdf' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'merged.pdf';
-        link.click();
-        document.getElementById('mergeModal').style.display = 'none';
-    });
-
-                
-    // JPG to PNG
-    document.getElementById('convertJpgToPng')?.addEventListener('click', () => {
-        const file = document.getElementById('jpgToPngInput').files[0];
-        if (!file) { alert('Select a JPG image'); return; }
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = new Image();
-            img.onload = function() {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.width;
-                canvas.height = img.height;
-                canvas.getContext('2d').drawImage(img, 0, 0);
-                canvas.toBlob(function(blob) {
-                    const url = URL.createObjectURL(blob);
-                    const resultDiv = document.getElementById('jpgToPngResult');
-                    resultDiv.style.display = 'block';
-                    resultDiv.innerHTML = `<img src="${url}" style="max-width:100%;"><br><a href="${url}" download="converted.png" class="btn-glow">Download PNG</a>`;
-                }, 'image/png');
-            };
-            img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    });
-
-    // PNG to JPG
-    document.getElementById('convertPngToJpg')?.addEventListener('click', () => {
-        const file = document.getElementById('pngToJpgInput').files[0];
-        const bgColor = document.getElementById('bgColor')?.value || '#ffffff';
-        if (!file) { alert('Select a PNG image'); return; }
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = new Image();
-            img.onload = function() {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.width;
-                canvas.height = img.height;
-                const ctx = canvas.getContext('2d');
-                ctx.fillStyle = bgColor;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, 0, 0);
-                canvas.toBlob(function(blob) {
-                    const url = URL.createObjectURL(blob);
-                    const resultDiv = document.getElementById('pngToJpgResult');
-                    resultDiv.style.display = 'block';
-                    resultDiv.innerHTML = `<img src="${url}" style="max-width:100%;"><br><a href="${url}" download="converted.jpg" class="btn-glow">Download JPG</a>`;
-                }, 'image/jpeg', 0.9);
-            };
-            img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    });
+    
  
     // Contact Form
     document.getElementById('contactForm')?.addEventListener('submit', (e) => {
