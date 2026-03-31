@@ -160,6 +160,7 @@
 
     <!-- HOME SECTION -->
     <div id="home-section" class="section">
+        <!-- Hero Section -->
         <div class="glass-card" style="padding:2rem; text-align:center; margin-bottom:2rem;">
             <div class="hero-badge" style="margin:0 auto 1rem auto;">
                 <i class="fas fa-magic"></i> All-in-One PDF Suite
@@ -172,6 +173,7 @@
             <button class="btn-glow" id="scrollToTools"><i class="fas fa-bolt"></i> Explore Tools</button>
         </div>
 
+        <!-- Our Powerful Tools Heading -->
         <h2 style="font-size:2rem; text-align:center; margin:2rem 0 1rem;">Our <span style="background:linear-gradient(135deg,#60a5fa,#c084fc); -webkit-background-clip:text; background-clip:text; color:transparent;">Powerful Tools</span></h2>
         <p style="text-align:center; margin-bottom:2rem;">Convert, merge, compress, edit — everything you need for document mastery.</p>
 
@@ -232,19 +234,57 @@
             </div>
         </div>
 
+        <!-- BLOG ARTICLES ON HOME PAGE -->
+        <div style="margin-top: 4rem;">
+            <h2 style="font-size: 2rem; text-align: center; margin-bottom: 1.5rem;">📝 Latest <span style="color: #60a5fa;">Articles</span></h2>
+            <div class="tools-grid">
+                <div class="blog-card">
+                    <i class="fas fa-file-alt" style="font-size: 2rem; color: #60a5fa; margin-bottom: 0.5rem;"></i>
+                    <h3 style="font-size: 1.3rem;">How to Convert Text to PDF in Seconds</h3>
+                    <p>Converting text to PDF is essential for sharing documents professionally. Our tool lets you paste text and download a clean PDF instantly. No formatting loss, no signup.</p>
+                </div>
+                <div class="blog-card">
+                    <i class="fas fa-object-group" style="font-size: 2rem; color: #34d399; margin-bottom: 0.5rem;"></i>
+                    <h3 style="font-size: 1.3rem;">Why Merge PDFs? Top Benefits</h3>
+                    <p>Combining multiple PDFs into one file makes organization easier. Perfect for reports, portfolios, and invoices. Free and secure.</p>
+                </div>
+                <div class="blog-card">
+                    <i class="fas fa-edit" style="font-size: 2rem; color: #f97316; margin-bottom: 0.5rem;"></i>
+                    <h3 style="font-size: 1.3rem;">PDF Editing Made Easy</h3>
+                    <p>Add text, insert images, delete pages, and rotate pages. All edits happen locally - your files stay private and secure.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Features Section -->
         <div style="margin-top: 3rem;">
-            <h2 style="font-size: 2rem; text-align: center;">✨ Why Choose Master PDF Hub?</h2>
+            <h2 style="font-size: 2rem; text-align: center;">✨ Why Choose <span style="color: #60a5fa;">Master PDF Hub</span>?</h2>
             <div class="tools-grid" style="margin-top: 1.5rem;">
-                <div class="glass-card" style="padding: 1.5rem;"><i class="fas fa-lock" style="font-size: 2rem; color:#34d399;"></i><h3>100% Secure</h3><p>Your files never leave your device. No upload, no server storage.</p></div>
-                <div class="glass-card" style="padding: 1.5rem;"><i class="fas fa-gem" style="font-size: 2rem; color:#fbbf24;"></i><h3>Completely Free</h3><p>No premium plans, no hidden charges. All tools are 100% free.</p></div>
-                <div class="glass-card" style="padding: 1.5rem;"><i class="fas fa-bolt" style="font-size: 2rem; color:#f97316;"></i><h3>Lightning Fast</h3><p>Process files in seconds. No waiting in queues.</p></div>
-                <div class="glass-card" style="padding: 1.5rem;"><i class="fas fa-mobile-alt" style="font-size: 2rem; color:#c084fc;"></i><h3>Works on Any Device</h3><p>Use on desktop, tablet, or mobile phone.</p></div>
+                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                    <i class="fas fa-lock" style="font-size: 2rem; color:#34d399;"></i>
+                    <h3>100% Secure</h3>
+                    <p>Your files never leave your device. No upload, no server storage.</p>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                    <i class="fas fa-gem" style="font-size: 2rem; color:#fbbf24;"></i>
+                    <h3>Completely Free</h3>
+                    <p>No premium plans, no hidden charges. All tools are 100% free.</p>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                    <i class="fas fa-bolt" style="font-size: 2rem; color:#f97316;"></i>
+                    <h3>Lightning Fast</h3>
+                    <p>Process files in seconds. No waiting in queues.</p>
+                </div>
+                <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                    <i class="fas fa-mobile-alt" style="font-size: 2rem; color:#c084fc;"></i>
+                    <h3>Works on Any Device</h3>
+                    <p>Use on desktop, tablet, or mobile phone.</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- ABOUT SECTION -->
+    <!-- ABOUT SECTION (Hidden by default) -->
     <div id="about-section" class="section" style="display:none;">
         <div class="glass-card" style="padding:2rem;">
             <h2 style="font-size:2.5rem; margin-bottom:1rem;">About Us</h2>
@@ -253,17 +293,29 @@
         </div>
     </div>
 
-    <!-- BLOG SECTION -->
+    <!-- BLOG SECTION (Hidden by default - Same articles as home page) -->
     <div id="blog-section" class="section" style="display:none;">
         <h2 style="font-size:2.5rem; text-align:center; margin-bottom:2rem;">Latest Articles</h2>
         <div class="tools-grid">
-            <div class="blog-card"><i class="fas fa-file-alt" style="font-size:2rem; color:#60a5fa;"></i><h3>How to Convert Text to PDF in Seconds</h3><p>Converting text to PDF is essential for sharing documents professionally. Our tool lets you paste text and download a clean PDF instantly.</p></div>
-            <div class="blog-card"><i class="fas fa-object-group" style="font-size:2rem; color:#34d399;"></i><h3>Why Merge PDFs? Top Benefits</h3><p>Combining multiple PDFs into one file makes organization easier. Perfect for reports, portfolios, and invoices.</p></div>
-            <div class="blog-card"><i class="fas fa-edit" style="font-size:2rem; color:#f97316;"></i><h3>PDF Editing Made Easy</h3><p>Add text, insert images, delete pages, and rotate pages. All edits happen locally - your files stay private.</p></div>
+            <div class="blog-card">
+                <i class="fas fa-file-alt" style="font-size:2rem; color:#60a5fa;"></i>
+                <h3>How to Convert Text to PDF in Seconds</h3>
+                <p>Converting text to PDF is essential for sharing documents professionally. Our tool lets you paste text and download a clean PDF instantly. No formatting loss, no signup.</p>
+            </div>
+            <div class="blog-card">
+                <i class="fas fa-object-group" style="font-size:2rem; color:#34d399;"></i>
+                <h3>Why Merge PDFs? Top Benefits</h3>
+                <p>Combining multiple PDFs into one file makes organization easier. Perfect for reports, portfolios, and invoices. Free and secure.</p>
+            </div>
+            <div class="blog-card">
+                <i class="fas fa-edit" style="font-size:2rem; color:#f97316;"></i>
+                <h3>PDF Editing Made Easy</h3>
+                <p>Add text, insert images, delete pages, and rotate pages. All edits happen locally - your files stay private and secure.</p>
+            </div>
         </div>
     </div>
 
-    <!-- CONTACT SECTION -->
+    <!-- CONTACT SECTION (Hidden by default) -->
     <div id="contact-section" class="section" style="display:none;">
         <div class="glass-card" style="padding:2rem; max-width:600px; margin:0 auto;">
             <h2 style="font-size:2rem; margin-bottom:1rem;">Contact Us</h2>
@@ -276,7 +328,7 @@
         </div>
     </div>
 
-    <!-- PRIVACY SECTION -->
+    <!-- PRIVACY SECTION (Hidden by default) -->
     <div id="privacy-section" class="section" style="display:none;">
         <div class="glass-card" style="padding:2rem;">
             <h2 style="font-size:2rem; margin-bottom:1rem;">Privacy Policy</h2>
@@ -287,14 +339,7 @@
 
     <!-- FOOTER -->
     <footer style="text-align:center; padding:2rem; border-top:1px solid var(--footer-border); margin-top:2rem;">
-        <div class="footer-link"style="margin-bottom:1rem;">
-            1rem;">
-            <a href="#" data-section="about">About</a> |
-            <a href="#" data-section="privacy">Privacy Policy</a> |
-            <a href="#" data-section="contact">Contact</a>
-        </div>
         <p>©️ 2025 Master PDF Hub — All-in-One PDF & Image Tools. Convert, Merge, Compress, Edit.</p>
-        <p> style="font-size:0.8rem; margin-top:0.5rem;">Made with <i class="fas fa-heart" style="color:#f87171;"></i> for easy document management</p>
     </footer>
 </div>
 
