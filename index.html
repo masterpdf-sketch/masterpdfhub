@@ -1155,7 +1155,45 @@ document.addEventListener("DOMContentLoaded", function () {
       a.download = "compressed.jpg";
       a.click();
 });
+// ========== MULTIPLE PAGES - GOOGLE KE LIYE ALAG-ALAG URLS ==========
+const urlParams = new URLSearchParams(window.location.search);
+const toolName = urlParams.get('tool');
 
+if (toolName) {
+    // Sirf selected tool dikhao
+    const allCards = document.querySelectorAll('.tools-grid .glass-card, .tools-grid-new .glass-card');
+    allCards.forEach(card => {
+        const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
+        const match = title.includes(toolName.toLowerCase().replace(/-/g, ' '));
+        if (!match) {
+            card.style.display = 'none';
+        } else {
+            card.style.display = 'block';
+        }
+    });
+    
+    // Page title change karo
+    const toolDisplayName = toolName.replace(/-/g, ' ').toUpperCase();
+    const heroBadge = document.querySelector('.hero-badge');
+    if (heroBadge) heroBadge.innerHTML = `<i class="fas fa-magic"></i> ${toolDisplayName} Tool`;
+    
+    const mainHeading = document.querySelector('#home-section .glass-card h1 span');
+    if (mainHeading) mainHeading.innerHTML = `${toolDisplayName} Tool`;
+    
+    const subHeading = document.querySelector('#home-section .glass-card p');
+    if (subHeading) subHeading.innerHTML = `Free online ${toolDisplayName} tool. Convert, compress, and edit your files instantly. 100% secure, no signup.`;
+    
+    // Hide extra buttons
+    const exploreBtn = document.getElementById('scrollToTools');
+    if (exploreBtn) exploreBtn.style.display = 'none';
+    
+    // Advanced Tools heading hide karo agar tool match nahi karta
+    const advancedHeading = document.querySelector('#home-section h2:not(.tools-grid)');
+    if (advancedHeading && advancedHeading.innerText.includes('Advanced')) {
+        const hasAdvancedMatch = Array.from(document.querySelectorAll('.tools-grid-new .glass-card')).some(card => card.style.display !== 'none');
+        if (!hasAdvancedMatch) advancedHeading.style.display = 'none';
+    }
+}
 </script>
 
 </body>
