@@ -499,73 +499,65 @@ body.light-mode #canvas-container {
         <h2 style="font-size:2rem; text-align:center; margin:2rem 0 1rem;">Our <span style="background:linear-gradient(135deg,#60a5fa,#c084fc); -webkit-background-clip:text; background-clip:text; color:transparent;">Powerful Tools</span></h2>
         <p style="text-align:center; margin-bottom:2rem;">Convert, merge, compress, edit — everything you need for document mastery.</p>
     
-        <!-- Core Tools Grid -->
-        <div id="tools" class="tools-grid">
-            <div class="glass-card" style="padding:1.5rem; text-align:center;">
-                <i class="fas fa-file-alt" style="font-size:3rem; color:#60a5fa; margin-bottom:1rem;"></i>
-                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Text to PDF</h3>
-                <button class="btn-outline-light openModal" data-modal="textModal">Convert Now</button>
-            </div>
-            <div class="glass-card" style="padding:1.5rem; text-align:center;">
-                <i class="fas fa-image" style="font-size:3rem; color:#c084fc; margin-bottom:1rem;"></i>
-                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Image to PDF</h3>
-                <button class="btn-outline-light openModal" data-modal="imageModal">Convert Image</button>
-            </div>
-            <div class="glass-card" style="padding:1.5rem; text-align:center;">
-                <i class="fas fa-object-group" style="font-size:3rem; color:#34d399; margin-bottom:1rem;"></i>
-                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Merge PDF</h3>
-                <button class="btn-outline-light openModal" data-modal="mergeModal">Merge Files</button>
-            </div>
-            <div class="glass-card" style="padding:1.5rem; text-align:center;">
-                <i class="fas fa-compress-alt" style="font-size:3rem; color:#fbbf24; margin-bottom:1rem;"></i>
-                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Compress PDF</h3>
-                <a href="https://www.ilovepdf.com/compress_pdf" target="_blank" class="btn-outline-light">
- Compress PDF
-</a>
-            </div>
-            </div>
-
-       <!-- Advanced Tools Section -->
-<h2 style="font-size: 2rem; text-align: center; margin-top: 3rem; margin-bottom: 1.5rem;">
-    <span style="background: linear-gradient(135deg, #f97316, #ef4444); -webkit-background-clip: text; background-clip: text; color: transparent;">Advanced Tools</span>
-</h2>
-<p style="text-align: center; margin-bottom: 2rem;">Edit PDF, compress images, convert formats — all in one place</p>
-
+    </a>
+<!-- Core Tools Grid -->
+<div id="tools-section" class="tools-grid">
+    <!-- Text to PDF -->
+    <div class="glass-card" style="padding:1.5rem; text-align:center;">
+        <i class="fas fa-file-alt" style="font-size:3rem; color:#60a5fa; margin-bottom:1rem;"></i>
+        <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Text to PDF</h3>
+        <a href="text-to-pdf.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Convert Now</a>
+    </div>
+    <!-- Image to PDF -->
+    <div class="glass-card" style="padding:1.5rem; text-align:center;">
+        <i class="fas fa-image" style="font-size:3rem; color:#c084fc; margin-bottom:1rem;"></i>
+        <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Image to PDF</h3>
+        <a href="image-to-pdf.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Convert Image</a>
+    </div>
+    <!-- Merge PDF -->
+    <div class="glass-card" style="padding:1.5rem; text-align:center;">
+        <i class="fas fa-object-group" style="font-size:3rem; color:#34d399; margin-bottom:1rem;"></i>
+        <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Merge PDF</h3>
+        <a href="merge-pdf.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Merge Files</a>
+    </div>
+    <!-- Compress PDF -->
+    <div class="glass-card" style="padding:1.5rem; text-align:center;">
+        <i class="fas fa-compress-alt" style="font-size:3rem; color:#fbbf24; margin-bottom:1rem;"></i>
+        <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Compress PDF</h3>
+        <a href="compress-pdf.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Compress PDF</a>
+    </div>
+</div>          
+<!-- Advanced Tools Grid -->
 <div class="tools-grid">
-    <!-- PDF Editor Card -->
+    <!-- PDF Editor -->
     <div class="glass-card" style="padding: 1.5rem; text-align: center;">
         <i class="fas fa-edit" style="font-size: 3rem; color: #f97316; margin-bottom: 1rem;"></i>
         <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">PDF Editor</h3>
         <p style="font-size: 0.85rem; margin-bottom: 1rem;">Edit PDF: add text, delete pages, rotate, add images</p>
-       <a href="https://www.ilovepdf.com/edit-pdf" target="_blank" class="btn-outline-light">
-  Edit PDF Now
-</a>
-
-  </div>
-    <!-- JPG to PNG Card -->
+        <a href="pdf-editor.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Edit PDF Now</a>
+    </div>
+    <!-- Image Compressor -->
+    <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+        <i class="fas fa-compress" style="font-size: 3rem; color: #10b981; margin-bottom: 1rem;"></i>
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Image Compressor</h3>
+        <p style="font-size: 0.85rem; margin-bottom: 1rem;">Reduce image size while maintaining quality</p>
+        <a href="image-compressor.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Compress Image</a>
+    </div>
+    <!-- JPG to PNG -->
     <div class="glass-card" style="padding: 1.5rem; text-align: center;">
         <i class="fas fa-exchange-alt" style="font-size: 3rem; color: #8b5cf6; margin-bottom: 1rem;"></i>
         <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">JPG to PNG</h3>
         <p style="font-size: 0.85rem; margin-bottom: 1rem;">Convert JPG/JPEG images to transparent PNG format</p>
-        <button class="btn-outline-light openModal" data-modal="jpgToPngModal">Convert to PNG</button>
+        <a href="jpg-to-png.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Convert to PNG</a>
     </div>
-    <!-- PNG to JPG Card -->
+    <!-- PNG to JPG -->
     <div class="glass-card" style="padding: 1.5rem; text-align: center;">
         <i class="fas fa-sync-alt" style="font-size: 3rem; color: #ec489a; margin-bottom: 1rem;"></i>
         <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">PNG to JPG</h3>
         <p style="font-size: 0.85rem; margin-bottom: 1rem;">Convert PNG images to JPG format (smaller size)</p>
-        <button class="btn-outline-light openModal" data-modal="pngToJpgModal">Convert to JPG</button>
+        <a href="png-to-jpg.html" class="btn-outline-light" style="text-decoration: none; display: inline-block;">Convert to JPG</a>
     </div>
-    <!-- Image Compressor Card -->
-            <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-                <i class="fas fa-compress" style="font-size: 3rem; color: #10b981; margin-bottom: 1rem;"></i>
-                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Image Compressor</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 1rem;">Reduce image size while maintaining quality</p>
-                <button class="btn-outline-light openModal" data-modal="imageCompressorModal">Compress Image</button>
-            </div>
-        </div>
-    </div>
-
+</div>
     <!-- ABOUT SECTION -->
     <div id="about-section" class="section" style="display:none;">
         <div class="glass-card" style="padding:2rem;">
