@@ -1156,6 +1156,10 @@ document.addEventListener("DOMContentLoaded", function () {
       a.click();
 });
 // ========== MULTIPLE PAGES - GOOGLE KE LIYE ALAG-ALAG URLS ==========
+  document.addEventListener('DOMContentLoaded', function() {    
+const urlParams = new URLSearchParams(window.location.search);
+const toolName = urlParams.get('tool');
+// ========== MULTIPLE PAGES - GOOGLE KE LIYE ALAG-ALAG URLS ==========
 const urlParams = new URLSearchParams(window.location.search);
 const toolName = urlParams.get('tool');
 
@@ -1186,6 +1190,15 @@ if (toolName) {
     // Hide extra buttons
     const exploreBtn = document.getElementById('scrollToTools');
     if (exploreBtn) exploreBtn.style.display = 'none';
+    
+    // Advanced Tools heading hide karo agar tool match nahi karta
+    const advancedHeading = document.querySelector('#home-section h2:not(.tools-grid)');
+    if (advancedHeading && advancedHeading.innerText.includes('Advanced')) {
+        const hasAdvancedMatch = Array.from(document.querySelectorAll('.tools-grid-new .glass-card')).some(card => card.style.display !== 'none');
+        if (!hasAdvancedMatch) advancedHeading.style.display = 'none';
+    }
+}
+
     
     // Advanced Tools heading hide karo agar tool match nahi karta
     const advancedHeading = document.querySelector('#home-section h2:not(.tools-grid)');
