@@ -3,20 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="description" content="Master PDF Hub" - Free online tools to convert, merge, compress, edit PDFs and images. All-in-one platform.">
+    <meta name="description" content="Master PDF Hub - Free online tools to convert, merge, compress, edit PDFs and images. All-in-one platform.">
     <meta name="keywords" content="PDF editor, text to PDF, image to PDF, merge PDF, compress PDF, image compressor, JPG to PNG, PNG to JPG">
     <meta name="author" content="Master PDF Hub">
-    <title>Master PDF hub | All-in-One PDF & Image Tools</title>
+    <title>Master PDF Hub | All-in-One PDF & Image Tools</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-      *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Theme Variables */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-primary: #0a0c15;
             --bg-secondary: rgba(20, 25, 45, 0.7);
@@ -27,78 +21,16 @@
             --input-bg: rgba(0, 0, 0, 0.4);
             --footer-border: rgba(255, 255, 255, 0.1);
         }
-
-        /* Light Mode - Watery / Glassmorphic Effect */
-body.light-mode {
-    --bg-primary: rgba(200, 220, 250, 0.3);
-    --bg-secondary: rgba(255, 255, 255, 0.55);
-    --text-primary: #1a2a4a;
-    --text-secondary: #2c3e66;
-    --card-border: rgba(255, 255, 255, 0.5);
-    --btn-gradient: linear-gradient(135deg, #3b82f6, #6366f1);
-    --input-bg: rgba(255, 255, 255, 0.4);
-    --footer-border: rgba(0, 0, 0, 0.1);
-}
-
-/* Light Mode ke liye extra glass effect */
-body.light-mode .glass-card {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-body.light-mode .glass-card:hover {
-    background: rgba(255, 255, 255, 0.65);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-}
-
-body.light-mode .btn-outline-light {
-    border-color: rgba(59, 130, 246, 0.4);
-    color: #1e40af;
-}
-
-body.light-mode .btn-outline-light:hover {
-    background: rgba(59, 130, 246, 0.15);
-    border-color: #3b82f6;
-}
-
-body.light-mode .blog-card {
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-body.light-mode input, 
-body.light-mode textarea {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    color: #1a2a4a;
-}
-
-body.light-mode .theme-toggle {
-    background: rgba(255, 255, 255, 0.4);
-    border-color: rgba(59, 130, 246, 0.3);
-}
-
-body.light-mode .nav-links a {
-    color: #1e40af;
-}
-
-body.light-mode .nav-links a:hover {
-    color: #3b82f6;
-}
-
-body.light-mode .hero-badge {
-    background: rgba(59, 130, 246, 0.15);
-    border-color: rgba(59, 130, 246, 0.3);
-    color: #1e40af;
-}
-
-body.light-mode #canvas-container {
-    opacity: 0.6;
-}
-
+        body.light-mode {
+            --bg-primary: rgba(200, 220, 250, 0.3);
+            --bg-secondary: rgba(255, 255, 255, 0.55);
+            --text-primary: #1a2a4a;
+            --text-secondary: #2c3e66;
+            --card-border: rgba(255, 255, 255, 0.5);
+            --btn-gradient: linear-gradient(135deg, #3b82f6, #6366f1);
+            --input-bg: rgba(255, 255, 255, 0.4);
+            --footer-border: rgba(0, 0, 0, 0.1);
+        }
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
@@ -107,7 +39,6 @@ body.light-mode #canvas-container {
             scroll-behavior: smooth;
             transition: background 0.3s ease, color 0.3s ease;
         }
-
         #canvas-container {
             position: fixed;
             top: 0;
@@ -117,26 +48,16 @@ body.light-mode #canvas-container {
             z-index: 0;
             pointer-events: none;
         }
-
-        .main-content {
-            position: relative;
-            z-index: 2;
-        }
-
+        body.light-mode #canvas-container { opacity: 0.6; }
+        .main-content { position: relative; z-index: 2; }
         .glass-card {
             background: var(--bg-secondary);
             backdrop-filter: blur(12px);
-            border-radius: 2rem;
+            border-radius: 1.5rem;
             border: 1px solid var(--card-border);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4);
-        }
-
+        .glass-card:hover { transform: translateY(-5px); }
         .btn-glow {
             background: var(--btn-gradient);
             border: none;
@@ -148,14 +69,7 @@ body.light-mode #canvas-container {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s ease;
         }
-
-        .btn-glow:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.5);
-        }
-
         .btn-outline-light {
             background: transparent;
             border: 1.5px solid var(--card-border);
@@ -164,102 +78,27 @@ body.light-mode #canvas-container {
             color: var(--text-primary);
             font-weight: 500;
             cursor: pointer;
-            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
         }
-
-        .btn-outline-light:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: #3b82f6;
-        }
-
         .hero-badge {
             background: rgba(59, 130, 246, 0.2);
             border-radius: 100px;
             padding: 6px 16px;
             font-size: 0.85rem;
-            font-weight: 500;
             width: fit-content;
-            backdrop-filter: blur(4px);
             border: 1px solid rgba(59, 130, 246, 0.4);
         }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
-
-        .nav-links a:hover {
-            color: #60a5fa;
-        }
-
-        .section {
-            padding: 4rem 1.25rem;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
+        .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; cursor: pointer; }
+        .nav-links a:hover { color: #60a5fa; }
+        .section { padding: 4rem 1.25rem; max-width: 1280px; margin: 0 auto; }
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
-
-        .tools-grid-new {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.8rem;
-            margin-top: 2rem;
-        }
-
-        .editor-toolbar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
-            justify-content: center;
-        }
-
-        .editor-btn {
-            background: rgba(59, 130, 246, 0.2);
-            border: 1px solid var(--card-border);
-            border-radius: 2rem;
-            padding: 0.6rem 1.2rem;
-            color: var(--text-primary);
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-
-        .editor-btn:hover {
-            background: rgba(59, 130, 246, 0.5);
-        }
-
-        .pdf-preview-container {
-            background: var(--input-bg);
-            border-radius: 1rem;
-            padding: 1rem;
-            max-height: 500px;
-            overflow-y: auto;
-        }
-
-        .compressed-result {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(0, 255, 0, 0.1);
-            border-radius: 1rem;
-            text-align: center;
-        }
-
         .blog-card {
             background: var(--input-bg);
             border-radius: 1.5rem;
@@ -267,11 +106,7 @@ body.light-mode #canvas-container {
             border: 1px solid var(--card-border);
             transition: 0.2s;
         }
-
-        .blog-card:hover {
-            border-color: #3b82f6;
-        }
-
+        .blog-card:hover { border-color: #3b82f6; }
         input, textarea {
             background: var(--input-bg);
             border: 1px solid var(--card-border);
@@ -281,7 +116,6 @@ body.light-mode #canvas-container {
             width: 100%;
             margin-bottom: 1rem;
         }
-
         .theme-toggle {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid var(--card-border);
@@ -291,177 +125,19 @@ body.light-mode #canvas-container {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: 0.2s;
         }
-
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
         @media (max-width: 768px) {
-            .section {
-                padding: 2rem 1rem;
-            }
-            .nav-links {
-                justify-content: center;
-                margin-top: 1rem;
-            }
-      
-
-/* All Cards - Uniform Style */
-.tool-card {
-    background: var(--bg-secondary);
-    backdrop-filter: blur(12px);
-    border-radius: 1.5rem;
-    padding: 1.5rem;
-    text-align: center;
-    border: 1px solid var(--card-border);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.tool-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Tool Icons - Same Size */
-.tool-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    display: inline-block;
-}
-
-/* Tool Title */
-.tool-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-/* Tool Description */
-.tool-description {
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-    opacity: 0.8;
-    line-height: 1.4;
-}
-
-/* Input Fields inside Cards */
-.tool-card input[type="file"] {
-    background: var(--input-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 2rem;
-    padding: 0.6rem;
-    width: 100%;
-    margin-bottom: 0.8rem;
-    color: var(--text-primary);
-    font-size: 0.8rem;
-}
-
-.tool-card input[type="range"] {
-    width: 100%;
-    margin: 0.5rem 0;
-    accent-color: #3b82f6;
-}
-
-/* Button inside cards */
-.tool-card .btn-glow {
-    width: 100%;
-    justify-content: center;
-    padding: 10px;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-}
-
-/* Editor Buttons Group */
-.editor-btn-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-    margin: 0.8rem 0;
-}
-
-.editor-btn {
-    background: rgba(59, 130, 246, 0.2);
-    border: 1px solid var(--card-border);
-    border-radius: 2rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.7rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: var(--text-primary);
-}
-
-.editor-btn:hover {
-    background: rgba(59, 130, 246, 0.5);
-    transform: scale(1.02);
-}
-
-/* Color Picker */
-.color-picker {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
-}
-
-.color-picker input {
-    width: 40px;
-    height: 30px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 1px solid var(--card-border);
-}
-
-/* Result Preview */
-.result-preview {
-    margin-top: 0.8rem;
-    padding: 0.5rem;
-    background: rgba(0, 255, 0, 0.1);
-    border-radius: 1rem;
-    text-align: center;
-    font-size: 0.8rem;
-}
-
-.result-preview img {
-    max-width: 100%;
-    border-radius: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .tools-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-    }
-    .tool-card {
-        padding: 1.2rem;
-    }
-    .editor-btn-group {
-        gap: 0.3rem;
-    }
-    .editor-btn {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.65rem;
-    }
+            .section { padding: 2rem 1rem; }
+            .nav-links { justify-content: center; margin-top: 1rem; }
         }
-    
     </style>
-  
-
-    <head>
+</head>
 <body>
 
 <div id="canvas-container"></div>
 
 <div class="main-content">
-    <!-- Header with Navigation & Theme Toggle -->
+    <!-- Header -->
     <div style="max-width:1280px; margin:0 auto; padding:1rem 1.25rem; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;">
         <div style="display:flex; align-items:center; gap:12px;">
             <i class="fas fa-file-pdf" style="font-size:2rem; color:#60a5fa;"></i>
@@ -484,7 +160,7 @@ body.light-mode #canvas-container {
 
     <!-- HOME SECTION -->
     <div id="home-section" class="section">
-        <div class="glass-card" style="padding:2rem 2rem; text-align:center; margin-bottom:2rem;">
+        <div class="glass-card" style="padding:2rem; text-align:center; margin-bottom:2rem;">
             <div class="hero-badge" style="margin:0 auto 1rem auto;">
                 <i class="fas fa-magic"></i> All-in-One PDF Suite
             </div>
@@ -492,53 +168,100 @@ body.light-mode #canvas-container {
                 Convert, Merge,<br> 
                 <span style="background:linear-gradient(135deg,#60a5fa,#c084fc); -webkit-background-clip:text; background-clip:text; color:transparent;">Compress & Edit PDFs Easily</span>
             </h1>
-            <p style="font-size:1.2rem; margin-bottom:1.5rem;">Master PDF Editor — free online platform with powerful tools to manage PDF files and images.</p>
+            <p style="font-size:1.2rem; margin-bottom:1.5rem;">Master PDF Hub — free online platform with powerful tools to manage PDF files and images.</p>
             <button class="btn-glow" id="scrollToTools"><i class="fas fa-bolt"></i> Explore Tools</button>
         </div>
 
         <h2 style="font-size:2rem; text-align:center; margin:2rem 0 1rem;">Our <span style="background:linear-gradient(135deg,#60a5fa,#c084fc); -webkit-background-clip:text; background-clip:text; color:transparent;">Powerful Tools</span></h2>
         <p style="text-align:center; margin-bottom:2rem;">Convert, merge, compress, edit — everything you need for document mastery.</p>
-    
-    </a>
-<!-- Core Tools Grid -->
 
+        <!-- Core Tools Grid -->
+        <div id="tools-section" class="tools-grid">
+            <div class="glass-card" style="padding:1.5rem; text-align:center;">
+                <i class="fas fa-file-alt" style="font-size:3rem; color:#60a5fa; margin-bottom:1rem;"></i>
+                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Text to PDF</h3>
+                <a href="text-to-pdf.html" class="btn-outline-light" style="text-decoration: none;">Convert Now</a>
+            </div>
+            <div class="glass-card" style="padding:1.5rem; text-align:center;">
+                <i class="fas fa-image" style="font-size:3rem; color:#c084fc; margin-bottom:1rem;"></i>
+                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Image to PDF</h3>
+                <a href="image-to-pdf.html" class="btn-outline-light" style="text-decoration: none;">Convert Image</a>
+            </div>
+            <div class="glass-card" style="padding:1.5rem; text-align:center;">
+                <i class="fas fa-object-group" style="font-size:3rem; color:#34d399; margin-bottom:1rem;"></i>
+                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Merge PDF</h3>
+                <a href="merge-pdf.html" class="btn-outline-light" style="text-decoration: none;">Merge Files</a>
+            </div>
+            <div class="glass-card" style="padding:1.5rem; text-align:center;">
+                <i class="fas fa-compress-alt" style="font-size:3rem; color:#fbbf24; margin-bottom:1rem;"></i>
+                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Compress PDF</h3>
+                <a href="compress-pdf.html" class="btn-outline-light" style="text-decoration: none;">Compress PDF</a>
+            </div>
+        </div>
+
+        <!-- Advanced Tools Section -->
+        <h2 style="font-size: 2rem; text-align: center; margin-top: 3rem; margin-bottom: 1.5rem;">
+            <span style="background: linear-gradient(135deg, #f97316, #ef4444); -webkit-background-clip: text; background-clip: text; color: transparent;">Advanced Tools</span>
+        </h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Edit PDF, compress images, convert formats — all in one place</p>
+
+        <div class="tools-grid">
+            <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                <i class="fas fa-edit" style="font-size: 3rem; color: #f97316; margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">PDF Editor</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">Edit PDF: add text, delete pages, rotate, add images</p>
+                <a href="pdf-editor.html" class="btn-outline-light" style="text-decoration: none;">Edit PDF Now</a>
+            </div>
+            <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                <i class="fas fa-compress" style="font-size: 3rem; color: #10b981; margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Image Compressor</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">Reduce image size while maintaining quality</p>
+                <a href="image-compressor.html" class="btn-outline-light" style="text-decoration: none;">Compress Image</a>
+            </div>
+            <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                <i class="fas fa-exchange-alt" style="font-size: 3rem; color: #8b5cf6; margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">JPG to PNG</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">Convert JPG/JPEG images to transparent PNG format</p>
+                <a href="jpg-to-png.html" class="btn-outline-light" style="text-decoration: none;">Convert to PNG</a>
+            </div>
+            <div class="glass-card" style="padding: 1.5rem; text-align: center;">
+                <i class="fas fa-sync-alt" style="font-size: 3rem; color: #ec489a; margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">PNG to JPG</h3>
+                <p style="font-size: 0.85rem; margin-bottom: 1rem;">Convert PNG images to JPG format (smaller size)</p>
+                <a href="png-to-jpg.html" class="btn-outline-light" style="text-decoration: none;">Convert to JPG</a>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div style="margin-top: 3rem;">
+            <h2 style="font-size: 2rem; text-align: center;">✨ Why Choose Master PDF Hub?</h2>
+            <div class="tools-grid" style="margin-top: 1.5rem;">
+                <div class="glass-card" style="padding: 1.5rem;"><i class="fas fa-lock" style="font-size: 2rem; color:#34d399;"></i><h3>100% Secure</h3><p>Your files never leave your device. No upload, no server storage.</p></div>
+                <div class="glass-card" style="padding: 1.5rem;"><i class="fas fa-gem" style="font-size: 2rem; color:#fbbf24;"></i><h3>Completely Free</h3><p>No premium plans, no hidden charges. All tools are 100% free.</p></div>
+                <div class="glass-card" style="padding: 1.5rem;"><i class="fas fa-bolt" style="font-size: 2rem; color:#f97316;"></i><h3>Lightning Fast</h3><p>Process files in seconds. No waiting in queues.</p></div>
+                <div class="glass-card" style="padding: 1.5rem;"><i class="fas fa-mobile-alt" style="font-size: 2rem; color:#c084fc;"></i><h3>Works on Any Device</h3><p>Use on desktop, tablet, or mobile phone.</p></div>
+            </div>
+        </div>
     </div>
-</div>          
-<!-- Advanced Tools Grid -->
-<div class="tools-grid">
-
 
     <!-- ABOUT SECTION -->
     <div id="about-section" class="section" style="display:none;">
         <div class="glass-card" style="padding:2rem;">
             <h2 style="font-size:2.5rem; margin-bottom:1rem;">About Us</h2>
-            <p style="margin-bottom:1rem;">Master PDF Hub is a free online platform designed to simplify PDF management. We provide fast, secure, and browser-based tools to convert text to PDF, images to PDF, merge multiple PDFs, compress PDF files, and even edit PDFs with advanced features.</p>
-            <p style="margin-bottom:1rem;">Our mission is to make document processing accessible to everyone. All conversions happen locally in your browser, ensuring your data stays private. No files are uploaded to any server.</p>
-            <p>We are passionate about creating useful tools that save time and effort. If you have any suggestions or feedback, please contact us.</p>
-            <p>We are passionate about creating useful tools that save time and effort. If you have any suggestions or feedback, please contact us.</p>
+            <p style="margin-bottom:1rem;">Master PDF Hub is a free online platform designed to simplify PDF management. We provide fast, secure, and browser-based tools to convert text to PDF, images to PDF, merge multiple PDFs, compress PDF files, and edit PDFs with advanced features.</p>
+            <p>All conversions happen locally in your browser. No files are uploaded to any server. Your data stays private and secure.</p>
         </div>
-</div>
+    </div>
+
     <!-- BLOG SECTION -->
     <div id="blog-section" class="section" style="display:none;">
         <h2 style="font-size:2.5rem; text-align:center; margin-bottom:2rem;">Latest Articles</h2>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:2rem;">
-            <div class="blog-card">
-                <i class="fas fa-file-alt" style="font-size:2rem; color:#60a5fa; margin-bottom:1rem;"></i>
-                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">How to Convert Text to PDF in Seconds</h3>
-                <p>Converting text to PDF is essential for sharing documents professionally. Our Text to PDF tool lets you paste any text and download a clean PDF instantly. No formatting loss, no signup.</p>
-            </div>
-            <div class="blog-card">
-                <i class="fas fa-object-group" style="font-size:2rem; color:#34d399; margin-bottom:1rem;"></i>
-                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">Why Merge PDFs? Top Benefits for Work & Study</h3>
-                <p>Combining multiple PDFs into one file makes organization easier. Whether you're compiling reports or creating a portfolio, our Merge PDF tool simplifies the process.</p>
-            </div>
-            <div class="blog-card">
-                <i class="fas fa-edit" style="font-size:2rem; color:#f97316; margin-bottom:1rem;"></i>
-                <h3 style="font-size:1.5rem; margin-bottom:0.5rem;">PDF Editing Made Easy: Add Text & Images</h3>
-                <p>Our PDF Editor allows you to add text, insert images, delete pages, and rotate pages. All edits happen locally - your files stay private and secure.</p>
-            </div>
+        <div class="tools-grid">
+            <div class="blog-card"><i class="fas fa-file-alt" style="font-size:2rem; color:#60a5fa;"></i><h3>How to Convert Text to PDF in Seconds</h3><p>Converting text to PDF is essential for sharing documents professionally. Our tool lets you paste text and download a clean PDF instantly.</p></div>
+            <div class="blog-card"><i class="fas fa-object-group" style="font-size:2rem; color:#34d399;"></i><h3>Why Merge PDFs? Top Benefits</h3><p>Combining multiple PDFs into one file makes organization easier. Perfect for reports, portfolios, and invoices.</p></div>
+            <div class="blog-card"><i class="fas fa-edit" style="font-size:2rem; color:#f97316;"></i><h3>PDF Editing Made Easy</h3><p>Add text, insert images, delete pages, and rotate pages. All edits happen locally - your files stay private.</p></div>
         </div>
-
+    </div>
 
     <!-- CONTACT SECTION -->
     <div id="contact-section" class="section" style="display:none;">
@@ -549,8 +272,6 @@ body.light-mode #canvas-container {
                 <input type="email" name="email" placeholder="Email Address" required>
                 <textarea rows="4" name="message" placeholder="Your Message" required></textarea>
                 <button type="submit" class="btn-glow" style="width:100%; justify-content:center;">Send Message</button>
-                <p>mail=masterpdfhub26@gmail.com</p>
-                <p style="font-size:0.8rem; text-align:center; margin-top:1rem;">We'll get back to you within 24 hours.</p>
             </form>
         </div>
     </div>
@@ -559,181 +280,23 @@ body.light-mode #canvas-container {
     <div id="privacy-section" class="section" style="display:none;">
         <div class="glass-card" style="padding:2rem;">
             <h2 style="font-size:2rem; margin-bottom:1rem;">Privacy Policy</h2>
-            <p><strong>Effective Date:</strong> March 30, 2026</p>
-            <p>At Master PDF Hub, we value your privacy. All conversions and edits happen locally in your browser. We do not upload or store any files on our servers.</p>
-            <h3 style="margin-top:1.5rem;">Data Protection</h3>
-            <p>No personal information is collected unless you voluntarily contact us. Your documents remain private and secure.</p>
-       <h2>1. Information We Collect</h2>
-<p>
-We do not collect any personal information such as your name, email, or files. All processing is done directly in your browser.
-</p>
-<h2>2. File Security</h2>
-<p>
-Your uploaded files are never stored on our servers. All processing happens locally in your browser, ensuring maximum security.
-</p>
-<h3>3. Cookies</h2>
-<p>
-
-We may use cookies to improve user experience and analyze website traffic. These cookies do not store personal data.
-</p>
-
-      <h2>4. Third-Party Services</h2>
-<p>
-
-We may use third-party services such as Google AdSense to display ads. These services may use cookies to show relevant ads.
-</p>
-
-<h3>5. Google AdSense</h2>
-<p>
-Google uses cookies to serve ads based on a user's previous visits. Users may opt out of personalized advertising by visiting Google Ads Settings.
-</p>
-<h3>6. Consent</h2>
-<p>
-By using our website, you consent to our Privacy Policy and agree to its terms.
-</p>
-<h3>7. Updates</h2>
-<p>
-We may update this Privacy Policy from time to time. Any changes will be posted on this page.
-</p>
-<p style="font-size:16px; color:#666;">
-If you have any questions about this Privacy Policy, please contact us.
-</p>     
+            <p><strong>Effective Date:</strong> April 1, 2026</p>
+            <p>At Master PDF Hub, we value your privacy. All conversions and edits happen locally in your browser. We do not upload or store any files on our servers. No personal information is collected unless you voluntarily contact us.</p>
         </div>
     </div>
-    <!-- Step 1: Features Section -->
-<div class="section" style="padding-top: 1rem;">
-    <h2 style="font-size: 2rem; text-align: center; margin-bottom: 1.5rem;">✨ Why <span style="color: #60a5fa;">Master PDF Hub</span> is Different</h2>
-    <div class="tools-grid">
-        <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-            <i class="fas fa-lock" style="font-size: 2.5rem; color: #34d399; margin-bottom: 0.5rem;"></i>
-            <h3>100% Secure & Private</h3>
-            <p>Your files never leave your device. All processing happens locally in your browser. No upload, no server storage.</p>
-        </div>
-        <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-            <i class="fas fa-gem" style="font-size: 2.5rem; color: #fbbf24; margin-bottom: 0.5rem;"></i>
-            <h3>Completely Free Forever</h3>
-            <p>No premium plans, no hidden charges, no credit card required. All tools are 100% free.</p>
-        </div>
-        <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-            <i class="fas fa-bolt" style="font-size: 2.5rem; color: #f97316; margin-bottom: 0.5rem;"></i>
-            <h3>Lightning Fast Processing</h3>
-            <p>Convert, merge, compress files in seconds. No waiting in queues or email verification.</p>
-        </div>
-        <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-            <i class="fas fa-mobile-alt" style="font-size: 2.5rem; color: #c084fc; margin-bottom: 0.5rem;"></i>
-            <h3>Works on Any Device</h3>
-            <p>Use on desktop, laptop, tablet, or mobile phone. Fully responsive design.</p>
-        </div>
-        <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-            <i class="fas fa-thumbs-up" style="font-size: 2.5rem; color: #60a5fa; margin-bottom: 0.5rem;"></i>
-            <h3>No Registration Required</h3>
-            <p>Start using instantly. No signup, no email, no password needed.</p>
-        </div>
-        <div class="glass-card" style="padding: 1.5rem; text-align: center;">
-            <i class="fas fa-chart-line" style="font-size: 2.5rem; color: #8b5cf6; margin-bottom: 0.5rem;"></i>
-            <h3>High Quality Output</h3>
-            <p>Maintain original quality while compressing or converting files.</p>
-        </div>
-    </div>
-</div>
 
-   
-        <!-- Step 2: How It Works Section -->  
-        <div class=" home-section" style="background: rgba(59,130,246,0.05); border-radius: 2rem; margin: 1rem auto;">  
-            <h2 style="font-size: 2rem; text-align: center; margin-bottom: 2rem;">📋 How It Works? (3 Simple Steps)</h2>  
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center;">  
-                <div>  
-                    <div style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; font-weight: bold;">1</div>  
-                    <h3>📁 Upload Your File</h3>  
-                    <p>Select your PDF, JPG, or PNG file from your device</p>  
-                </div>  
-                <div>  
-                    <div style="background: linear-gradient(135deg, #8b5cf6, #ec489a); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; font-weight: bold;">2</div>  
-                    <h3>⚙️ Choose Your Tool</h3>  
-                    <p>Select what you want to do - convert, merge, compress, or edit</p>  
-                </div>  
-                <div>  
-                    <div style="background: linear-gradient(135deg, #10b981, #34d399); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; font-weight: bold;">3</div>  
-                    <h3>💾 Download Result</h3>  
-                    <p>Get your processed file instantly, ready to use anywhere</p>  
-                </div>  
-            </div>  
-        </div>
-        <!-- Step 3: Why Choose Us Section -->  
-        <div class="section">  
-            <h2 style="font-size: 2rem; text-align: center; margin-bottom: 1.5rem;">🌟 Why Choose <span style="color: #60a5fa;">Master PDF Hub</span>?</h2>  
-            <div class="tools-grid">  
-                <div class="glass-card" style="padding: 1.5rem;">  
-                    <i class="fas fa-shield-alt" style="font-size: 2rem; color: #34d399;"></i>  
-                    <h3 style="margin-top: 0.5rem;">Privacy First Approach</h3>  
-                    <p>Unlike other PDF tools, we never store your files. 100% local processing means your data stays with you.</p>  
-                </div>  
-                <div class="glass-card" style="padding: 1.5rem;">  
-                    <i class="fas fa-heart" style="font-size: 2rem; color: #ef4444;"></i>  
-                    <h3 style="margin-top: 0.5rem;">Made for Everyone</h3>  
-                    <p>Simple interface, no technical skills required. Students, professionals, and businesses all love us.</p>  
-                </div>  
-                <div class="glass-card" style="padding: 1.5rem;">  
-                    <i class="fas fa-headset" style="font-size: 2rem; color: #fbbf24;"></i>  
-                    <h3 style="margin-top: 0.5rem;">24/7 Support</h3>  
-                    <p>Have questions? Our support team is always ready to help you via email or contact form.</p>  
-                </div>  
-            </div>  
-        </div>
-        <!-- Step 4: FAQ Section -->  
-        <div class="section" style="background: rgba(0,0,0,0.2); border-radius: 2rem;">  
-            <h2 style="font-size: 2rem; text-align: center; margin-bottom: 2rem;">❓ Frequently Asked Questions</h2>  
-            <div style="display: grid; gap: 1rem;">  
-                <div class="glass-card" style="padding: 1rem;">  
-                    <h3>🔒 Is Master PDF Hub really free?</h3>  
-                    <p>Yes! All tools are 100% free with no hidden charges. No premium plans, no subscriptions.</p>  
-                </div>  
-                <div class="glass-card" style="padding: 1rem;">  
-                    <h3>🛡️ Do you store my files on your server?</h3>  
-                    <p>No! All processing happens locally in your browser. Your files never leave your device.</p>  
-                </div>  
-                <div class="glass-card" style="padding: 1rem;">  
-                    <h3>📝 Do I need to create an account?</h3>  
-                    <p>No registration required. Use all tools instantly without signup or email.</p>  
-                </div>  
-                <div class="glass-card" style="padding: 1rem;">  
-                    <h3>📁 What file types are supported?</h3>  
-                    <p>Currently: PDF, JPG, JPEG, PNG. More formats coming soon!</p>  
-                </div>  
-                <div class="glass-card" style="padding: 1rem;">  
-                    <h3>📏 Is there a file size limit?</h3>  
-                    <p>Files up to 50MB work perfectly. Larger files may take more time but still work.</p>  
-                </div>  
-                <div class="glass-card" style="padding: 1rem;">  
-                    <h3>🌐 Can I use this on mobile?</h3>  
-                    <p>Absolutely! Our website is fully responsive and works great on all devices.</p>  
-                </div>  
-            </div>  
-        </div>
-
-<!-- FOOTER -->
-    <footer style="text-align:center; padding:2rem; border-top:1px solid rgba(255,255,255,0.1); margin-top:2rem;">
-        <div class="footer-links" style="margin-bottom:1rem;">
-            <a href="#" data-section="about">About</a> |
-            <a href="#" data-section="privacy">Privacy Policy</a> |
-            <a href="#" data-section="contact">Contact</a>
-        </div>
-        <p>©️ 2026 Master PDF Hub — All-in-One PDF Tools. Convert, Merge, Compress PDFs Easily.</p>
-        <p style="font-size:0.8rem; margin-top:0.5rem;">Made with <i class="fas fa-heart" style="color:#f87171;"></i> for easy document management</p>
+    <!-- FOOTER -->
+    <footer style="text-align:center; padding:2rem; border-top:1px solid var(--footer-border); margin-top:2rem;">
+        <p>©️ 2025 Master PDF Hub — All-in-One PDF & Image Tools. Convert, Merge, Compress, Edit.</p>
     </footer>
 </div>
-   
-<script type="importmap">
-    {
-        "imports": {
-            "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
-        }
-    }
-</script>
-    import * as THREE from 'three';
 
-    // 3D Scene Setup
+<script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.128.0/build/three.module.js", "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/" } }
+</script>
+
+<script type="module">
+    import * as THREE from 'three';
     const container = document.getElementById('canvas-container');
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x050b1a);
@@ -743,30 +306,24 @@ If you have any questions about this Privacy Policy, please contact us.
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
-
     const ambient = new THREE.AmbientLight(0x404060);
     scene.add(ambient);
     const dirLight = new THREE.DirectionalLight(0xffffff, 1);
     dirLight.position.set(2, 3, 4);
     scene.add(dirLight);
-    
-    const torusKnot = new THREE.Mesh(
-        new THREE.TorusKnotGeometry(1.1, 0.25, 128, 16, 3, 4),
-        new THREE.MeshStandardMaterial({ color: 0x3b82f6, metalness: 0.7 })
-    );
+    const torusKnot = new THREE.Mesh(new THREE.TorusKnotGeometry(1.1, 0.25, 128, 16, 3, 4), new THREE.MeshStandardMaterial({ color: 0x3b82f6, metalness: 0.7 }));
     scene.add(torusKnot);
-    
-    const particlesGeo = new THREE.BufferGeometry();
-    const positions = new Float32Array(600 * 3);
-    for (let i = 0; i < 600; i++) {
-        positions[i*3] = (Math.random() - 0.5) * 20;
-        positions[i*3+1] = (Math.random() - 0.5) * 12;
-        positions[i*3+2] = (Math.random() - 0.5) * 15;
+    const particleCount = 800;
+    const particlesGeometry = new THREE.BufferGeometry();
+    const positionsArray = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+        positionsArray[i*3] = (Math.random() - 0.5) * 20;
+        positionsArray[i*3+1] = (Math.random() - 0.5) * 12;
+        positionsArray[i*3+2] = (Math.random() - 0.5) * 15;
     }
-    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particles = new THREE.Points(particlesGeo, new THREE.PointsMaterial({ color: 0x88aaff, size: 0.05 }));
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positionsArray, 3));
+    const particles = new THREE.Points(particlesGeometry, new THREE.PointsMaterial({ color: 0x88aaff, size: 0.05 }));
     scene.add(particles);
-    
     function animate() {
         requestAnimationFrame(animate);
         torusKnot.rotation.x += 0.008;
@@ -780,32 +337,19 @@ If you have any questions about this Privacy Policy, please contact us.
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
-
+    
     // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
-    const icon = themeToggle.querySelector('i');
-    const span = themeToggle.querySelector('span');
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('light-mode');
         if (document.body.classList.contains('light-mode')) {
-            icon.className = 'fas fa-sun';
-            span.textContent = 'Light';
+            themeToggle.querySelector('i').className = 'fas fa-sun';
+            themeToggle.querySelector('span').textContent = 'Light';
         } else {
-            icon.className = 'fas fa-moon';
-            span.textContent = 'Dark';
+            themeToggle.querySelector('i').className = 'fas fa-moon';
+            themeToggle.querySelector('span').textContent = 'Dark';
         }
     });
-
-    // Helper Functions
-    function loadScript(src) {
-        return new Promise((resolve) => {
-            const script = document.createElement('script');
-            script.src = src;
-            script.onload = resolve;
-            document.head.appendChild(script);
-        });
-    }
-
     // Navigation
     const sections = {
         home: document.getElementById('home-section'),
@@ -825,105 +369,19 @@ If you have any questions about this Privacy Policy, please contact us.
             showSection(link.getAttribute('data-section'));
         });
     });
-    document.getElementById('scrollToTools')?.addEventListener('click', () => {
+    document.getElementById('scrollToTools').addEventListener('click', () => {
         showSection('home');
         setTimeout(() => document.getElementById('tools-section')?.scrollIntoView({ behavior: 'smooth' }), 100);
     });
-
-    // Modal Handling
-    const modals = ['textModal', 'imageModal', 'mergeModal', 'compressModal'];
-    document.querySelectorAll('.openModal').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const modalId = btn.getAttribute('data-modal');
-            document.getElementById(modalId).style.display = 'flex';
-        });
-    });
-    document.querySelectorAll('.closeModal, .modal').forEach(el => {
-        el.addEventListener('click', (e) => {
-            if (e.target.classList.contains('closeModal') || e.target.classList.contains('modal')) {
-                e.target.closest('.modal').style.display = 'none';
-            }
-        });
-    });
-
     
- 
     // Contact Form
     document.getElementById('contactForm')?.addEventListener('submit', (e) => {
         e.preventDefault();
         alert('Thank you for contacting us! We will reply soon.');
         e.target.reset();
     });
-
+    
     showSection('home');
 </script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-  let compressedBlob = null;
-
-  const previewBtn = document.getElementById("previewBtn");
-  const downloadBtn = document.getElementById("downloadBtn");
-
-  if (previewBtn) {
-    previewBtn.addEventListener("click", function () {
-
-      const file = document.getElementById("imageInput").files[0];
-      const percent = parseInt(document.getElementById("compressPercent").value);
-
-      if (!file) return alert("Upload image first");
-
-      if (!percent || percent <= 0 || percent >= 100) {
-        return alert("Enter 1-99");
-      }
-
-      const scale = (100 - percent) / 100;
-
-      const reader = new FileReader();
-      const img = new Image();
-
-      reader.onload = e => img.src = e.target.result;
-
-      img.onload = function () {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-
-        canvas.width = img.width * scale;
-        canvas.height = img.height * scale;
-
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-        canvas.toBlob(blob => {
-          compressedBlob = blob;
-
-          const url = URL.createObjectURL(blob);
-          const preview = document.getElementById("previewImage");
-
-          preview.src = url;
-          preview.style.display = "block";
-
-        }, "image/jpeg", scale);
-      };
-
-      reader.readAsDataURL(file);
-    });
-  }
-
-  if (downloadBtn) {
-    downloadBtn.addEventListener("click", function () {
-
-      if (!compressedBlob) return alert("Preview first");
-
-      const url = URL.createObjectURL(compressedBlob);
-
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "compressed.jpg";
-      a.click();
-});
-
-</script>
-
 </body>
 </html>
