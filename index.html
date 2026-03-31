@@ -1207,6 +1207,24 @@ if (toolName) {
         if (!hasAdvancedMatch) advancedHeading.style.display = 'none';
     }
 }
+                            <script>
+(function() {
+    const tool = new URLSearchParams(window.location.search).get('tool');
+    if (tool) {
+        const allCards = document.querySelectorAll('.tools-grid .glass-card, .tools-grid-new .glass-card');
+        allCards.forEach(card => {
+            const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
+            if (!title.includes(tool.toLowerCase().replace(/-/g, ' '))) {
+                card.style.display = 'none';
+            }
+        });
+        const heroBadge = document.querySelector('.hero-badge');
+        if (heroBadge) heroBadge.innerHTML = '<i class="fas fa-magic"></i> ' + tool.replace(/-/g, ' ').toUpperCase() + ' Tool';
+        const exploreBtn = document.getElementById('scrollToTools');
+        if (exploreBtn) exploreBtn.style.display = 'none';
+    }
+})();
+</script>
 </script>
 
 </body>
