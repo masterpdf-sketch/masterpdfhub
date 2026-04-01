@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF Editor | Edit PDF Online Free - Master PDF Hub</title>
-<meta name="description" content="Edit PDF online: add text, images, delete pages, rotate. Free and secure. No upload, all processing happens in your browser.">
+    <title>PDF Editor | Edit PDF Online Free - Master PDF Hub</title>
+    <meta name="description" content="Edit PDF online: add text, images, delete pages, rotate. Free and secure. No upload, all processing happens in your browser.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -14,10 +14,14 @@
             background: #0a0c15;
             color: white;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+        .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; font-weight: bold; }
+        .logo i { font-size: 2rem; color: #f97316; }
+        .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .nav-links a { color: #e2e8f0; text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: #f97316; }
         .redirect-card {
             background: rgba(20, 25, 45, 0.7);
             backdrop-filter: blur(12px);
@@ -25,7 +29,7 @@
             padding: 3rem;
             text-align: center;
             max-width: 500px;
-            margin: 2rem;
+            margin: 2rem auto;
             border: 1px solid rgba(255,255,255,0.2);
         }
         .icon { font-size: 4rem; color: #f97316; margin-bottom: 1rem; }
@@ -46,20 +50,61 @@
         }
         .btn:hover { transform: scale(1.02); }
         .loading { margin-top: 1rem; font-size: 0.8rem; color: #94a3b8; }
-        .footer { margin-top: 2rem; font-size: 0.7rem; color: #64748b; }
+        .footer-text { margin-top: 2rem; font-size: 0.7rem; color: #64748b; text-align: center; }
+        .main-footer { text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-links a { color: #94a3b8; text-decoration: none; margin: 0 0.5rem; }
+        .footer-links a:hover { color: #f97316; }
     </style>
 </head>
 <body>
-</div>
-    <div class="redirect-card">
-        <div class="icon"><i class="fas fa-edit"></i></div>
-        <h1>PDF Editor</h1>
-        <p>You are being redirected to our trusted partner <strong>iLovePDF</strong> for professional PDF editing tools.</p>
-        <a href="https://www.ilovepdf.com/edit-pdf" target="_blank" class="btn" id="redirectBtn">
-            <i class="fas fa-external-link-alt"></i> Open PDF Editor
-        </a>
-        <div class="loading">Redirecting in <span id="countdown">5</span> seconds...</div>
-        <div class="footer">🔒 Secure & Free • No file upload to our servers</div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-file-pdf"></i>
+                <span>Master PDF Hub</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="text-to-pdf.html">Text to PDF</a>
+                <a href="image-to-pdf.html">Image to PDF</a>
+                <a href="merge-pdf.html">Merge PDF</a>
+                <a href="compress-pdf.html">Compress PDF</a>
+                <a href="pdf-editor.html">PDF Editor</a>
+                <a href="image-compressor.html">Image Compressor</a>
+                <a href="jpg-to-png.html">JPG to PNG</a>
+                <a href="png-to-jpg.html">PNG to JPG</a>
+                <a data-section="about">About</a>
+                <a data-section="blog">Blog</a>
+                <a data-section="contact">Contact</a>
+                <a data-section="privacy">Privacy</a>
+            </div>
+        </div>
+
+        <div class="redirect-card">
+            <div class="icon"><i class="fas fa-edit"></i></div>
+            <h1>PDF Editor</h1>
+            <p>You are being redirected to our trusted partner <strong>iLovePDF</strong> for professional PDF editing tools.</p>
+            <a href="https://www.ilovepdf.com/edit-pdf" target="_blank" class="btn" id="redirectBtn">
+                <i class="fas fa-external-link-alt"></i> Open PDF Editor
+            </a>
+            <div class="loading">Redirecting in <span id="countdown">5</span> seconds...</div>
+            <div class="footer-text">🔒 Secure & Free • No file upload to our servers</div>
+        </div>
+    </div>
+
+    <div class="main-footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a> |
+            <a href="text-to-pdf.html">Text to PDF</a> |
+            <a href="image-to-pdf.html">Image to PDF</a> |
+            <a href="merge-pdf.html">Merge PDF</a> |
+            <a href="compress-pdf.html">Compress PDF</a> |
+            <a href="pdf-editor.html">PDF Editor</a> |
+            <a href="image-compressor.html">Image Compressor</a> |
+            <a href="jpg-to-png.html">JPG to PNG</a> |
+            <a href="png-to-jpg.html">PNG to JPG</a>
+        </div>
+        <p>©️ 2025 Master PDF Hub — All-in-One PDF & Image Tools</p>
     </div>
 
     <script>
