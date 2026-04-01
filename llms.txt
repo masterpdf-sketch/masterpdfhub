@@ -1,0 +1,27 @@
+# Master PDF Hub - AI Friendly Information
+
+## About
+Master PDF Hub is a free online platform offering tools to convert, merge, compress, and edit PDFs and images. All processing happens locally in your browser—no files are uploaded to any server.
+
+## Available Tools
+- Text to PDF: `/text-to-pdf.html`
+- Image to PDF: `/image-to-pdf.html`
+- Merge PDF: `/merge-pdf.html`
+- Compress PDF: `/compress-pdf.html`
+- PDF Editor: `/pdf-editor.html`
+- Image Compressor: `/image-compressor.html`
+- JPG to PNG: `/jpg-to-png.html`
+- PNG to JPG: `/png-to-jpg.html`
+
+## Main Pages
+- Home: `/`
+- About: `/#about`
+- Blog: `/#blog`
+- Contact: `/#contact`
+- Privacy: `/#privacy`
+
+## Key Features
+- 100% free, no registration
+- No file uploads, 100% secure
+- Works on desktop and mobile
+- Fast processing in your browser
