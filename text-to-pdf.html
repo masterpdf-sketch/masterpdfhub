@@ -2,76 +2,296 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Text to PDF Converter | Free Online - Master PDF Hub</title>
-<meta name="description" content="Free online Text to PDF converter. Convert any text to PDF instantly. 100% secure, no upload, no registration. Fast and easy to use.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Text to PDF Converter | Free Online - Master PDF Hub</title>
+    <meta name="description" content="Free online Text to PDF converter. Convert any text to PDF instantly. 100% secure, no upload, no registration. Fast and easy to use.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            height: 100%;
+        }
         body {
             font-family: 'Inter', sans-serif;
             background: #0a0c15;
             color: white;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
-        .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; font-weight: bold; }
+        .wrapper {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
         .logo i { font-size: 2rem; color: #60a5fa; }
-        .nav-links a { color: #e2e8f0; text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
-        .nav-links a:hover { color: #60a5fa; }
-        .card { background: rgba(20, 25, 45, 0.7); backdrop-filter: blur(12px); border-radius: 1.5rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.2); }
-        h1 { font-size: 2rem; margin-bottom: 1rem; }
-        .tool-area { margin: 2rem 0; }
-        textarea { width: 100%; padding: 1rem; border-radius: 1rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 1rem; }
-        button { background: linear-gradient(135deg, #3b82f6, #8b5cf6); border: none; color: white; font-weight: 600; padding: 12px 28px; border-radius: 40px; cursor: pointer; margin-top: 1rem; }
-        .footer { text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #94a3b8; }
-        @media (max-width: 768px) { .container { padding: 1rem; } .nav-links a { margin-left: 1rem; } }
+        
+        /* Hamburger Menu */
+        .menu-container {
+            position: relative;
+        }
+        .menu-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            color: white;
+        }
+        .menu-btn:hover {
+            background: rgba(96,165,250,0.2);
+            border-color: #60a5fa;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: rgba(20, 25, 45, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem;
+            min-width: 200px;
+            z-index: 100;
+            display: none;
+        }
+        .dropdown-menu.show {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .dropdown-menu a:hover {
+            background: rgba(96,165,250,0.2);
+            color: #60a5fa;
+        }
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 0.5rem 0;
+        }
+        
+        /* Center Card */
+        .container {
+            max-width: 550px;
+            margin: 0 auto 2rem auto;
+        }
+        .card {
+            background: rgba(20, 25, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        h1 i {
+            color: #60a5fa;
+            margin-right: 0.5rem;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .tool-area {
+            margin: 1.5rem 0;
+        }
+        textarea {
+            background: rgba(0,0,0,0.4);
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 100%;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            resize: vertical;
+        }
+        button {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        button:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Footer - Bottom Fixed */
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.75rem;
+            color: #64748b;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: auto;
+        }
+        
+        /* Back Button - Small Circular */
+        .back-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: rgba(59,130,246,0.8);
+            backdrop-filter: blur(8px);
+            border: none;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            z-index: 100;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background: #3b82f6;
+            transform: scale(1.05);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wrapper { padding: 1rem; }
+            .header { margin-bottom: 1.5rem; }
+            .logo { font-size: 1.2rem; }
+            .logo i { font-size: 1.6rem; }
+            .menu-btn { padding: 0.4rem 1rem; font-size: 0.85rem; }
+            .dropdown-menu { min-width: 170px; }
+            .dropdown-menu a { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+            .card { padding: 1.2rem; }
+            h1 { font-size: 1.4rem; }
+            .subtitle { font-size: 0.8rem; }
+            textarea { font-size: 0.85rem; }
+            button { padding: 8px 20px; font-size: 0.85rem; }
+            .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; font-size: 1rem; }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .wrapper { padding: 1.5rem; }
+            .card { max-width: 500px; margin: 0 auto; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="wrapper">
         <div class="header">
             <div class="logo">
                 <i class="fas fa-file-pdf"></i>
                 <span>Master PDF Hub</span>
             </div>
-                <div class="nav-links" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-    <a href="index.html">Home</a>
-    <a href="text-to-pdf.html">Text to PDF</a>
-    <a href="image-to-pdf.html">Image to PDF</a>
-    <a href="merge-pdf.html">Merge PDF</a>
-    <a href="compress-pdf.html">Compress PDF</a>
-    <a href="pdf-editor.html">PDF Editor</a>
-    <a href="image-compressor.html">Image Compressor</a>
-    <a href="jpg-to-png.html">JPG to PNG</a>
-    <a href="png-to-jpg.html">PNG to JPG</a>
-    <a data-section="about">About</a>
-    <a data-section="blog">Blog</a>
-    <a data-section="contact">Contact</a>
-    <a data-section="privacy">Privacy</a>
-</div>
+            <div class="menu-container">
+                <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i> Tools</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="index.html">🏠 Home</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="text-to-pdf.html">📄 Text to PDF</a>
+                    <a href="image-to-pdf.html">🖼️ Image to PDF</a>
+                    <a href="merge-pdf.html">🔗 Merge PDF</a>
+                    <a href="compress-pdf.html">🗜️ Compress PDF</a>
+                    <a href="pdf-editor.html">✏️ PDF Editor</a>
+                    <a href="image-compressor.html">📸 Image Compressor</a>
+                    <a href="jpg-to-png.html">🔄 JPG to PNG</a>
+                    <a href="png-to-jpg.html">🔄 PNG to JPG</a>
+                    <div class="dropdown-divider"></div>
+                    <a data-section="about">📖 About</a>
+                    <a data-section="blog">📝 Blog</a>
+                    <a data-section="contact">📧 Contact</a>
+                    <a data-section="privacy">🔒 Privacy</a>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <h1><i class="fas fa-file-alt"></i> Text to PDF Converter</h1>
-            <p>Convert your text into a professional PDF instantly. Fast, secure, and free.</p>
-            
-            <div class="tool-area">
-                <textarea id="textInput" rows="10" placeholder="Enter your text here..."></textarea>
-                <button id="convertBtn"><i class="fas fa-download"></i> Convert to PDF</button>
+        <div class="container">
+            <div class="card">
+                <h1><i class="fas fa-file-alt"></i> Text to PDF Converter</h1>
+                <p class="subtitle">Convert any text into a professional PDF instantly. Free, secure, no upload.</p>
+                
+                <div class="tool-area">
+                    <textarea id="textInput" rows="8" placeholder="Enter your text here..."></textarea>
+                    <button id="convertBtn"><i class="fas fa-file-pdf"></i> Convert to PDF</button>
+                </div>
             </div>
-        </div>
-
-        <div class="footer">
-            <p>©️ 2025 Master PDF Hub — Free PDF Tools</p>
         </div>
     </div>
 
+    <div class="footer">
+        <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
+    </div>
+
+    <!-- Back Button - Small Circular -->
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
+        // Hamburger Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+        
+        // Navigation for data-section links
+        document.querySelectorAll('[data-section]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.getAttribute('data-section');
+                window.location.href = `index.html#${section}`;
+            });
+        });
+        
+        // Text to PDF functionality
         document.getElementById('convertBtn').addEventListener('click', function() {
             const text = document.getElementById('textInput').value;
             if (!text.trim()) {
