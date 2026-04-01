@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merge PDF Files | Combine PDFs Online Free - Master PDF Hub</title>
-<meta name="description" content="Merge multiple PDF files into one document online. Free PDF merger, no upload, secure. Combine PDFs easily with our tool.">
+    <meta name="description" content="Merge multiple PDF files into one document online. Free PDF merger, no upload, secure. Combine PDFs easily with our tool.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -15,66 +15,322 @@
             color: white;
             min-height: 100vh;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
-        .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; font-weight: bold; }
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
         .logo i { font-size: 2rem; color: #34d399; }
-        .nav-links a { color: #e2e8f0; text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
-        .nav-links a:hover { color: #34d399; }
-        .card { background: rgba(20, 25, 45, 0.7); backdrop-filter: blur(12px); border-radius: 1.5rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.2); }
-        h1 { font-size: 2rem; margin-bottom: 1rem; }
-        .tool-area { margin: 2rem 0; text-align: center; }
-        input[type="file"] { background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.2); color: white; width: 100%; margin-bottom: 1rem; }
-        button { background: linear-gradient(135deg, #34d399, #10b981); border: none; color: white; font-weight: 600; padding: 12px 28px; border-radius: 40px; cursor: pointer; margin-top: 1rem; }
-        .file-list { margin-top: 1rem; text-align: left; }
-        .file-item { background: rgba(255,255,255,0.1); padding: 0.5rem; margin: 0.3rem 0; border-radius: 0.5rem; }
-        .footer { text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #94a3b8; }
-        @media (max-width: 768px) { .container { padding: 1rem; } .nav-links a { margin-left: 1rem; } }
+        
+        /* Hamburger Menu */
+        .menu-container {
+            position: relative;
+        }
+        .menu-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            color: white;
+        }
+        .menu-btn:hover {
+            background: rgba(52,211,153,0.2);
+            border-color: #34d399;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: rgba(20, 25, 45, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem;
+            min-width: 200px;
+            z-index: 100;
+            display: none;
+        }
+        .dropdown-menu.show {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+        }
+        .dropdown-menu a:hover {
+            background: rgba(52,211,153,0.2);
+            color: #34d399;
+        }
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 0.5rem 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+        .card {
+            background: rgba(20, 25, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        h1 i {
+            color: #34d399;
+            margin-right: 0.5rem;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .tool-area {
+            margin: 2rem 0;
+        }
+        input[type="file"] {
+            background: rgba(0,0,0,0.4);
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 100%;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        .file-list {
+            margin-top: 1rem;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .file-item {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem;
+            margin: 0.3rem 0;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+        }
+        button {
+            background: linear-gradient(135deg, #34d399, #10b981);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        button:hover {
+            transform: scale(1.02);
+        }
+        .info-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(52,211,153,0.1);
+            border-radius: 1rem;
+            text-align: left;
+        }
+        .info-section h3 {
+            margin-bottom: 1rem;
+            color: #34d399;
+        }
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .info-section li {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .info-section i {
+            color: #34d399;
+            width: 1.5rem;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 0.7rem;
+            color: #64748b;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-links {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-size: 0.7rem;
+        }
+        .footer-links a:hover {
+            color: #34d399;
+        }
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: rgba(59,130,246,0.8);
+            backdrop-filter: blur(8px);
+            border: none;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            z-index: 100;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background: #3b82f6;
+            transform: translateX(-3px);
+        }
+        @media (max-width: 768px) {
+            .wrapper { padding: 1rem; }
+            .header { flex-direction: column; text-align: center; }
+            .back-btn { bottom: 1rem; left: 1rem; padding: 0.6rem 1rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="wrapper">
         <div class="header">
             <div class="logo">
                 <i class="fas fa-file-pdf"></i>
                 <span>Master PDF Hub</span>
             </div>
-            <div class="nav-links" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-    <a href="index.html">Home</a>
-    <a href="text-to-pdf.html">Text to PDF</a>
-    <a href="image-to-pdf.html">Image to PDF</a>
-    <a href="merge-pdf.html">Merge PDF</a>
-    <a href="compress-pdf.html">Compress PDF</a>
-    <a href="pdf-editor.html">PDF Editor</a>
-    <a href="image-compressor.html">Image Compressor</a>
-    <a href="jpg-to-png.html">JPG to PNG</a>
-    <a href="png-to-jpg.html">PNG to JPG</a>
-    <a data-section="about">About</a>
-    <a data-section="blog">Blog</a>
-    <a data-section="contact">Contact</a>
-    <a data-section="privacy">Privacy</a>
-</div>
+            <div class="menu-container">
+                <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i> Tools</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="index.html">🏠 Home</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="text-to-pdf.html">📄 Text to PDF</a>
+                    <a href="image-to-pdf.html">🖼️ Image to PDF</a>
+                    <a href="merge-pdf.html">🔗 Merge PDF</a>
+                    <a href="compress-pdf.html">🗜️ Compress PDF</a>
+                    <a href="pdf-editor.html">✏️ PDF Editor</a>
+                    <a href="image-compressor.html">📸 Image Compressor</a>
+                    <a href="jpg-to-png.html">🔄 JPG to PNG</a>
+                    <a href="png-to-jpg.html">🔄 PNG to JPG</a>
+                    <div class="dropdown-divider"></div>
+                    <a data-section="about">📖 About</a>
+                    <a data-section="blog">📝 Blog</a>
+                    <a data-section="contact">📧 Contact</a>
+                    <a data-section="privacy">🔒 Privacy</a>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <h1><i class="fas fa-object-group"></i> Merge PDF Files</h1>
-            <p>Combine multiple PDF files into one document. Free and easy to use.</p>
-            
-            <div class="tool-area">
-                <input type="file" id="pdfInput" multiple accept="application/pdf">
-                <div id="fileList" class="file-list"></div>
-                <button id="mergeBtn"><i class="fas fa-download"></i> Merge & Download</button>
+        <div class="container">
+            <div class="card">
+                <h1><i class="fas fa-object-group"></i> Merge PDF Files</h1>
+                <p class="subtitle">Combine multiple PDF files into one document. Free and easy to use.</p>
+                
+                <div class="tool-area">
+                    <input type="file" id="pdfInput" multiple accept="application/pdf">
+                    <div id="fileList" class="file-list"></div>
+                    <button id="mergeBtn"><i class="fas fa-download"></i> Merge & Download</button>
+                </div>
+                
+                <div class="info-section">
+                    <h3><i class="fas fa-question-circle"></i> Why Use PDF Merger?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Combine multiple PDFs into one</li>
+                        <li><i class="fas fa-check-circle"></i> Fast and secure (no upload)</li>
+                        <li><i class="fas fa-check-circle"></i> 100% free, no registration</li>
+                        <li><i class="fas fa-check-circle"></i> Works on mobile & desktop</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <div class="footer">
-            <p>©️ 2025 Master PDF Hub — Free PDF Tools</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a> |
+                <a href="text-to-pdf.html">Text to PDF</a> |
+                <a href="image-to-pdf.html">Image to PDF</a> |
+                <a href="merge-pdf.html">Merge PDF</a> |
+                <a href="compress-pdf.html">Compress PDF</a> |
+                <a href="pdf-editor.html">PDF Editor</a>
+            </div>
+            <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
         </div>
     </div>
 
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <script>
+        // Hamburger Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+        
+        // Navigation for data-section links
+        document.querySelectorAll('[data-section]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.getAttribute('data-section');
+                window.location.href = `index.html#${section}`;
+            });
+        });
+        
+        // Merge PDF functionality
         const input = document.getElementById('pdfInput');
         const fileList = document.getElementById('fileList');
         const mergeBtn = document.getElementById('mergeBtn');
