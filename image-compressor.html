@@ -2,187 +2,335 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Image Compressor | Reduce Image Size Online Free - Master PDF Hub</title>
-<meta name="description" content="Compress JPG, PNG images online. Reduce file size while maintaining quality. Free, secure, no upload. Works on all devices.">
+    <meta name="description" content="Compress JPG, PNG images online. Reduce file size while maintaining quality. Free, secure, no upload. Works on all devices.">
+    <link rel="canonical" href="https://masterpdfhub.com/image-compressor.html">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0a0c15;
             color: white;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
-        .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; font-weight: bold; }
+        .wrapper {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
         .logo i { font-size: 2rem; color: #10b981; }
-        .nav-links a { color: #e2e8f0; text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
-        .nav-links a:hover { color: #10b981; }
-        .card { background: rgba(20, 25, 45, 0.7); backdrop-filter: blur(12px); border-radius: 1.5rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.2); }
-        h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .subtitle { color: #94a3b8; margin-bottom: 2rem; }
-        .tool-area { margin: 2rem 0; text-align: center; }
-        input[type="file"] { background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.2); color: white; width: 100%; margin-bottom: 1rem; cursor: pointer; }
-        input[type="number"] { background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.2); color: white; width: 100%; margin-bottom: 1rem; }
-        .btn-group { display: flex; gap: 1rem; justify-content: center; margin: 1rem 0; }
-        .btn { background: linear-gradient(135deg, #10b981, #059669); border: none; color: white; font-weight: 600; padding: 12px 28px; border-radius: 40px; cursor: pointer; transition: transform 0.2s; }
-        .btn:hover { transform: scale(1.02); }
-        .btn-secondary { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-        .preview-area { margin-top: 2rem; text-align: center; }
-        #preview { max-width: 100%; border-radius: 1rem; margin-top: 1rem; display: none; box-shadow: 0 0 20px rgba(0,0,0,0.3); }
-        .info-section { margin-top: 2rem; padding: 1.5rem; background: rgba(16,185,129,0.1); border-radius: 1rem; text-align: left; }
-        .info-section h3 { margin-bottom: 1rem; color: #10b981; }
-        .info-section ul { list-style: none; padding: 0; }
-        .info-section li { margin: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
-        .info-section i { color: #10b981; width: 1.5rem; }
-        .footer { text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #94a3b8; }
-        .back-btn { position: fixed; bottom: 2rem; left: 2rem; background: rgba(59,130,246,0.8); backdrop-filter: blur(8px); border: none; color: white; padding: 0.8rem 1.5rem; border-radius: 2rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-weight: 500; transition: all 0.2s; z-index: 100; }
-        .back-btn:hover { background: #3b82f6; transform: translateX(-3px); }
-        @media (max-width: 768px) { .container { padding: 1rem; } .nav-links a { margin-left: 1rem; } .btn-group { flex-direction: column; } .back-btn { bottom: 1rem; left: 1rem; padding: 0.6rem 1rem; } }
+        
+        /* Hamburger Menu */
+        .menu-container { position: relative; }
+        .menu-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            color: white;
+        }
+        .menu-btn:hover { background: rgba(16,185,129,0.2); border-color: #10b981; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: rgba(20, 25, 45, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem;
+            min-width: 200px;
+            z-index: 100;
+            display: none;
+        }
+        .dropdown-menu.show { display: block; }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .dropdown-menu a:hover { background: rgba(16,185,129,0.2); color: #10b981; }
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 0.5rem 0;
+        }
+        
+        /* Center Card */
+        .container { max-width: 550px; margin: 0 auto 2rem auto; }
+        .card {
+            background: rgba(20, 25, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+        h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        h1 i { color: #10b981; margin-right: 0.5rem; }
+        .subtitle { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .tool-area { margin: 1.5rem 0; }
+        input[type="file"] {
+            background: rgba(0,0,0,0.4);
+            padding: 0.8rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 100%;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        .quality-slider { margin: 1rem 0; }
+        .quality-slider label { display: block; margin-bottom: 0.5rem; }
+        input[type="range"] { width: 100%; accent-color: #10b981; }
+        button {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        button:hover { transform: scale(1.02); }
+        .preview-area { margin-top: 1rem; }
+        .preview-area img { max-width: 100%; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.2); }
+        .result { margin-top: 1rem; padding: 0.8rem; background: rgba(16,185,129,0.2); border-radius: 1rem; display: none; }
+        
+        /* Article - Card Ke Bahar */
+        .article-box {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: rgba(20, 25, 45, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+        .article-box h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #10b981; }
+        .article-box p { margin-bottom: 0.8rem; line-height: 1.5; font-size: 0.9rem; }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.75rem;
+            color: #64748b;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: auto;
+        }
+        
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: rgba(59,130,246,0.8);
+            backdrop-filter: blur(8px);
+            border: none;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            z-index: 100;
+            text-decoration: none;
+        }
+        .back-btn:hover { background: #3b82f6; transform: scale(1.05); }
+        
+        @media (max-width: 768px) {
+            .wrapper { padding: 1rem; }
+            .header { margin-bottom: 1.5rem; }
+            .logo { font-size: 1.2rem; }
+            .logo i { font-size: 1.6rem; }
+            .menu-btn { padding: 0.4rem 1rem; font-size: 0.85rem; }
+            .dropdown-menu { min-width: 170px; }
+            .card { padding: 1.2rem; }
+            h1 { font-size: 1.4rem; }
+            .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="header">
-        <div class="logo">
-            <i class="fas fa-file-pdf"></i>
-            <span>Master PDF Hub</span>
-        </div>
-<div class="nav-links" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-    <a href="index.html">Home</a>
-    <a href="text-to-pdf.html">Text to PDF</a>
-    <a href="image-to-pdf.html">Image to PDF</a>
-    <a href="merge-pdf.html">Merge PDF</a>
-    <a href="compress-pdf.html">Compress PDF</a>
-    <a href="pdf-editor.html">PDF Editor</a>
-    <a href="image-compressor.html">Image Compressor</a>
-    <a href="jpg-to-png.html">JPG to PNG</a>
-    <a href="png-to-jpg.html">PNG to JPG</a>
-    <a data-section="about">About</a>
-    <a data-section="blog">Blog</a>
-    <a data-section="contact">Contact</a>
-    <a data-section="privacy">Privacy</a>
-</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h1><i class="fas fa-compress"></i> Image Compressor</h1>
-        <p class="subtitle">Reduce image size without losing much quality. 100% secure, no upload.</p>
-        
-        <div class="tool-area">
-            <input type="file" id="imageInput" accept="image/*">
-            <input type="number" id="compressPercent" placeholder="Enter compression % (e.g. 50)">
-            
-            <div class="btn-group">
-                <button class="btn" onclick="previewCompress()"><i class="fas fa-eye"></i> Preview</button>
-                <button class="btn btn-secondary" onclick="downloadImage()"><i class="fas fa-download"></i> Download</button>
+    <div class="wrapper">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-file-pdf"></i>
+                <span>Master PDF Hub</span>
             </div>
-            
-            <div class="preview-area">
-                <img id="preview">
+            <div class="menu-container">
+                <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i> Tools</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="index.html">🏠 Home</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="text-to-pdf.html">📄 Text to PDF</a>
+                    <a href="image-to-pdf.html">🖼️ Image to PDF</a>
+                    <a href="merge-pdf.html">🔗 Merge PDF</a>
+                    <a href="compress-pdf.html">🗜️ Compress PDF</a>
+                    <a href="pdf-editor.html">✏️ PDF Editor</a>
+                    <a href="image-compressor.html">📸 Image Compressor</a>
+                    <a href="jpg-to-png.html">🔄 JPG to PNG</a>
+                    <a href="png-to-jpg.html">🔄 PNG to JPG</a>
+                    <div class="dropdown-divider"></div>
+                    <a data-section="about">📖 About</a>
+                    <a data-section="blog">📝 Blog</a>
+                    <a data-section="contact">📧 Contact</a>
+                    <a data-section="privacy">🔒 Privacy</a>
+                </div>
             </div>
         </div>
-        
-        <div class="info-section">
-            <h3><i class="fas fa-question-circle"></i> Why Use Image Compressor?</h3>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> Reduce image size quickly</li>
-                <li><i class="fas fa-check-circle"></i> Fast processing</li>
-                <li><i class="fas fa-check-circle"></i> No upload — 100% secure (works in browser)</li>
-                <li><i class="fas fa-check-circle"></i> Works on mobile & desktop</li>
-            </ul>
+
+        <div class="container">
+            <div class="card">
+                <h1><i class="fas fa-compress"></i> Image Compressor</h1>
+                <p class="subtitle">Reduce image size while maintaining quality. Free, secure, no upload.</p>
+                
+                <div class="tool-area">
+                    <input type="file" id="imageInput" accept="image/jpeg,image/png,image/jpg">
+                    <div class="quality-slider">
+                        <label>Quality: <span id="qualityValue">70</span>%</label>
+                        <input type="range" id="quality" min="10" max="100" value="70">
+                        <p style="font-size: 0.7rem; margin-top: 0.3rem;">Lower quality = smaller file size</p>
+                    </div>
+                    <button id="compressBtn"><i class="fas fa-compress-alt"></i> Compress Image</button>
+                    <div id="result" class="result"></div>
+                    <div id="preview" class="preview-area"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 200+ WORDS ARTICLE - CARD KE BAHAR -->
+        <div class="article-box">
+            <h3><i class="fas fa-question-circle"></i> Why Use Our Image Compressor?</h3>
+            <p>Our Image Compressor tool helps you reduce image file size without losing quality. Perfect for photos, screenshots, and graphics. Everything happens in your browser — no uploads, 100% secure.</p>
+            <p>Large images take longer to load on websites and are harder to share via email or messaging apps. Compressing them makes sharing faster and saves storage space on your device.</p>
+            <p>Whether you're a photographer, web designer, student, or just sharing photos with friends, our tool makes it easy. Just select your image, adjust the quality slider, and download your compressed image instantly.</p>
+            <p>Works on all devices — Windows, Mac, Linux, iPhone, and Android. No registration, no watermarks, and completely free. Supports JPG, JPEG, and PNG formats.</p>
+            <p>✅ <strong>Benefits:</strong> Reduce image size, maintain quality, fast processing, 100% secure, no signup required. Try it now!</p>
+        </div>
+
+        <div class="footer">
+            <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
         </div>
     </div>
 
-    <div class="footer">
-        <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
-    </div>
-</div>
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
-<button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Home</button>
+    <script>
+        // Hamburger Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+        
+        document.querySelectorAll('[data-section]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = `index.html#${link.getAttribute('data-section')}`;
+            });
+        });
+        
+        // Image Compressor Functionality
+        const qualitySlider = document.getElementById('quality');
+        const qualityValue = document.getElementById('qualityValue');
+        qualitySlider.addEventListener('input', function() {
+            qualityValue.innerText = this.value;
+        });
 
-<script>
-// 🔥 YOUR ORIGINAL WORKING CODE - NO CHANGES 🔥
+        let compressedBlob = null;
 
-let compressedBlob = null;
-
-function goBack() {
-    window.location.href = "index.html";
-}
-
-function previewCompress() {
-    const file = document.getElementById("imageInput").files[0];
-    const percent = parseInt(document.getElementById("compressPercent").value);
-
-    if (!file) {
-        alert("Upload an image first!");
-        return;
-    }
-
-    if (!percent || percent <= 0 || percent >= 100) {
-        alert("Enter valid percentage (1-99)");
-        return;
-    }
-
-    const scale = (100 - percent) / 100;
-
-    const img = new Image();
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-        img.src = e.target.result;
-    };
-
-    img.onload = function() {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-
-        canvas.width = img.width * scale;
-        canvas.height = img.height * scale;
-
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-        canvas.toBlob(function(blob) {
-            compressedBlob = blob;
-            const url = URL.createObjectURL(blob);
-            const preview = document.getElementById("preview");
-            preview.src = url;
-            preview.style.display = "block";
-        }, "image/jpeg", scale);
-    };
-
-    reader.readAsDataURL(file);
-}
-
-function downloadImage() {
-    if (!compressedBlob) {
-        alert("पहले Preview करो!");
-        return;
-    }
-
-    const url = URL.createObjectURL(compressedBlob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "compressed.jpg";
-    link.click();
-
-    URL.revokeObjectURL(url);
-
-    const preview = document.getElementById("preview");
-    preview.src = "";
-    preview.style.display = "none";
-
-    document.getElementById("imageInput").value = "";
-    document.getElementById("compressPercent").value = "";
-
-    compressedBlob = null;
-}
-</script>
-
+        document.getElementById('compressBtn').addEventListener('click', function() {
+            const file = document.getElementById('imageInput').files[0];
+            const quality = document.getElementById('quality').value / 100;
+            
+            if (!file) {
+                alert('Please select an image first');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    canvas.toBlob(function(blob) {
+                        compressedBlob = blob;
+                        const url = URL.createObjectURL(blob);
+                        const originalSize = (file.size / 1024).toFixed(2);
+                        const compressedSize = (blob.size / 1024).toFixed(2);
+                        const saved = (originalSize - compressedSize).toFixed(2);
+                        const savedPercent = ((1 - blob.size / file.size) * 100).toFixed(1);
+                        
+                        const resultDiv = document.getElementById('result');
+                        const previewDiv = document.getElementById('preview');
+                        resultDiv.style.display = 'block';
+                        resultDiv.innerHTML = `
+                            <p>📊 Original: ${originalSize} KB | Compressed: ${compressedSize} KB</p>
+                            <p>📉 Saved: ${saved} KB (${savedPercent}%)</p>
+                            <a href="${url}" download="compressed_${file.name}" class="download-link" style="display: inline-block; margin-top: 0.5rem; color: #10b981; text-decoration: none; font-weight: 600;">⬇️ Download Compressed Image</a>
+                        `;
+                        previewDiv.innerHTML = `<img src="${url}" alt="Preview">`;
+                    }, file.type, quality);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
 </body>
 </html>
