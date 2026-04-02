@@ -2,143 +2,296 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PNG to JPG Converter | Convert Images Online Free - Master PDF Hub</title>
-<meta name="description" content="Convert PNG images to JPG format online. Choose background color. Free, secure, no upload. Fast and easy to use.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>JPG to PNG Converter | Convert Images Online Free - Master PDF Hub</title>
+    <meta name="description" content="Convert JPG/JPEG images to PNG format online. Transparent background support. Fast, secure, and free. No upload, works in browser.">
+    <link rel="canonical" href="https://masterpdfhub.com/jpg-to-png.html">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0a0c15;
             color: white;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
-        .header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
-        .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; font-weight: bold; }
-        .logo i { font-size: 2rem; color: #ec489a; }
-        .nav-links a { color: #e2e8f0; text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
-        .nav-links a:hover { color: #ec489a; }
-        .card { background: rgba(20, 25, 45, 0.7); backdrop-filter: blur(12px); border-radius: 1.5rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.2); }
-        h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .subtitle { color: #94a3b8; margin-bottom: 2rem; }
-        .tool-area { margin: 2rem 0; text-align: center; }
-        input[type="file"] { background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.2); color: white; width: 100%; margin-bottom: 1rem; cursor: pointer; }
-        .color-picker { margin: 1rem 0; display: flex; align-items: center; justify-content: center; gap: 1rem; }
-        .color-picker label { font-size: 0.9rem; }
-        .color-picker input { width: 50px; height: 35px; margin: 0; cursor: pointer; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); }
-        .btn-primary { background: linear-gradient(135deg, #ec489a, #db2777); border: none; color: white; font-weight: 600; padding: 12px 28px; border-radius: 40px; cursor: pointer; transition: transform 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
-        .btn-primary:hover { transform: scale(1.02); }
-        .download-btn { background: linear-gradient(135deg, #10b981, #059669); border: none; color: white; font-weight: 600; padding: 12px 28px; border-radius: 40px; cursor: pointer; transition: transform 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; margin-top: 1rem; }
-        .download-btn:hover { transform: scale(1.02); }
-        .preview { margin-top: 1rem; text-align: center; }
-        .preview img { max-width: 100%; border-radius: 1rem; margin-top: 1rem; border: 1px solid rgba(255,255,255,0.2); }
-        .result { margin-top: 1rem; text-align: center; }
-        .info-section { margin-top: 2rem; padding: 1.5rem; background: rgba(236,72,153,0.1); border-radius: 1rem; text-align: left; }
-        .info-section h3 { margin-bottom: 1rem; color: #ec489a; }
-        .info-section ul { list-style: none; padding: 0; }
-        .info-section li { margin: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
-        .info-section i { color: #ec489a; width: 1.5rem; }
-        .footer { text-align: center; margin-top: 3rem; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #94a3b8; }
-        .back-btn { position: fixed; bottom: 2rem; left: 2rem; background: rgba(59,130,246,0.8); backdrop-filter: blur(8px); border: none; color: white; padding: 0.8rem 1.5rem; border-radius: 2rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; font-weight: 500; transition: all 0.2s; z-index: 100; text-decoration: none; }
-        .back-btn:hover { background: #3b82f6; transform: translateX(-3px); }
-        @media (max-width: 768px) { .container { padding: 1rem; } .nav-links a { margin-left: 1rem; } .back-btn { bottom: 1rem; left: 1rem; padding: 0.6rem 1rem; } }
+        .wrapper {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .logo i { font-size: 2rem; color: #8b5cf6; }
+        
+        .menu-container { position: relative; }
+        .menu-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: white;
+        }
+        .menu-btn:hover { background: rgba(139,92,246,0.2); border-color: #8b5cf6; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: rgba(20, 25, 45, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem;
+            min-width: 200px;
+            z-index: 100;
+            display: none;
+        }
+        .dropdown-menu.show { display: block; }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .dropdown-menu a:hover { background: rgba(139,92,246,0.2); color: #8b5cf6; }
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 0.5rem 0;
+        }
+        
+        .container { max-width: 550px; margin: 0 auto 2rem auto; }
+        .card {
+            background: rgba(20, 25, 45, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+        h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        h1 i { color: #8b5cf6; margin-right: 0.5rem; }
+        .subtitle { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .tool-area { margin: 1.5rem 0; }
+        input[type="file"] {
+            background: rgba(0,0,0,0.4);
+            padding: 0.8rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 100%;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        button {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        button:hover { transform: scale(1.02); }
+        .preview-area { margin-top: 1rem; }
+        .preview-area img { max-width: 100%; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.2); }
+        .result { margin-top: 1rem; padding: 0.8rem; background: rgba(139,92,246,0.2); border-radius: 1rem; display: none; }
+        
+        .article-box {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: rgba(20, 25, 45, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+        .article-box h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #8b5cf6; }
+        .article-box p { margin-bottom: 0.8rem; line-height: 1.5; font-size: 0.9rem; }
+        
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.75rem;
+            color: #64748b;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: auto;
+        }
+        
+        .back-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: rgba(59,130,246,0.8);
+            backdrop-filter: blur(8px);
+            border: none;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            z-index: 100;
+            text-decoration: none;
+        }
+        .back-btn:hover { background: #3b82f6; transform: scale(1.05); }
+        
+        @media (max-width: 768px) {
+            .wrapper { padding: 1rem; }
+            .header { margin-bottom: 1.5rem; }
+            .logo { font-size: 1.2rem; }
+            .logo i { font-size: 1.6rem; }
+            .menu-btn { padding: 0.4rem 1rem; font-size: 0.85rem; }
+            .dropdown-menu { min-width: 170px; }
+            .card { padding: 1.2rem; }
+            h1 { font-size: 1.4rem; }
+            .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="header">
-        <div class="logo">
-            <i class="fas fa-file-pdf"></i>
-            <span>Master PDF Hub</span>
-        </div>
-            <div class="nav-links" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-    <a href="index.html">Home</a>
-    <a href="text-to-pdf.html">Text to PDF</a>
-    <a href="image-to-pdf.html">Image to PDF</a>
-    <a href="merge-pdf.html">Merge PDF</a>
-    <a href="compress-pdf.html">Compress PDF</a>
-    <a href="pdf-editor.html">PDF Editor</a>
-    <a href="image-compressor.html">Image Compressor</a>
-    <a href="jpg-to-png.html">JPG to PNG</a>
-    <a href="png-to-jpg.html">PNG to JPG</a>
-    <a data-section="about">About</a>
-    <a data-section="blog">Blog</a>
-    <a data-section="contact">Contact</a>
-    <a data-section="privacy">Privacy</a>
-</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h1><i class="fas fa-sync-alt"></i> PNG to JPG Converter</h1>
-        <p class="subtitle">Convert PNG images to JPG format with custom background color. 100% secure, no upload.</p>
-        
-        <div class="tool-area">
-            <input type="file" id="imageInput" accept="image/png">
-            <div class="color-picker">
-                <label>Background Color:</label>
-                <input type="color" id="bgColor" value="#ffffff">
+    <div class="wrapper">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-file-pdf"></i>
+                <span>Master PDF Hub</span>
             </div>
-            <button class="btn-primary" id="convertBtn"><i class="fas fa-sync-alt"></i> Convert to JPG</button>
-            <div id="result" class="result"></div>
-            <div id="preview" class="preview"></div>
+            <div class="menu-container">
+                <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i> Tools</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="index.html">🏠 Home</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="text-to-pdf.html">📄 Text to PDF</a>
+                    <a href="image-to-pdf.html">🖼️ Image to PDF</a>
+                    <a href="merge-pdf.html">🔗 Merge PDF</a>
+                    <a href="compress-pdf.html">🗜️ Compress PDF</a>
+                    <a href="pdf-editor.html">✏️ PDF Editor</a>
+                    <a href="image-compressor.html">📸 Image Compressor</a>
+                    <a href="jpg-to-png.html">🔄 JPG to PNG</a>
+                    <a href="png-to-jpg.html">🔄 PNG to JPG</a>
+                    <div class="dropdown-divider"></div>
+                    <a data-section="about">📖 About</a>
+                    <a data-section="blog">📝 Blog</a>
+                    <a data-section="contact">📧 Contact</a>
+                    <a data-section="privacy">🔒 Privacy</a>
+                </div>
+            </div>
         </div>
-        
-        <div class="info-section">
-            <h3><i class="fas fa-question-circle"></i> Why Use PNG to JPG Converter?</h3>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> Convert PNG to smaller JPG format</li>
-                <li><i class="fas fa-check-circle"></i> Custom background color option</li>
-                <li><i class="fas fa-check-circle"></i> Fast and secure (no upload)</li>
-                <li><i class="fas fa-check-circle"></i> 100% free, no registration</li>
-            </ul>
+
+        <div class="container">
+            <div class="card">
+                <h1><i class="fas fa-exchange-alt"></i> JPG to PNG Converter</h1>
+                <p class="subtitle">Convert JPG/JPEG images to transparent PNG format. Free, secure, no upload.</p>
+                
+                <div class="tool-area">
+                    <input type="file" id="imageInput" accept="image/jpeg,image/jpg">
+                    <button id="convertBtn"><i class="fas fa-sync-alt"></i> Convert to PNG</button>
+                    <div id="result" class="result"></div>
+                    <div id="preview" class="preview-area"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 200+ WORDS ARTICLE - CARD KE BAHAR -->
+        <div class="article-box">
+            <h3><i class="fas fa-question-circle"></i> Why Use Our JPG to PNG Converter?</h3>
+            <p>Our JPG to PNG converter allows you to convert JPG/JPEG images to PNG format instantly. PNG supports transparent backgrounds, making it perfect for logos, graphics, and web design. Everything happens in your browser — no uploads, 100% secure.</p>
+            <p>PNG files are larger than JPG but offer better quality and transparency support. Converting JPG to PNG is useful when you need a transparent background or want to preserve image quality for editing.</p>
+            <p>Whether you're a graphic designer, web developer, student, or just need a PNG for your project, our tool makes it easy. Just select your JPG image, click convert, and download your PNG instantly.</p>
+            <p>Works on all devices — Windows, Mac, Linux, iPhone, and Android. No registration, no watermarks, and completely free. Supports all JPG and JPEG formats.</p>
+            <p>✅ <strong>Benefits:</strong> Convert JPG to PNG, transparent background support, fast processing, 100% secure, no signup required. Try it now!</p>
+        </div>
+
+        <div class="footer">
+            <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
         </div>
     </div>
 
-    <div class="footer">
-        <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
-    </div>
-</div>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
-<a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
-
-<script>
-    document.getElementById('convertBtn').addEventListener('click', function() {
-        const file = document.getElementById('imageInput').files[0];
-        const bgColor = document.getElementById('bgColor').value;
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
         
-        if (!file) {
-            alert('Please select a PNG image first');
-            return;
-        }
+        document.querySelectorAll('[data-section]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = `index.html#${link.getAttribute('data-section')}`;
+            });
+        });
         
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = new Image();
-            img.onload = function() {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.width;
-                canvas.height = img.height;
-                const ctx = canvas.getContext('2d');
-                ctx.fillStyle = bgColor;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(img, 0, 0);
-                canvas.toBlob(function(blob) {
-                    const url = URL.createObjectURL(blob);
-                    const resultDiv = document.getElementById('result');
-                    const previewDiv = document.getElementById('preview');
-                    resultDiv.innerHTML = `<a href="${url}" download="converted.jpg" class="download-btn"><i class="fas fa-download"></i> Download JPG</a>`;
-                    previewDiv.innerHTML = `<img src="${url}" alt="Preview">`;
-                }, 'image/jpeg', 0.9);
+        document.getElementById('convertBtn').addEventListener('click', function() {
+            const file = document.getElementById('imageInput').files[0];
+            if (!file) {
+                alert('Please select a JPG image first');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const resultDiv = document.getElementById('result');
+                        const previewDiv = document.getElementById('preview');
+                        resultDiv.style.display = 'block';
+                        resultDiv.innerHTML = `<a href="${url}" download="converted.png" style="display: inline-block; margin-top: 0.5rem; color: #8b5cf6; text-decoration: none; font-weight: 600;">⬇️ Download PNG</a>`;
+                        previewDiv.innerHTML = `<img src="${url}" alt="Preview">`;
+                    }, 'image/png');
+                };
+                img.src = e.target.result;
             };
-            img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    });
-</script>
+            reader.readAsDataURL(file);
+        });
+    </script>
 </body>
 </html>
