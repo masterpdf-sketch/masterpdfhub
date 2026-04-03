@@ -258,7 +258,7 @@
         </div>
 
         <div class="footer">
-            <p>©️ 2026 Master PDF Hub — Free PDF & Image Tools</p>
+            <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
         </div>
     </div>
 
@@ -286,7 +286,7 @@
             });
         });
         
-        // Multiple Images to PDF with FIT PAGE
+        // Multiple Images to PDF with PROPER FIT
         const input = document.getElementById('imageInput');
         const fileListDiv = document.getElementById('fileList');
         const previewDiv = document.getElementById('preview');
@@ -347,21 +347,39 @@
                 const imgData = await readFileAsDataURL(file);
                 const img = await loadImage(imgData);
                 
-                // Calculate page dimensions with margins
+                // A4 dimensions in mm (210 x 297)
+                const pdfWidth = 210;
+                const pdfHeight = 297;
                 const margin = 10;
-                const pageWidth = img.width + (margin * 2);
-                const pageHeight = img.height + (margin * 2);
                 
-                // Create PDF with page size matching image + margins
+                // Calculate image dimensions to fit within A4 with margins
+                const maxWidth = pdfWidth - (margin * 2);
+                const maxHeight = pdfHeight - (margin * 2);
+                
+                let imgWidth = img.width;
+                let imgHeight = img.height;
+                
+                // Scale image to fit within max dimensions
+                const widthRatio = maxWidth / imgWidth;
+                const heightRatio = maxHeight / imgHeight;
+                const scale = Math.min(widthRatio, heightRatio);
+                
+                imgWidth = imgWidth * scale;
+                imgHeight = imgHeight * scale;
+                
+                // Center image on page
+                const x = (pdfWidth - imgWidth) / 2;
+                const y = (pdfHeight - imgHeight) / 2;
+                
                 if (i === 0) {
                     pdf = new jsPDF({
-                        unit: 'px',
-                        format: [pageWidth, pageHeight]
+                        unit: 'mm',
+                        format: 'a4'
                     });
-                    pdf.addImage(imgData, 'JPEG', margin, margin, img.width, img.height);
+                    pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
                 } else {
-                    pdf.addPage([pageWidth, pageHeight]);
-                    pdf.addImage(imgData, 'JPEG', margin, margin, img.width, img.height);
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
                 }
             }
             
