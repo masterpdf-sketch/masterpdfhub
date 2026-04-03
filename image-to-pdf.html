@@ -258,7 +258,7 @@
         </div>
 
         <div class="footer">
-            <p>©️ 2026 Master PDF Hub — Free PDF & Image Tools</p>
+            <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
         </div>
     </div>
 
@@ -286,7 +286,7 @@
             });
         });
         
-        // Multiple Images to PDF
+        // Multiple Images to PDF with FIT PAGE
         const input = document.getElementById('imageInput');
         const fileListDiv = document.getElementById('fileList');
         const previewDiv = document.getElementById('preview');
@@ -347,18 +347,21 @@
                 const imgData = await readFileAsDataURL(file);
                 const img = await loadImage(imgData);
                 
-                const imgWidth = 180;
-                const imgHeight = (img.height * imgWidth) / img.width;
+                // Calculate page dimensions with margins
+                const margin = 10;
+                const pageWidth = img.width + (margin * 2);
+                const pageHeight = img.height + (margin * 2);
                 
+                // Create PDF with page size matching image + margins
                 if (i === 0) {
                     pdf = new jsPDF({
-                        unit: 'pt',
-                        format: [imgWidth + 20, imgHeight + 20]
+                        unit: 'px',
+                        format: [pageWidth, pageHeight]
                     });
-                    pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+                    pdf.addImage(imgData, 'JPEG', margin, margin, img.width, img.height);
                 } else {
-                    pdf.addPage([imgWidth + 20, imgHeight + 20]);
-                    pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+                    pdf.addPage([pageWidth, pageHeight]);
+                    pdf.addImage(imgData, 'JPEG', margin, margin, img.width, img.height);
                 }
             }
             
