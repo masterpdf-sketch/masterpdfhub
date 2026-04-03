@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Image to PDF Converter | Turn JPG/PNG to PDF Online - Master PDF Hub</title>
-    <meta name="description" content="Convert images like JPG, PNG, and BMP to PDF online for free. No upload, secure, and fast. Perfect for photos, scans, and screenshots.">
+    <title>Image to PDF Converter | Multiple Images to PDF - Master PDF Hub</title>
+    <meta name="description" content="Convert multiple JPG, PNG images to PDF online free. Select multiple images, merge into one PDF. No upload, secure, fast.">
     <link rel="canonical" href="https://masterpdfhub.com/image-to-pdf.html">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
-            height: 100%;
-        }
+        html, body { height: 100%; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0a0c15;
@@ -28,7 +26,6 @@
             padding: 2rem;
             width: 100%;
         }
-        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -46,10 +43,7 @@
         }
         .logo i { font-size: 2rem; color: #c084fc; }
         
-        /* Hamburger Menu */
-        .menu-container {
-            position: relative;
-        }
+        .menu-container { position: relative; }
         .menu-btn {
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
@@ -57,13 +51,9 @@
             padding: 0.6rem 1.2rem;
             cursor: pointer;
             font-size: 1rem;
-            transition: all 0.2s;
             color: white;
         }
-        .menu-btn:hover {
-            background: rgba(192,132,252,0.2);
-            border-color: #c084fc;
-        }
+        .menu-btn:hover { background: rgba(192,132,252,0.2); border-color: #c084fc; }
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -78,33 +68,23 @@
             z-index: 100;
             display: none;
         }
-        .dropdown-menu.show {
-            display: block;
-        }
+        .dropdown-menu.show { display: block; }
         .dropdown-menu a {
             display: block;
             padding: 0.6rem 1rem;
             color: #e2e8f0;
             text-decoration: none;
-            transition: all 0.2s;
             border-radius: 0.5rem;
             font-size: 0.9rem;
         }
-        .dropdown-menu a:hover {
-            background: rgba(192,132,252,0.2);
-            color: #c084fc;
-        }
+        .dropdown-menu a:hover { background: rgba(192,132,252,0.2); color: #c084fc; }
         .dropdown-divider {
             height: 1px;
             background: rgba(255,255,255,0.1);
             margin: 0.5rem 0;
         }
         
-        /* Center Card */
-        .container {
-            max-width: 550px;
-            margin: 0 auto 2rem auto;
-        }
+        .container { max-width: 650px; margin: 0 auto 2rem auto; }
         .card {
             background: rgba(20, 25, 45, 0.7);
             backdrop-filter: blur(12px);
@@ -113,22 +93,10 @@
             border: 1px solid rgba(255,255,255,0.2);
             text-align: center;
         }
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        h1 i {
-            color: #c084fc;
-            margin-right: 0.5rem;
-        }
-        .subtitle {
-            color: #94a3b8;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-        .tool-area {
-            margin: 1.5rem 0;
-        }
+        h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        h1 i { color: #c084fc; margin-right: 0.5rem; }
+        .subtitle { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .tool-area { margin: 1.5rem 0; }
         input[type="file"] {
             background: rgba(0,0,0,0.4);
             padding: 0.8rem;
@@ -139,25 +107,40 @@
             margin-bottom: 1rem;
             cursor: pointer;
         }
-        .preview-area {
-            margin: 1rem 0;
-            min-height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .preview-area img {
-            max-width: 100%;
+        .file-list {
+            margin-top: 1rem;
+            text-align: left;
             max-height: 200px;
-            border-radius: 1rem;
-            border: 1px solid rgba(255,255,255,0.2);
+            overflow-y: auto;
+            background: rgba(0,0,0,0.3);
+            border-radius: 0.8rem;
+            padding: 0.5rem;
+        }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            margin: 0.3rem 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+        }
+        .file-item button {
+            background: rgba(239,68,68,0.8);
+            border: none;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.7rem;
         }
         button {
             background: linear-gradient(135deg, #c084fc, #8b5cf6);
             border: none;
             color: white;
             font-weight: 600;
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: 40px;
             cursor: pointer;
             margin-top: 1rem;
@@ -166,11 +149,21 @@
             align-items: center;
             gap: 0.5rem;
         }
-        button:hover {
-            transform: scale(1.02);
+        button:hover { transform: scale(1.02); }
+        .preview-area { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+        .preview-area img { width: 60px; height: 60px; object-fit: cover; border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.2); }
+        .article-box {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: rgba(20, 25, 45, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
         }
-        
-        /* Footer - Bottom Fixed */
+        .article-box h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #c084fc; }
+        .article-box p { margin-bottom: 0.8rem; line-height: 1.5; font-size: 0.9rem; }
         .footer {
             text-align: center;
             padding: 1rem;
@@ -179,8 +172,6 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             margin-top: auto;
         }
-        
-        /* Back Button - Small Circular */
         .back-btn {
             position: fixed;
             bottom: 1.5rem;
@@ -201,30 +192,16 @@
             z-index: 100;
             text-decoration: none;
         }
-        .back-btn:hover {
-            background: #3b82f6;
-            transform: scale(1.05);
-        }
-        
-        /* Responsive */
+        .back-btn:hover { background: #3b82f6; transform: scale(1.05); }
         @media (max-width: 768px) {
             .wrapper { padding: 1rem; }
             .header { margin-bottom: 1.5rem; }
             .logo { font-size: 1.2rem; }
             .logo i { font-size: 1.6rem; }
             .menu-btn { padding: 0.4rem 1rem; font-size: 0.85rem; }
-            .dropdown-menu { min-width: 170px; }
-            .dropdown-menu a { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
             .card { padding: 1.2rem; }
             h1 { font-size: 1.4rem; }
-            .subtitle { font-size: 0.8rem; }
-            button { padding: 8px 20px; font-size: 0.85rem; }
-            .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; font-size: 1rem; }
-        }
-        
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .wrapper { padding: 1.5rem; }
-            .card { max-width: 500px; margin: 0 auto; }
+            .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; }
         }
     </style>
 </head>
@@ -259,95 +236,156 @@
 
         <div class="container">
             <div class="card">
-                <h1><i class="fas fa-image"></i> Image to PDF Converter</h1>
-                <p class="subtitle">Convert JPG, PNG images to PDF instantly. Free, secure, no upload.</p>
+                <h1><i class="fas fa-images"></i> Image to PDF Converter</h1>
+                <p class="subtitle">Select multiple images (JPG, PNG) and convert them into a single PDF. Free, secure, no upload.</p>
                 
                 <div class="tool-area">
-                    <input type="file" id="imageInput" accept="image/jpeg,image/png,image/jpg">
-                    <div class="preview-area" id="preview"></div>
+                    <input type="file" id="imageInput" multiple accept="image/jpeg,image/png,image/jpg">
+                    <div id="fileList" class="file-list"></div>
                     <button id="convertBtn"><i class="fas fa-file-pdf"></i> Convert to PDF</button>
-            <div style="margin-top: 2rem; padding: 1.2rem; background: rgba(192,132,252,0.1); border-radius: 1rem; text-align: left;">
-    <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: #c084fc;">🖼️ Why Use Our Image to PDF Converter?</h3>
-    <p style="margin-bottom: 0.8rem; line-height: 1.5;">Our Image to PDF converter is a completely free, secure, and browser-based tool that lets you turn any image (JPG, PNG, JPEG) into a professional PDF document instantly. Unlike other online converters, we never upload your files to any server. Everything happens directly in your browser, ensuring your private information stays private.</p>
-    
-    <p style="margin-bottom: 0.8rem; line-height: 1.5;">Whether you need to convert scanned documents, photos, screenshots, or any image into a PDF, this tool makes the process effortless. Just select your image, click "Convert to PDF", and download your document in seconds. No signup, no email, no hidden fees — completely free forever.</p>
-    
-    <p style="margin-bottom: 0.8rem; line-height: 1.5;">The generated PDF maintains your image quality and is compatible with all devices and operating systems. You can use it on Windows, Mac, Linux, iPhone, or Android phones. It's perfect for students, professionals, business owners, and anyone who needs quick PDF creation from images.</p>
-    
-    <p style="line-height: 1.5;">✅ <strong>Key Benefits:</strong> 100% secure, no file upload, supports JPG/PNG/JPEG, unlimited conversions, no watermarks, and completely free. Try it now and see how easy it is!</p>
-</div>
-                 </div>
+                    <div id="preview" class="preview-area"></div>
+                </div>
             </div>
+        </div>
+
+        <div class="article-box">
+            <h3><i class="fas fa-question-circle"></i> How to Convert Multiple Images to PDF?</h3>
+            <p>1. Click "Choose Files" and select multiple images (hold Ctrl or Shift to select multiple).</p>
+            <p>2. You can add or remove images before conversion.</p>
+            <p>3. Click "Convert to PDF" to merge all images into a single PDF file.</p>
+            <p>4. Download your PDF instantly. No upload, 100% secure.</p>
+            <p>✅ <strong>Benefits:</strong> Convert JPG, PNG to PDF, merge multiple images, no upload, completely free.</p>
+        </div>
+
+        <div class="footer">
+            <p>©️ 2026 Master PDF Hub — Free PDF & Image Tools</p>
         </div>
     </div>
 
-    <div class="footer">
-        <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
-    </div>
-
-    <!-- Back Button - Small Circular -->
     <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-        // Hamburger Menu Toggle
+        // Hamburger Menu
         const menuBtn = document.getElementById('menuBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
-        
         menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             dropdownMenu.classList.toggle('show');
         });
-        
         document.addEventListener('click', (e) => {
             if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
                 dropdownMenu.classList.remove('show');
             }
         });
         
-        // Navigation for data-section links
         document.querySelectorAll('[data-section]').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const section = link.getAttribute('data-section');
-                window.location.href = `index.html#${section}`;
+                window.location.href = `index.html#${link.getAttribute('data-section')}`;
             });
         });
         
-        // Image to PDF functionality
+        // Multiple Images to PDF
         const input = document.getElementById('imageInput');
-        const preview = document.getElementById('preview');
+        const fileListDiv = document.getElementById('fileList');
+        const previewDiv = document.getElementById('preview');
         const convertBtn = document.getElementById('convertBtn');
-        let selectedImage = null;
+        let selectedFiles = [];
 
         input.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    selectedImage = event.target.result;
-                    preview.innerHTML = `<img src="${selectedImage}" alt="Preview">`;
-                };
-                reader.readAsDataURL(file);
-            }
+            selectedFiles = Array.from(e.target.files);
+            displayFileList();
+            displayPreviews();
         });
 
-        convertBtn.addEventListener('click', function() {
-            if (!selectedImage) {
-                alert('Please select an image first');
+        function displayFileList() {
+            fileListDiv.innerHTML = selectedFiles.map((file, index) => `
+                <div class="file-item">
+                    <span><i class="fas fa-image"></i> ${file.name}</span>
+                    <button onclick="removeFile(${index})">Remove</button>
+                </div>
+            `).join('');
+        }
+
+        function displayPreviews() {
+            previewDiv.innerHTML = '';
+            selectedFiles.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    previewDiv.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        window.removeFile = function(index) {
+            selectedFiles.splice(index, 1);
+            displayFileList();
+            displayPreviews();
+            if (selectedFiles.length === 0) {
+                input.value = '';
+            }
+        };
+
+        convertBtn.addEventListener('click', async function() {
+            if (selectedFiles.length === 0) {
+                alert('Please select at least one image');
                 return;
             }
+
+            convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+            convertBtn.disabled = true;
+
             const { jsPDF } = window.jspdf;
-            const img = new Image();
-            img.onload = function() {
-                const doc = new jsPDF();
+            let pdf = null;
+
+            for (let i = 0; i < selectedFiles.length; i++) {
+                const file = selectedFiles[i];
+                const imgData = await readFileAsDataURL(file);
+                const img = await loadImage(imgData);
+                
                 const imgWidth = 180;
                 const imgHeight = (img.height * imgWidth) / img.width;
-                doc.addImage(selectedImage, 'JPEG', 10, 10, imgWidth, imgHeight);
-                doc.save('image_to_pdf.pdf');
-            };
-            img.src = selectedImage;
+                
+                if (i === 0) {
+                    pdf = new jsPDF({
+                        unit: 'pt',
+                        format: [imgWidth + 20, imgHeight + 20]
+                    });
+                    pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+                } else {
+                    pdf.addPage([imgWidth + 20, imgHeight + 20]);
+                    pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+                }
+            }
+            
+            if (pdf) {
+                pdf.save('images_to_pdf.pdf');
+                alert(`✅ ${selectedFiles.length} images converted to PDF successfully!`);
+            }
+            
+            convertBtn.innerHTML = '<i class="fas fa-file-pdf"></i> Convert to PDF';
+            convertBtn.disabled = false;
         });
+
+        function readFileAsDataURL(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function loadImage(src) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.src = src;
+            });
+        }
     </script>
 </body>
 </html>
