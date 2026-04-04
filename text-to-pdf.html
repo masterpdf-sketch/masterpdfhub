@@ -3,98 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Text to PDF Converter | Format Text + Images - Master PDF Hub</title>
-    <meta name="description" content="Write text with formatting (Bold, Italic, Size, Color), add images anywhere, then convert to PDF. Free, secure, no upload.">
-    <link rel="canonical" href="https://masterpdfhub.com/text-to-pdf.html">
+    <title>Text to PDF | Text + Images Editor - Master PDF Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { height: 100%; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0a0c15;
             color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .wrapper {
-            flex: 1;
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 2rem;
-            width: 100%;
         }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .logo i { font-size: 2rem; color: #60a5fa; }
-        
-        .menu-container { position: relative; }
-        .menu-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 2rem;
-            padding: 0.6rem 1.2rem;
-            cursor: pointer;
-            font-size: 1rem;
-            color: white;
-        }
-        .menu-btn:hover { background: rgba(96,165,250,0.2); border-color: #60a5fa; }
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 0.5rem;
-            background: rgba(20, 25, 45, 0.95);
-            backdrop-filter: blur(12px);
-            border-radius: 1rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 0.8rem;
-            min-width: 200px;
-            z-index: 100;
-            display: none;
-        }
-        .dropdown-menu.show { display: block; }
-        .dropdown-menu a {
-            display: block;
-            padding: 0.6rem 1rem;
-            color: #e2e8f0;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            font-size: 0.9rem;
-        }
-        .dropdown-menu a:hover { background: rgba(96,165,250,0.2); color: #60a5fa; }
-        .dropdown-divider {
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            margin: 0.5rem 0;
-        }
-        
-        .container { max-width: 900px; margin: 0 auto 2rem auto; }
-        .card {
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
             background: rgba(20, 25, 45, 0.7);
             backdrop-filter: blur(12px);
             border-radius: 1.5rem;
             padding: 2rem;
             border: 1px solid rgba(255,255,255,0.2);
         }
-        h1 { font-size: 1.8rem; margin-bottom: 0.5rem; text-align: center; }
+        h1 { text-align: center; margin-bottom: 0.5rem; font-size: 1.8rem; }
         h1 i { color: #60a5fa; margin-right: 0.5rem; }
-        .subtitle { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; text-align: center; }
+        .subtitle { text-align: center; color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; }
         
         /* Toolbar */
         .toolbar {
@@ -108,114 +40,66 @@
             justify-content: center;
         }
         .tool-btn {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
             border: none;
             padding: 0.4rem 0.8rem;
             border-radius: 0.5rem;
             cursor: pointer;
+            color: white;
             font-size: 0.8rem;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
+            transition: all 0.2s;
         }
-        .tool-btn:hover { background: rgba(96,165,250,0.4); }
-        .tool-btn.active { background: rgba(96,165,250,0.6); }
-        .font-size-control {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            background: rgba(0,0,0,0.3);
-            padding: 0.2rem 0.5rem;
-            border-radius: 0.5rem;
-        }
-        .color-preview {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: inline-block;
-            border: 1px solid white;
-        }
+        .tool-btn:hover { background: rgba(96,165,250,0.6); }
+        .color-picker { width: 35px; height: 32px; border-radius: 0.5rem; background: transparent; cursor: pointer; border: 1px solid rgba(255,255,255,0.3); }
         
-        /* Editor */
-        .editor-content {
-            min-height: 400px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 1rem;
-            padding: 1rem;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .content-block {
-            margin-bottom: 1rem;
-            position: relative;
-        }
-        .text-block {
-            background: rgba(0,0,0,0.2);
-            border-radius: 0.8rem;
-            padding: 0.5rem;
-        }
-        .text-block .editable-text {
-            min-height: 60px;
-            padding: 0.5rem;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-            line-height: 1.5;
-        }
-        .text-block .editable-text[contenteditable="true"] {
-            background: rgba(255,255,255,0.05);
+        /* Editor Area - A4 style */
+        .editor-area {
+            background: white;
+            color: #1a2a4a;
+            min-height: 600px;
             border-radius: 0.5rem;
-        }
-        .image-block {
-            text-align: center;
-            background: rgba(0,0,0,0.2);
-            border-radius: 0.8rem;
-            padding: 0.5rem;
-        }
-        .image-block img {
-            max-width: 100%;
-            max-height: 250px;
-            border-radius: 0.8rem;
-        }
-        .block-controls {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: flex-end;
-            margin-top: 0.5rem;
-        }
-        .block-controls button {
-            background: rgba(255,255,255,0.1);
-            border: none;
-            padding: 0.3rem 0.8rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-size: 0.7rem;
-            color: white;
-            width: auto;
-            margin: 0;
-        }
-        .block-controls button:hover { background: rgba(59,130,246,0.5); }
-        .remove-btn:hover { background: rgba(239,68,68,0.5) !important; }
-        
-        .add-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
+            padding: 2rem;
             margin: 1rem 0;
-            flex-wrap: wrap;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .add-btn {
+        .editor-area:focus { outline: none; }
+        
+        /* Image Add Button */
+        .image-add-btn {
             background: rgba(96,165,250,0.2);
-            border: 1px dashed rgba(96,165,250,0.5);
-            padding: 0.6rem 1.2rem;
-            border-radius: 2rem;
+            border: 2px dashed rgba(96,165,250,0.5);
+            border-radius: 0.8rem;
+            padding: 0.8rem;
+            text-align: center;
             cursor: pointer;
-            font-size: 0.85rem;
-            color: #60a5fa;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            margin: 0.5rem 0;
+            transition: all 0.2s;
         }
-        .add-btn:hover { background: rgba(96,165,250,0.3); }
+        .image-add-btn:hover { background: rgba(96,165,250,0.3); }
+        
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 0.5rem;
+        }
+        .remove-img-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: rgba(239,68,68,0.9);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+        }
         
         .generate-btn {
             background: linear-gradient(135deg, #60a5fa, #3b82f6);
@@ -225,400 +109,194 @@
             padding: 12px 28px;
             border-radius: 40px;
             cursor: pointer;
-            margin-top: 1rem;
-            transition: transform 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
             width: 100%;
+            font-size: 1rem;
+            transition: transform 0.2s;
         }
         .generate-btn:hover { transform: scale(1.02); }
         
-        .article-box {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(20, 25, 45, 0.5);
-            backdrop-filter: blur(8px);
-            border-radius: 1rem;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: left;
-        }
-        .article-box h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #60a5fa; }
-        .article-box p { margin-bottom: 0.8rem; line-height: 1.5; font-size: 0.9rem; }
-        .footer {
-            text-align: center;
-            padding: 1rem;
-            font-size: 0.75rem;
-            color: #64748b;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: auto;
-        }
+        .footer { text-align: center; margin-top: 2rem; padding: 1rem; font-size: 0.7rem; color: #64748b; }
         .back-btn {
             position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
+            bottom: 1rem;
+            left: 1rem;
             background: rgba(59,130,246,0.8);
-            backdrop-filter: blur(8px);
-            border: none;
-            color: white;
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.2s;
-            z-index: 100;
+            cursor: pointer;
             text-decoration: none;
+            color: white;
+            transition: all 0.2s;
         }
         .back-btn:hover { background: #3b82f6; transform: scale(1.05); }
+        
         @media (max-width: 768px) {
-            .wrapper { padding: 1rem; }
-            .header { margin-bottom: 1.5rem; }
-            .logo { font-size: 1.2rem; }
-            .logo i { font-size: 1.6rem; }
-            .menu-btn { padding: 0.4rem 1rem; font-size: 0.85rem; }
-            .card { padding: 1.2rem; }
-            h1 { font-size: 1.4rem; }
-            .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; }
-            .toolbar { gap: 0.3rem; }
-            .tool-btn { padding: 0.3rem 0.6rem; font-size: 0.7rem; }
+            body { padding: 1rem; }
+            .container { padding: 1rem; }
+            .editor-area { padding: 1rem; min-height: 400px; }
         }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="header">
-            <div class="logo">
-                <i class="fas fa-file-pdf"></i>
-                <span>Master PDF Hub</span>
-            </div>
-            <div class="menu-container">
-                <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i> Tools</button>
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="index.html">🏠 Home</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="text-to-pdf.html">📄 Text to PDF</a>
-                    <a href="image-to-pdf.html">🖼️ Image to PDF</a>
-                    <a href="merge-pdf.html">🔗 Merge PDF</a>
-                    <a href="compress-pdf.html">🗜️ Compress PDF</a>
-                    <a href="pdf-editor.html">✏️ PDF Editor</a>
-                    <a href="image-compressor.html">📸 Image Compressor</a>
-                    <a href="jpg-to-png.html">🔄 JPG to PNG</a>
-                    <a href="png-to-jpg.html">🔄 PNG to JPG</a>
-                    <div class="dropdown-divider"></div>
-                    <a data-section="about">📖 About</a>
-                    <a data-section="blog">📝 Blog</a>
-                    <a data-section="contact">📧 Contact</a>
-                    <a data-section="privacy">🔒 Privacy</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="container">
-            <div class="card">
-                <h1><i class="fas fa-edit"></i> Rich Text Editor</h1>
-                <p class="subtitle">Write text with formatting (Bold, Italic, Size, Color) + Add Images anywhere</p>
-                
-                <div class="toolbar" id="toolbar">
-                    <button class="tool-btn" id="boldBtn"><i class="fas fa-bold"></i> Bold</button>
-                    <button class="tool-btn" id="italicBtn"><i class="fas fa-italic"></i> Italic</button>
-                    <button class="tool-btn" id="underlineBtn"><i class="fas fa-underline"></i> Underline</button>
-                    <div class="font-size-control">
-                        <button class="tool-btn" id="increaseFontBtn"><i class="fas fa-plus"></i></button>
-                        <span id="fontSizeDisplay" style="min-width: 40px; text-align: center;">16px</span>
-                        <button class="tool-btn" id="decreaseFontBtn"><i class="fas fa-minus"></i></button>
-                    </div>
-                    <input type="color" id="colorPicker" value="#ffffff" style="width: 35px; height: 30px; border-radius: 0.5rem; background: transparent;">
-                    <button class="tool-btn" id="alignLeftBtn"><i class="fas fa-align-left"></i></button>
-                    <button class="tool-btn" id="alignCenterBtn"><i class="fas fa-align-center"></i></button>
-                    <button class="tool-btn" id="alignRightBtn"><i class="fas fa-align-right"></i></button>
-                </div>
-                
-                <div class="add-buttons">
-                    <button class="add-btn" id="addTextBtn"><i class="fas fa-font"></i> Add Text Block</button>
-                    <button class="add-btn" id="addImageBtn"><i class="fas fa-image"></i> Add Image Block</button>
-                </div>
-                
-                <div class="editor-content" id="editorContent">
-                    <!-- Content blocks will appear here -->
-                </div>
-                
-                <button class="generate-btn" id="generateBtn"><i class="fas fa-file-pdf"></i> Generate PDF</button>
-            </div>
-        </div>
-
-        <div class="article-box">
-            <h3><i class="fas fa-question-circle"></i> How to Use?</h3>
-            <p>1. Click <strong>"Add Text Block"</strong> to add a text area.</p>
-            <p>2. Select text and use toolbar for <strong>Bold, Italic, Size, Color, Alignment</strong>.</p>
-            <p>3. Click <strong>"Add Image Block"</strong> to add images anywhere.</p>
-            <p>4. Use <strong>↑ ↓</strong> arrows to rearrange blocks.</p>
-            <p>5. Click <strong>"Generate PDF"</strong> to create PDF with all formatting preserved.</p>
-            <p>✅ <strong>Features:</strong> Bold, Italic, Underline, Font Size, Text Color, Alignment, Images anywhere.</p>
-        </div>
-
-        <div class="footer">
-            <p>©️ 2026 Master PDF Hub — Free PDF & Image Tools</p>
-        </div>
+<div class="container">
+    <h1><i class="fas fa-edit"></i> Text + Image Editor</h1>
+    <p class="subtitle">Write text, add images anywhere, then convert to PDF</p>
+    
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <button class="tool-btn" id="boldBtn"><i class="fas fa-bold"></i> Bold</button>
+        <button class="tool-btn" id="italicBtn"><i class="fas fa-italic"></i> Italic</button>
+        <button class="tool-btn" id="underlineBtn"><i class="fas fa-underline"></i> Underline</button>
+        <input type="color" id="colorPicker" class="color-picker" value="#000000">
+        <button class="tool-btn" id="alignLeftBtn"><i class="fas fa-align-left"></i></button>
+        <button class="tool-btn" id="alignCenterBtn"><i class="fas fa-align-center"></i></button>
+        <button class="tool-btn" id="alignRightBtn"><i class="fas fa-align-right"></i></button>
     </div>
+    
+    <!-- Editor Area - A4 Style White Box -->
+    <div id="editor" class="editor-area" contenteditable="true">
+        <b>Human Skull</b><br><br>
+        The human skull is the bony structure that forms the head. It protects the brain and supports the face.
+    </div>
+    
+    <!-- Add Image Button -->
+    <div class="image-add-btn" id="addImageBtn">
+        <i class="fas fa-plus-circle"></i> Add Image (JPG, PNG)
+    </div>
+    
+    <!-- Hidden File Input -->
+    <input type="file" id="imageInput" accept="image/jpeg,image/png,image/jpg" style="display:none;">
+    
+    <button class="generate-btn" id="generateBtn"><i class="fas fa-file-pdf"></i> Generate PDF</button>
+</div>
 
-    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+<div class="footer">
+    <p>©️ 2026 Master PDF Hub — Free PDF & Image Tools</p>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script>
-        // Hamburger Menu
-        const menuBtn = document.getElementById('menuBtn');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdownMenu.classList.toggle('show');
-        });
-        document.addEventListener('click', (e) => {
-            if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
-            }
-        });
-        
-        document.querySelectorAll('[data-section]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.location.href = `index.html#${link.getAttribute('data-section')}`;
-            });
-        });
-        
-        // Editor Logic
-        let blocks = [];
-        let nextId = 1;
-        let currentEditingBlock = null;
-        
-        // Toolbar functions
-        function applyFormat(command, value = null) {
-            document.execCommand(command, false, value);
-            if (currentEditingBlock) {
-                const editableDiv = document.querySelector(`.text-block[data-id="${currentEditingBlock}"] .editable-text`);
-                if (editableDiv) editableDiv.focus();
-            }
-        }
-        
-        document.getElementById('boldBtn').addEventListener('click', () => applyFormat('bold'));
-        document.getElementById('italicBtn').addEventListener('click', () => applyFormat('italic'));
-        document.getElementById('underlineBtn').addEventListener('click', () => applyFormat('underline'));
-        document.getElementById('increaseFontBtn').addEventListener('click', () => {
-            document.execCommand('fontSize', false, '7');
-        });
-        document.getElementById('decreaseFontBtn').addEventListener('click', () => {
-            document.execCommand('fontSize', false, '1');
-        });
-        document.getElementById('colorPicker').addEventListener('input', (e) => {
-            applyFormat('foreColor', e.target.value);
-        });
-        document.getElementById('alignLeftBtn').addEventListener('click', () => applyFormat('justifyLeft'));
-        document.getElementById('alignCenterBtn').addEventListener('click', () => applyFormat('justifyCenter'));
-        document.getElementById('alignRightBtn').addEventListener('click', () => applyFormat('justifyRight'));
-        
-        function renderEditor() {
-            const editorArea = document.getElementById('editorContent');
-            editorArea.innerHTML = '';
-            
-            blocks.forEach((block, index) => {
-                const blockDiv = document.createElement('div');
-                blockDiv.className = `content-block ${block.type}-block`;
-                blockDiv.setAttribute('data-id', block.id);
+<a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+
+<script>
+    // Toolbar Formatting Functions
+    function applyFormat(command, value = null) {
+        document.getElementById('editor').focus();
+        document.execCommand(command, false, value);
+    }
+    
+    document.getElementById('boldBtn').addEventListener('click', () => applyFormat('bold'));
+    document.getElementById('italicBtn').addEventListener('click', () => applyFormat('italic'));
+    document.getElementById('underlineBtn').addEventListener('click', () => applyFormat('underline'));
+    document.getElementById('colorPicker').addEventListener('input', (e) => applyFormat('foreColor', e.target.value));
+    document.getElementById('alignLeftBtn').addEventListener('click', () => applyFormat('justifyLeft'));
+    document.getElementById('alignCenterBtn').addEventListener('click', () => applyFormat('justifyCenter'));
+    document.getElementById('alignRightBtn').addEventListener('click', () => applyFormat('justifyRight'));
+    
+    // Image handling
+    const imageInput = document.getElementById('imageInput');
+    const editor = document.getElementById('editor');
+    const addImageBtn = document.getElementById('addImageBtn');
+    let currentImageElement = null;
+    
+    addImageBtn.addEventListener('click', () => {
+        imageInput.click();
+    });
+    
+    imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                // Create image container
+                const container = document.createElement('div');
+                container.className = 'image-container';
+                container.setAttribute('contenteditable', 'false');
                 
-                if (block.type === 'text') {
-                    blockDiv.innerHTML = `
-                        <div class="text-block" data-id="${block.id}">
-                            <div class="editable-text" contenteditable="true" data-id="${block.id}" 
-                                 style="font-size: ${block.fontSize || '16px'}; color: ${block.color || '#ffffff'}; text-align: ${block.align || 'left'};">
-                                ${block.content || 'Write your text here...'}
-                            </div>
-                        </div>
-                        <div class="block-controls">
-                            <button class="move-up" data-id="${block.id}" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}><i class="fas fa-arrow-up"></i> Up</button>
-                            <button class="move-down" data-id="${block.id}" ${index === blocks.length - 1 ? 'disabled style="opacity:0.3"' : ''}><i class="fas fa-arrow-down"></i> Down</button>
-                            <button class="remove-btn" data-id="${block.id}"><i class="fas fa-trash"></i> Remove</button>
-                        </div>
-                    `;
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.style.maxWidth = '100%';
+                img.style.maxHeight = '300px';
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = '✖';
+                removeBtn.className = 'remove-img-btn';
+                removeBtn.onclick = function() {
+                    container.remove();
+                };
+                
+                container.appendChild(img);
+                container.appendChild(removeBtn);
+                
+                // Insert image at cursor position or at end
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    const range = selection.getRangeAt(0);
+                    range.deleteContents();
+                    range.insertNode(container);
+                    range.collapse(false);
                 } else {
-                    blockDiv.innerHTML = `
-                        <div class="image-block">
-                            <img src="${block.content}" alt="Image">
-                            <div style="margin-top:0.5rem; font-size:0.7rem; color:#94a3b8;">${block.fileName || 'Image'}</div>
-                        </div>
-                        <div class="block-controls">
-                            <button class="move-up" data-id="${block.id}" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}><i class="fas fa-arrow-up"></i> Up</button>
-                            <button class="move-down" data-id="${block.id}" ${index === blocks.length - 1 ? 'disabled style="opacity:0.3"' : ''}><i class="fas fa-arrow-down"></i> Down</button>
-                            <button class="remove-btn" data-id="${block.id}"><i class="fas fa-trash"></i> Remove</button>
-                        </div>
-                    `;
+                    editor.appendChild(container);
                 }
-               editorArea.appendChild(blockDiv);
-            });
-            
-            // Attach focus events for text blocks
-            document.querySelectorAll('.editable-text').forEach(div => {
-                div.addEventListener('focus', () => {
-                    currentActiveBlock = parseInt(div.getAttribute('data-id'));
-                    console.log('Text block focused:', currentActiveBlock);
-                });
-                div.addEventListener('input', (e) => {
-                    const id = parseInt(e.target.getAttribute('data-id'));
-                    const block = blocks.find(b => b.id === id);
-                    if (block && block.type === 'text') {
-                        block.content = e.target.innerHTML;
-                    }
-                });
-            });
-            
-            // Move/Remove buttons
-            document.querySelectorAll('.move-up').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    const index = blocks.findIndex(b => b.id === id);
-                    if (index > 0) {
-                        [blocks[index - 1], blocks[index]] = [blocks[index], blocks[index - 1]];
-                        renderEditor();
-                    }
-                });
-            });
-            
-            document.querySelectorAll('.move-down').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    const index = blocks.findIndex(b => b.id === id);
-                    if (index < blocks.length - 1) {
-                        [blocks[index], blocks[index + 1]] = [blocks[index + 1], blocks[index]];
-                        renderEditor();
-                    }
-                });
-            });
-            
-            document.querySelectorAll('.remove-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    blocks = blocks.filter(b => b.id !== id);
-                    renderEditor();
-                });
-            });
-        }
-        
-        document.getElementById('addTextBtn').addEventListener('click', () => {
-            blocks.push({
-                id: nextId++,
-                type: 'text',
-                content: 'Click here and start typing...'
-            });
-            renderEditor();
-        });
-        
-        document.getElementById('addImageBtn').addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/jpeg,image/png,image/jpg';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        blocks.push({
-                            id: nextId++,
-                            type: 'image',
-                            content: event.target.result,
-                            fileName: file.name
-                        });
-                        renderEditor();
-                    };
-                    reader.readAsDataURL(file);
-                }
+                
+                // Add line break after image
+                const br = document.createElement('br');
+                editor.appendChild(br);
+                
+                // Focus back to editor
+                editor.focus();
             };
-            input.click();
-        });
-        
-        document.getElementById('generateBtn').addEventListener('click', async () => {
-            if (blocks.length === 0) {
-                alert('Please add at least one text or image block');
-                return;
-            }
-            
-            const btn = document.getElementById('generateBtn');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
-            btn.disabled = true;
-            
-            const { jsPDF } = window.jspdf;
-            let pdf = new jsPDF();
-            let yPosition = 20;
-            const margin = 20;
-            const pageWidth = pdf.internal.pageSize.getWidth();
-            const maxWidth = pageWidth - (margin * 2);
-            
-            for (const block of blocks) {
-                if (block.type === 'text' && block.content && block.content.trim() !== '') {
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = block.content;
-                    const plainText = tempDiv.innerText || tempDiv.textContent;
-                    
-                    if (plainText.trim() !== '') {
-                        const wrappedLines = pdf.splitTextToSize(plainText, maxWidth);
-                        const textHeight = wrappedLines.length * 7;
-                        
-                        if (yPosition + textHeight + 10 > 280) {
-                            pdf.addPage();
-                            yPosition = 20;
-                        }
-                        
-                        pdf.text(wrappedLines, margin, yPosition);
-                        yPosition += textHeight + 10;
-                    }
-                }
-                else if (block.type === 'image') {
-                    const imgData = block.content;
-                    const img = await loadImage(imgData);
-                    let imgWidth = img.width;
-                    let imgHeight = img.height;
-                    
-                    if (imgWidth > maxWidth) {
-                        const ratio = maxWidth / imgWidth;
-                        imgWidth = maxWidth;
-                        imgHeight = imgHeight * ratio;
-                    }
-                    
-                    if (yPosition + imgHeight + 10 > 280) {
-                        pdf.addPage();
-                        yPosition = 20;
-                    }
-                    
-                    pdf.addImage(imgData, 'JPEG', margin, yPosition, imgWidth, imgHeight);
-                    yPosition += imgHeight + 10;
-                }
-            }
-            
-            pdf.save('formatted_document.pdf');
-            alert('✅ PDF generated successfully!');
-            
-            btn.innerHTML = '<i class="fas fa-file-pdf"></i> Generate PDF';
-            btn.disabled = false;
-        });
-        
-        function loadImage(src) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.onload = () => resolve(img);
-                img.src = src;
-            });
+            reader.readAsDataURL(file);
         }
+        imageInput.value = '';
+    });
+    
+    // Generate PDF
+    document.getElementById('generateBtn').addEventListener('click', async () => {
+        const btn = document.getElementById('generateBtn');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+        btn.disabled = true;
         
-        // Add default text block
-        blocks.push({
-            id: nextId++,
-            type: 'text',
-            content: '<b>Human Skull</b><br>The human skull is the bony structure that forms the head.'
+        // Temporarily remove contenteditable for rendering
+        editor.removeAttribute('contenteditable');
+        
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({
+            unit: 'mm',
+            format: 'a4'
         });
-        renderEditor();
-    </script>
+        
+        // Use html2canvas to capture editor content
+        const canvas = await html2canvas(editor, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            logging: false
+        });
+        
+        const imgData = canvas.toDataURL('image/jpeg', 1.0);
+        const imgWidth = 190; // A4 width in mm with margins
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+        pdf.save('my_document.pdf');
+        
+        // Restore contenteditable
+        editor.setAttribute('contenteditable', 'true');
+        
+        alert('✅ PDF generated successfully!');
+        btn.innerHTML = '<i class="fas fa-file-pdf"></i> Generate PDF';
+        btn.disabled = false;
+    });
+    
+    // Load html2canvas if not already loaded
+    if (typeof html2canvas === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        document.head.appendChild(script);
+    }
+</script>
 </body>
 </html>
