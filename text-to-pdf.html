@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Text to PDF Converter | Free Online - Master PDF Hub</title>
-    <meta name="description" content="Free online Text to PDF converter. Convert any text to PDF instantly. 100% secure, no upload, no registration. Fast and easy to use.">
-<link rel="canonical" href="https://masterpdfhub.com/text-to-pdf.html">
+    <title>Text to PDF Converter | Text + Images to PDF - Master PDF Hub</title>
+    <meta name="description" content="Convert text and images to PDF online free. Add text, add multiple images, merge into one PDF. No upload, secure, fast.">
+    <link rel="canonical" href="https://masterpdfhub.com/text-to-pdf.html">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
-            height: 100%;
-        }
+        html, body { height: 100%; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0a0c15;
@@ -28,7 +26,6 @@
             padding: 2rem;
             width: 100%;
         }
-        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -46,10 +43,7 @@
         }
         .logo i { font-size: 2rem; color: #60a5fa; }
         
-        /* Hamburger Menu */
-        .menu-container {
-            position: relative;
-        }
+        .menu-container { position: relative; }
         .menu-btn {
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
@@ -57,13 +51,9 @@
             padding: 0.6rem 1.2rem;
             cursor: pointer;
             font-size: 1rem;
-            transition: all 0.2s;
             color: white;
         }
-        .menu-btn:hover {
-            background: rgba(96,165,250,0.2);
-            border-color: #60a5fa;
-        }
+        .menu-btn:hover { background: rgba(96,165,250,0.2); border-color: #60a5fa; }
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -78,33 +68,23 @@
             z-index: 100;
             display: none;
         }
-        .dropdown-menu.show {
-            display: block;
-        }
+        .dropdown-menu.show { display: block; }
         .dropdown-menu a {
             display: block;
             padding: 0.6rem 1rem;
             color: #e2e8f0;
             text-decoration: none;
-            transition: all 0.2s;
             border-radius: 0.5rem;
             font-size: 0.9rem;
         }
-        .dropdown-menu a:hover {
-            background: rgba(96,165,250,0.2);
-            color: #60a5fa;
-        }
+        .dropdown-menu a:hover { background: rgba(96,165,250,0.2); color: #60a5fa; }
         .dropdown-divider {
             height: 1px;
             background: rgba(255,255,255,0.1);
             margin: 0.5rem 0;
         }
         
-        /* Center Card */
-        .container {
-            max-width: 550px;
-            margin: 0 auto 2rem auto;
-        }
+        .container { max-width: 700px; margin: 0 auto 2rem auto; }
         .card {
             background: rgba(20, 25, 45, 0.7);
             backdrop-filter: blur(12px);
@@ -113,22 +93,10 @@
             border: 1px solid rgba(255,255,255,0.2);
             text-align: center;
         }
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        h1 i {
-            color: #60a5fa;
-            margin-right: 0.5rem;
-        }
-        .subtitle {
-            color: #94a3b8;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-        .tool-area {
-            margin: 1.5rem 0;
-        }
+        h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        h1 i { color: #60a5fa; margin-right: 0.5rem; }
+        .subtitle { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .tool-area { margin: 1.5rem 0; }
         textarea {
             background: rgba(0,0,0,0.4);
             padding: 1rem;
@@ -139,13 +107,66 @@
             font-size: 0.9rem;
             font-family: 'Inter', sans-serif;
             resize: vertical;
+            margin-bottom: 1rem;
+        }
+        .image-upload-area {
+            border: 2px dashed rgba(96,165,250,0.4);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .image-upload-area input {
+            background: rgba(0,0,0,0.4);
+            padding: 0.8rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            width: 100%;
+            cursor: pointer;
+        }
+        .image-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        .image-item {
+            position: relative;
+            display: inline-block;
+        }
+        .image-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .image-item button {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: rgba(239,68,68,0.9);
+            border: none;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
         }
         button {
             background: linear-gradient(135deg, #60a5fa, #3b82f6);
             border: none;
             color: white;
             font-weight: 600;
-            padding: 12px 28px;
+            padding: 10px 24px;
             border-radius: 40px;
             cursor: pointer;
             margin-top: 1rem;
@@ -154,11 +175,19 @@
             align-items: center;
             gap: 0.5rem;
         }
-        button:hover {
-            transform: scale(1.02);
+        button:hover { transform: scale(1.02); }
+        .article-box {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: rgba(20, 25, 45, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
         }
-        
-        /* Footer - Bottom Fixed */
+        .article-box h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #60a5fa; }
+        .article-box p { margin-bottom: 0.8rem; line-height: 1.5; font-size: 0.9rem; }
         .footer {
             text-align: center;
             padding: 1rem;
@@ -167,8 +196,6 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             margin-top: auto;
         }
-        
-        /* Back Button - Small Circular */
         .back-btn {
             position: fixed;
             bottom: 1.5rem;
@@ -189,31 +216,16 @@
             z-index: 100;
             text-decoration: none;
         }
-        .back-btn:hover {
-            background: #3b82f6;
-            transform: scale(1.05);
-        }
-        
-        /* Responsive */
+        .back-btn:hover { background: #3b82f6; transform: scale(1.05); }
         @media (max-width: 768px) {
             .wrapper { padding: 1rem; }
             .header { margin-bottom: 1.5rem; }
             .logo { font-size: 1.2rem; }
             .logo i { font-size: 1.6rem; }
             .menu-btn { padding: 0.4rem 1rem; font-size: 0.85rem; }
-            .dropdown-menu { min-width: 170px; }
-            .dropdown-menu a { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
             .card { padding: 1.2rem; }
             h1 { font-size: 1.4rem; }
-            .subtitle { font-size: 0.8rem; }
-            textarea { font-size: 0.85rem; }
-            button { padding: 8px 20px; font-size: 0.85rem; }
-            .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; font-size: 1rem; }
-        }
-        
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .wrapper { padding: 1.5rem; }
-            .card { max-width: 500px; margin: 0 auto; }
+            .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; }
         }
     </style>
 </head>
@@ -248,72 +260,171 @@
 
         <div class="container">
             <div class="card">
-    <h1><i class="fas fa-file-alt"></i> Text to PDF Converter</h1>
-    <p class="subtitle">Convert any text into a professional PDF instantly. Free, secure, no upload.</p>
-    
-    <div class="tool-area">
-        <textarea id="textInput" rows="8" placeholder="Enter your text here..."></textarea>
-        <button id="convertBtn"><i class="fas fa-file-pdf"></i> Convert to PDF</button>
-    </div>
-    
-    <!-- ✅ YAHAN 200+ WORDS CONTENT ADD KARO -->
-    <div style="margin-top: 2rem; padding: 1.2rem; background: rgba(96,165,250,0.1); border-radius: 1rem; text-align: left;">
-        <h3 style="font-size: 1.2rem; margin-bottom: 0.8rem; color: #60a5fa;">📄 Why Use Our Text to PDF Converter?</h3>
-        <p style="margin-bottom: 0.8rem; line-height: 1.5;">Our Text to PDF converter is a completely free, secure, and browser-based tool that lets you turn any text into a professional PDF document instantly. Unlike other online converters, we never upload your files to any server. Everything happens directly in your browser, ensuring your private information stays private.</p>
-        
-        <p style="margin-bottom: 0.8rem; line-height: 1.5;">Whether you need to convert meeting notes, important emails, school assignments, or any written content, this tool makes the process effortless. Just paste your text, click "Convert to PDF", and download your document in seconds. No signup, no email, no hidden fees — completely free forever.</p>
-        
-        <p style="margin-bottom: 0.8rem; line-height: 1.5;">The generated PDF maintains your original formatting and is compatible with all devices and operating systems. You can use it on Windows, Mac, Linux, iPhone, or Android phones. It's perfect for students, professionals, business owners, and anyone who needs quick PDF creation.</p>
-        
-        <p style="line-height: 1.5;">✅ <strong>Key Benefits:</strong> 100% secure, no file upload, works offline once loaded, unlimited conversions, no watermarks, and completely free. Try it now and see how easy it is!</p>
-    </div>
-</div>
+                <h1><i class="fas fa-file-alt"></i> Text + Images to PDF Converter</h1>
+                <p class="subtitle">Add text and images, then convert to a single PDF. Free, secure, no upload.</p>
+                
+                <div class="tool-area">
+                    <textarea id="textInput" rows="6" placeholder="Enter your text here..."></textarea>
+                    
+                    <div class="image-upload-area">
+                        <p><i class="fas fa-images"></i> Add Images (JPG, PNG)</p>
+                        <input type="file" id="imageInput" multiple accept="image/jpeg,image/png,image/jpg">
+                        <div id="imageList" class="image-list"></div>
+                    </div>
+                    
+                    <button id="convertBtn"><i class="fas fa-file-pdf"></i> Convert to PDF</button>
+                </div>
+            </div>
+        </div>
 
-    <div class="footer">
-        <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
+        <div class="article-box">
+            <h3><i class="fas fa-question-circle"></i> How to Use Text + Images to PDF?</h3>
+            <p>1. Enter your text in the text area above.</p>
+            <p>2. Click "Choose Files" to add one or more images (JPG, PNG).</p>
+            <p>3. You can add or remove images before conversion.</p>
+            <p>4. Click "Convert to PDF" to merge text and images into a single PDF.</p>
+            <p>5. Download your PDF instantly. No upload, 100% secure.</p>
+            <p>✅ <strong>Benefits:</strong> Add text, add multiple images, merge into one PDF, no upload, completely free.</p>
+        </div>
+
+        <div class="footer">
+            <p>©️ 2026 Master PDF Hub — Free PDF & Image Tools</p>
+        </div>
     </div>
 
-    <!-- Back Button - Small Circular -->
     <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-        // Hamburger Menu Toggle
+        // Hamburger Menu
         const menuBtn = document.getElementById('menuBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
-        
         menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             dropdownMenu.classList.toggle('show');
         });
-        
         document.addEventListener('click', (e) => {
             if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
                 dropdownMenu.classList.remove('show');
             }
         });
         
-        // Navigation for data-section links
         document.querySelectorAll('[data-section]').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const section = link.getAttribute('data-section');
-                window.location.href = `index.html#${section}`;
+                window.location.href = `index.html#${link.getAttribute('data-section')}`;
             });
         });
         
-        // Text to PDF functionality
-        document.getElementById('convertBtn').addEventListener('click', function() {
-            const text = document.getElementById('textInput').value;
-            if (!text.trim()) {
-                alert('Please enter some text');
+        // Text + Images to PDF
+        const textInput = document.getElementById('textInput');
+        const imageInput = document.getElementById('imageInput');
+        const imageListDiv = document.getElementById('imageList');
+        const convertBtn = document.getElementById('convertBtn');
+        let selectedImages = [];
+
+        imageInput.addEventListener('change', function(e) {
+            selectedImages = Array.from(e.target.files);
+            displayImageList();
+        });
+
+        function displayImageList() {
+            imageListDiv.innerHTML = selectedImages.map((file, index) => `
+                <div class="image-item">
+                    <img src="${URL.createObjectURL(file)}" alt="preview">
+                    <button onclick="removeImage(${index})">×</button>
+                </div>
+            `).join('');
+        }
+
+        window.removeImage = function(index) {
+            selectedImages.splice(index, 1);
+            displayImageList();
+            if (selectedImages.length === 0) {
+                imageInput.value = '';
+            }
+        };
+
+        convertBtn.addEventListener('click', async function() {
+            const text = textInput.value;
+            if (!text.trim() && selectedImages.length === 0) {
+                alert('Please add some text or at least one image');
                 return;
             }
+
+            convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+            convertBtn.disabled = true;
+
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            doc.text(text, 10, 10, { maxWidth: 180 });
-            doc.save('text_to_pdf.pdf');
+            let pdf = new jsPDF();
+            let yPosition = 20;
+            
+            // Add text if present
+            if (text.trim()) {
+                const lines = pdf.splitTextToSize(text, 170);
+                pdf.text(lines, 20, yPosition);
+                yPosition += lines.length * 7;
+            }
+            
+            // Add images if present
+            for (let i = 0; i < selectedImages.length; i++) {
+                const file = selectedImages[i];
+                const imgData = await readFileAsDataURL(file);
+                
+                // If text was added and we're adding first image, add page break if needed
+                if (text.trim() && yPosition > 250) {
+                    pdf.addPage();
+                    yPosition = 20;
+                } else if (text.trim() && i === 0) {
+                    yPosition += 10;
+                }
+                
+                // Calculate image dimensions to fit page
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const maxWidth = pageWidth - 40;
+                
+                const img = await loadImage(imgData);
+                let imgWidth = img.width;
+                let imgHeight = img.height;
+                
+                if (imgWidth > maxWidth) {
+                    const ratio = maxWidth / imgWidth;
+                    imgWidth = maxWidth;
+                    imgHeight = imgHeight * ratio;
+                }
+                
+                // Check if image fits on current page
+                if (yPosition + imgHeight > 270) {
+                    pdf.addPage();
+                    yPosition = 20;
+                }
+                
+                pdf.addImage(imgData, 'JPEG', 20, yPosition, imgWidth, imgHeight);
+                yPosition += imgHeight + 10;
+            }
+            
+            pdf.save('text_and_images.pdf');
+            alert('✅ PDF created successfully!');
+            
+            convertBtn.innerHTML = '<i class="fas fa-file-pdf"></i> Convert to PDF';
+            convertBtn.disabled = false;
         });
+
+        function readFileAsDataURL(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function loadImage(src) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.src = src;
+            });
+        }
     </script>
 </body>
 </html>
