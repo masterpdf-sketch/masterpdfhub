@@ -457,16 +457,168 @@
                         </div>
                     `;
                 }
-                editorArea.appendChild(blockDiv);
+               editorArea.appendChild(blockDiv);
             });
             
             // Attach focus events for text blocks
             document.querySelectorAll('.editable-text').forEach(div => {
                 div.addEventListener('focus', () => {
-                    currentEditingBlock = parseInt(div.getAttribute('data-id'));
+                    currentActiveBlock = parseInt(div.getAttribute('data-id'));
+                    console.log('Text block focused:', currentActiveBlock);
                 });
                 div.addEventListener('input', (e) => {
                     const id = parseInt(e.target.getAttribute('data-id'));
                     const block = blocks.find(b => b.id === id);
                     if (block && block.type === 'text') {
-                        block.content = e.target.inne
+                        block.content = e.target.innerHTML;
+                    }
+                });
+            });
+            
+            // Move/Remove buttons
+            document.querySelectorAll('.move-up').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(btn.getAttribute('data-id'));
+                    const index = blocks.findIndex(b => b.id === id);
+                    if (index > 0) {
+                        [blocks[index - 1], blocks[index]] = [blocks[index], blocks[index - 1]];
+                        renderEditor();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.move-down').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(btn.getAttribute('data-id'));
+                    const index = blocks.findIndex(b => b.id === id);
+                    if (index < blocks.length - 1) {
+                        [blocks[index], blocks[index + 1]] = [blocks[index + 1], blocks[index]];
+                        renderEditor();
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(btn.getAttribute('data-id'));
+                    blocks = blocks.filter(b => b.id !== id);
+                    renderEditor();
+                });
+            });
+        }
+        
+        document.getElementById('addTextBtn').addEventListener('click', () => {
+            blocks.push({
+                id: nextId++,
+                type: 'text',
+                content: 'Click here and start typing...'
+            });
+            renderEditor();
+        });
+        
+        document.getElementById('addImageBtn').addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/jpeg,image/png,image/jpg';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        blocks.push({
+                            id: nextId++,
+                            type: 'image',
+                            content: event.target.result,
+                            fileName: file.name
+                        });
+                        renderEditor();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        });
+        
+        document.getElementById('generateBtn').addEventListener('click', async () => {
+            if (blocks.length === 0) {
+                alert('Please add at least one text or image block');
+                return;
+            }
+            
+            const btn = document.getElementById('generateBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            btn.disabled = true;
+            
+            const { jsPDF } = window.jspdf;
+            let pdf = new jsPDF();
+            let yPosition = 20;
+            const margin = 20;
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const maxWidth = pageWidth - (margin * 2);
+            
+            for (const block of blocks) {
+                if (block.type === 'text' && block.content && block.content.trim() !== '') {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = block.content;
+                    const plainText = tempDiv.innerText || tempDiv.textContent;
+                    
+                    if (plainText.trim() !== '') {
+                        const wrappedLines = pdf.splitTextToSize(plainText, maxWidth);
+                        const textHeight = wrappedLines.length * 7;
+                        
+                        if (yPosition + textHeight + 10 > 280) {
+                            pdf.addPage();
+                            yPosition = 20;
+                        }
+                        
+                        pdf.text(wrappedLines, margin, yPosition);
+                        yPosition += textHeight + 10;
+                    }
+                }
+                else if (block.type === 'image') {
+                    const imgData = block.content;
+                    const img = await loadImage(imgData);
+                    let imgWidth = img.width;
+                    let imgHeight = img.height;
+                    
+                    if (imgWidth > maxWidth) {
+                        const ratio = maxWidth / imgWidth;
+                        imgWidth = maxWidth;
+                        imgHeight = imgHeight * ratio;
+                    }
+                    
+                    if (yPosition + imgHeight + 10 > 280) {
+                        pdf.addPage();
+                        yPosition = 20;
+                    }
+                    
+                    pdf.addImage(imgData, 'JPEG', margin, yPosition, imgWidth, imgHeight);
+                    yPosition += imgHeight + 10;
+                }
+            }
+            
+            pdf.save('formatted_document.pdf');
+            alert('✅ PDF generated successfully!');
+            
+            btn.innerHTML = '<i class="fas fa-file-pdf"></i> Generate PDF';
+            btn.disabled = false;
+        });
+        
+        function loadImage(src) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.src = src;
+            });
+        }
+        
+        // Add default text block
+        blocks.push({
+            id: nextId++,
+            type: 'text',
+            content: '<b>Human Skull</b><br>The human skull is the bony structure that forms the head.'
+        });
+        renderEditor();
+    </script>
+</body>
+</html>
