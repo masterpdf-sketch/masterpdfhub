@@ -6,19 +6,81 @@
     <title>Text to PDF | Inline Image Editor - Master PDF Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0a0c15;
             color: white;
             min-height: 100vh;
+        }
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 2rem;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .logo i { font-size: 2rem; color: #60a5fa; }
+        
+        .menu-container { position: relative; }
+        .menu-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: white;
+        }
+        .menu-btn:hover { background: rgba(96,165,250,0.2); border-color: #60a5fa; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: rgba(20, 25, 45, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem;
+            min-width: 200px;
+            z-index: 100;
+            display: none;
+        }
+        .dropdown-menu.show { display: block; }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .dropdown-menu a:hover { background: rgba(96,165,250,0.2); color: #60a5fa; }
+        .dropdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 0.5rem 0;
+        }
+        
+        .card {
             background: rgba(20, 25, 45, 0.7);
             backdrop-filter: blur(12px);
             border-radius: 1.5rem;
@@ -29,7 +91,6 @@
         h1 i { color: #60a5fa; margin-right: 0.5rem; }
         .subtitle { text-align: center; color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; }
         
-        /* Toolbar */
         .toolbar {
             display: flex;
             flex-wrap: wrap;
@@ -51,13 +112,9 @@
             transition: all 0.2s;
         }
         .tool-btn:hover { background: rgba(96,165,250,0.6); }
-        .plus-btn {
-            background: rgba(16,185,129,0.3);
-            border: 1px dashed rgba(16,185,129,0.6);
-        }
+        .plus-btn { background: rgba(16,185,129,0.3); border: 1px dashed rgba(16,185,129,0.6); }
         .plus-btn:hover { background: rgba(16,185,129,0.6); }
         
-        /* Editor */
         .editor-area {
             background: white;
             color: #1a2a4a;
@@ -72,14 +129,36 @@
             overflow-y: auto;
         }
         .editor-area:focus { outline: none; }
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 10px 0;
+        }
         .editor-area img {
             max-width: 100%;
             max-height: 250px;
-            margin: 10px 0;
             display: block;
             border-radius: 8px;
-            cursor: pointer;
         }
+        .remove-img-icon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: rgba(239,68,68,0.9);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+        .remove-img-icon:hover { background: #ef4444; transform: scale(1.1); }
         
         .generate-btn {
             background: linear-gradient(135deg, #60a5fa, #3b82f6);
@@ -100,12 +179,13 @@
         }
         .generate-btn:hover { transform: scale(1.02); }
         
-        .footer { text-align: center; margin-top: 2rem; padding: 1rem; font-size: 0.7rem; color: #64748b; }
+        .footer { text-align: center; margin-top: 2rem; padding: 1rem; font-size: 0.7rem; color: #64748b; border-top: 1px solid rgba(255,255,255,0.1); }
         .back-btn {
             position: fixed;
-            bottom: 1rem;
-            left: 1rem;
+            bottom: 1.5rem;
+            left: 1.5rem;
             background: rgba(59,130,246,0.8);
+            backdrop-filter: blur(8px);
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -120,158 +200,281 @@
         }
         .back-btn:hover { background: #3b82f6; transform: scale(1.05); }
         
-        .hidden-pdf {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
-            width: 210mm;
-            background: white;
-            padding: 18mm;
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
         @media (max-width: 768px) {
-            body { padding: 1rem; }
-            .container { padding: 1rem; }
+            .wrapper { padding: 1rem; }
+            .card { padding: 1.2rem; }
             .editor-area { min-height: 350px; padding: 1rem; }
+            .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; }
         }
     </style>
 </head>
 <body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-file-pdf"></i>
+                <span>Master PDF Hub</span>
+            </div>
+            <div class="menu-container">
+                <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i> Tools</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="index.html">🏠 Home</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="text-to-pdf.html">📄 Text to PDF</a>
+                    <a href="image-to-pdf.html">🖼️ Image to PDF</a>
+                    <a href="merge-pdf.html">🔗 Merge PDF</a>
+                    <a href="compress-pdf.html">🗜️ Compress PDF</a>
+                    <a href="pdf-editor.html">✏️ PDF Editor</a>
+                    <a href="image-compressor.html">📸 Image Compressor</a>
+                    <a href="jpg-to-png.html">🔄 JPG to PNG</a>
+                    <a href="png-to-jpg.html">🔄 PNG to JPG</a>
+                    <div class="dropdown-divider"></div>
+                    <a data-section="about">📖 About</a>
+                    <a data-section="blog">📝 Blog</a>
+                    <a data-section="contact">📧 Contact</a>
+                    <a data-section="privacy">🔒 Privacy</a>
+                </div>
+            </div>
+        </div>
 
-<div class="container">
-    <h1><i class="fas fa-edit"></i> Text + Image Editor</h1>
-    <p class="subtitle">Click <strong>➕ Add Image</strong> → image will insert at cursor position</p>
-    
-    <div class="toolbar">
-        <button class="tool-btn" id="boldBtn"><i class="fas fa-bold"></i> Bold</button>
-        <button class="tool-btn" id="italicBtn"><i class="fas fa-italic"></i> Italic</button>
-        <button class="tool-btn" id="underlineBtn"><i class="fas fa-underline"></i> Underline</button>
-        <button class="tool-btn plus-btn" id="addImageBtn"><i class="fas fa-plus-circle"></i> ➕ Add Image</button>
+        <div class="card">
+            <h1><i class="fas fa-edit"></i> Text + Image Editor</h1>
+            <p class="subtitle">Click <strong>❎ Add Image</strong> → image will insert at cursor position | Click <strong>✖</strong> to remove image</p>
+            
+            <div class="toolbar">
+                <button class="tool-btn" id="boldBtn"><i class="fas fa-bold"></i> Bold</button>
+                <button class="tool-btn" id="italicBtn"><i class="fas fa-italic"></i> Italic</button>
+                <button class="tool-btn" id="underlineBtn"><i class="fas fa-underline"></i> Underline</button>
+                <button class="tool-btn plus-btn" id="addImageBtn"><i class="fas fa-plus-circle"></i> ➕ Add Image</button>
+            </div>
+            
+            <div id="editor" class="editor-area" contenteditable="true">
+                <b>Human Skull</b><br><br>
+                The human skull is the bony structure that forms the head. It protects the brain and supports the face.
+            </div>
+            
+            <button class="generate-btn" id="generateBtn"><i class="fas fa-file-pdf"></i> Generate PDF</button>
+        </div>
+        
+        <div class="footer">
+            <p>©️ 2026 Master PDF Hub — Free PDF & Image Tools</p>
+        </div>
     </div>
     
-    <!-- Editable Area -->
-    <div id="editor" class="editor-area" contenteditable="true">
-        <b>Human Skull</b><br><br>
-        The human skull is the bony structure that forms the head. It protects the brain and supports the face.
-    </div>
-    
-    <button class="generate-btn" id="generateBtn"><i class="fas fa-file-pdf"></i> Generate PDF</button>
-</div>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
 
-<div class="footer">
-    <p>©️ 2025 Master PDF Hub — Free PDF & Image Tools</p>
-</div>
-
-<a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-
-<!-- Hidden PDF container -->
-<div id="hiddenPdf" class="hidden-pdf">
-    <div id="pdfContent"></div>
-</div>
-
-<script>
-    // Toolbar formatting
-    function applyFormat(command, value = null) {
-        document.getElementById('editor').focus();
-        document.execCommand(command, false, value);
-    }
-    
-    document.getElementById('boldBtn').addEventListener('click', () => applyFormat('bold'));
-    document.getElementById('italicBtn').addEventListener('click', () => applyFormat('italic'));
-    document.getElementById('underlineBtn').addEventListener('click', () => applyFormat('underline'));
-    
-    // Add Image at cursor position
-    const imageInput = document.createElement('input');
-    imageInput.type = 'file';
-    imageInput.accept = 'image/jpeg,image/png,image/jpg';
-    
-    imageInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file && file.type.match('image.*')) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const img = document.createElement('img');
-                img.src = event.target.result;
-                img.style.maxWidth = '100%';
-                img.style.maxHeight = '250px';
-                img.style.borderRadius = '8px';
-                img.style.margin = '10px 0';
-                
-                // Insert image at cursor position
-                const selection = window.getSelection();
-                if (selection.rangeCount > 0) {
-                    const range = selection.getRangeAt(0);
-                    range.deleteContents();
-                    range.insertNode(img);
-                    range.collapse(false);
-                    
-                    // Add a line break after image
-                    const br = document.createElement('br');
-                    range.insertNode(br);
-                    range.collapse(false);
-                } else {
-                    document.getElementById('editor').appendChild(img);
-                }
-                
-                document.getElementById('editor').focus();
-            };
-            reader.readAsDataURL(file);
-        }
-        imageInput.value = '';
-    });
-    
-    document.getElementById('addImageBtn').addEventListener('click', () => {
-        imageInput.click();
-    });
-    
-    // Generate PDF
-    document.getElementById('generateBtn').addEventListener('click', async () => {
-        const editor = document.getElementById('editor');
-        const pdfContent = document.getElementById('pdfContent');
-        
-        // Copy editor content to hidden div
-        pdfContent.innerHTML = editor.innerHTML;
-        
-        // Apply A4 styles
-        pdfContent.style.fontFamily = "'Times New Roman', Times, serif";
-        pdfContent.style.fontSize = '16px';
-        pdfContent.style.lineHeight = '1.6';
-        pdfContent.style.color = '#111';
-        pdfContent.style.maxWidth = '100%';
-        
-        // Images should be responsive
-        const images = pdfContent.querySelectorAll('img');
-        images.forEach(img => {
-            img.style.maxWidth = '100%';
-            img.style.height = 'auto';
-            img.style.borderRadius = '8px';
-            img.style.margin = '10px 0';
+    <script>
+        // Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
         });
         
-        const btn = document.getElementById('generateBtn');
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
-        btn.disabled = true;
+        document.querySelectorAll('[data-section]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = `index.html#${link.getAttribute('data-section')}`;
+            });
+        });
         
-        const element = document.getElementById('hiddenPdf');
-        const opt = {
-            margin: [0.5, 0.5, 0.5, 0.5],
-            filename: 'my_document.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, letterRendering: true },
-            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-        };
-        
-        try {
-            await html2pdf().set(opt).from(element).save();
-            alert('✅ PDF generated successfully!');
-        } catch (err) {
-            alert('Error: ' + err.message);
-        } finally {
-            btn.innerHTML = '<i class="fas fa-file-pdf"></i> Generate PDF';
-            btn.disabled = false;
+        // Toolbar formatting
+        function applyFormat(command, value = null) {
+            document.getElementById('editor').focus();
+            document.execCommand(command, false, value);
         }
-    });
-</script>
+        
+        document.getElementById('boldBtn').addEventListener('click', () => applyFormat('bold'));
+        document.getElementById('italicBtn').addEventListener('click', () => applyFormat('italic'));
+        document.getElementById('underlineBtn').addEventListener('click', () => applyFormat('underline'));
+        
+        // Function to wrap image with remove icon
+        function wrapImageWithRemove(imgElement) {
+            if (imgElement.parentElement.classList.contains('image-wrapper')) return;
+            
+            const wrapper = document.createElement('div');
+            wrapper.className = 'image-wrapper';
+            wrapper.style.position = 'relative';
+            wrapper.style.display = 'inline-block';
+            
+            const removeIcon = document.createElement('div');
+            removeIcon.className = 'remove-img-icon';
+            removeIcon.innerHTML = '✖';
+            removeIcon.onclick = function(e) {
+                e.stopPropagation();
+                wrapper.remove();
+            };
+            
+            imgElement.parentNode.insertBefore(wrapper, imgElement);
+            wrapper.appendChild(imgElement);
+            wrapper.appendChild(removeIcon);
+        }
+        
+        // Wrap existing images on load
+        function wrapAllImages() {
+            const editor = document.getElementById('editor');
+            const images = editor.querySelectorAll('img');
+            images.forEach(img => {
+                if (!img.parentElement.classList.contains('image-wrapper')) {
+                    wrapImageWithRemove(img);
+                }
+            });
+        }
+        
+        // Add Image at cursor with wrapper
+        const imageInput = document.createElement('input');
+        imageInput.type = 'file';
+        imageInput.accept = 'image/jpeg,image/png,image/jpg';
+        
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file && file.type.match('image.*')) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.style.maxWidth = '100%';
+                    img.style.maxHeight = '250px';
+                    img.style.borderRadius = '8px';
+                    img.style.display = 'block';
+                    
+                    // Create wrapper with remove icon
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'image-wrapper';
+                    wrapper.style.position = 'relative';
+                    wrapper.style.display = 'inline-block';
+                    wrapper.style.margin = '10px 0';
+                    
+                    const removeIcon = document.createElement('div');
+                    removeIcon.className = 'remove-img-icon';
+                    removeIcon.innerHTML = '✖';
+                    removeIcon.onclick = function(e) {
+                        e.stopPropagation();
+                        wrapper.remove();
+                    };
+                    
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(removeIcon);
+                    
+                    // Insert at cursor position
+                    const selection = window.getSelection();
+                    if (selection.rangeCount > 0) {
+                        const range = selection.getRangeAt(0);
+                        range.deleteContents();
+                        range.insertNode(wrapper);
+                        range.collapse(false);
+                        const br = document.createElement('br');
+                        range.insertNode(br);
+                        range.collapse(false);
+                    } else {
+                        document.getElementById('editor').appendChild(wrapper);
+                    }
+                    
+                    document.getElementById('editor').focus();
+                };
+                reader.readAsDataURL(file);
+            }
+            imageInput.value = '';
+        });
+        
+        document.getElementById('addImageBtn').addEventListener('click', () => {
+            imageInput.click();
+        });
+        
+        // Observe DOM changes to wrap new images added via paste/drag
+        const observer = new MutationObserver(() => {
+            wrapAllImages();
+        });
+        observer.observe(document.getElementById('editor'), { childList: true, subtree: true });
+        
+        // Initial wrap
+        wrapAllImages();
+        
+        // Generate PDF
+        document.getElementById('generateBtn').addEventListener('click', async () => {
+            const editor = document.getElementById('editor');
+            const originalContent = editor.innerHTML;
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.style.position = 'absolute';
+            tempDiv.style.left = '-9999px';
+            tempDiv.style.top = '-9999px';
+            tempDiv.style.width = '210mm';
+            tempDiv.style.background = 'white';
+            tempDiv.style.padding = '18mm';
+            tempDiv.style.fontFamily = "'Times New Roman', Times, serif";
+            tempDiv.style.fontSize = '16px';
+            tempDiv.style.lineHeight = '1.6';
+            tempDiv.style.color = '#111';
+            tempDiv.innerHTML = originalContent;
+            
+            // Clean up wrapper divs for PDF (keep only img)
+            const wrappers = tempDiv.querySelectorAll('.image-wrapper');
+            wrappers.forEach(wrapper => {
+                const img = wrapper.querySelector('img');
+                if (img) {
+                    wrapper.parentNode.insertBefore(img, wrapper);
+                    wrapper.remove();
+                }
+            });
+            
+            const imgs = tempDiv.querySelectorAll('img');
+            imgs.forEach(img => {
+                img.style.maxWidth = '100%';
+                img.style.height = 'auto';
+                img.style.borderRadius = '8px';
+                img.style.display = 'block';
+                img.style.margin = '10px 0';
+            });
+            
+            document.body.appendChild(tempDiv);
+            
+            const btn = document.getElementById('generateBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            btn.disabled = true;
+            
+            try {
+                const canvas = await html2canvas(tempDiv, {
+                    scale: 2,
+                    backgroundColor: '#ffffff',
+                    logging: false,
+                    useCORS: true
+                });
+                
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                });
+                
+                const imgWidth = 190;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let yPosition = 10;
+                
+                if (imgHeight < 277) {
+                    yPosition = (277 - imgHeight) / 2;
+                }
+                
+                pdf.addImage(imgData, 'JPEG', 10, yPosition, imgWidth, imgHeight);
+                pdf.save('my_document.pdf');
+                alert('✅ PDF generated successfully!');
+            } catch (err) {
+                console.error('PDF Error:', err);
+                alert('Error generating PDF: ' + err.message);
+            } finally {
+                document.body.removeChild(tempDiv);
+                btn.innerHTML = '<i class="fas fa-file-pdf"></i> Generate PDF';
+                btn.disabled = false;
+            }
+        });
+    </script>
 </body>
 </html>
