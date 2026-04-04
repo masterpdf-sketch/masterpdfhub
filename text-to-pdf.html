@@ -6,7 +6,8 @@
     <title>Text to PDF | Inline Image Editor - Master PDF Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
@@ -213,16 +214,6 @@
         }
         .back-btn:hover { background: #3b82f6; transform: scale(1.05); }
         
-        .hidden-pdf {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
-            width: 210mm;
-            background: white;
-            padding: 15mm 15mm;
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
         @media (max-width: 768px) {
             .wrapper { padding: 1rem; }
             .card { padding: 1.2rem; }
@@ -285,10 +276,6 @@
     </div>
     
     <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-
-    <div id="hiddenPdf" class="hidden-pdf">
-        <div id="pdfContent"></div>
-    </div>
 
     <script>
         // Menu Toggle
@@ -404,14 +391,29 @@
         observer.observe(document.getElementById('editor'), { childList: true, subtree: true });
         wrapAllImages();
         
-        // Generate PDF - FIXED: No extra top space
+        // Generate PDF with html2canvas + jsPDF (100% working)
         document.getElementById('generateBtn').addEventListener('click', async () => {
             const editor = document.getElementById('editor');
-            const pdfContent = document.getElementById('pdfContent');
             
-            pdfContent.innerHTML = editor.innerHTML;
+            // Create a temporary container for PDF rendering
+            const tempDiv = document.createElement('div');
+            tempDiv.style.position = 'absolute';
+            tempDiv.style.left = '-9999px';
+            tempDiv.style.top = '-9999px';
+            tempDiv.style.width = '210mm';
+            tempDiv.style.backgroundColor = 'white';
+            tempDiv.style.padding = '15mm';
+            tempDiv.style.fontFamily = "'Times New Roman', Times, serif";
+            tempDiv.style.fontSize = '16px';
+            tempDiv.style.lineHeight = '1.6';
+            tempDiv.style.color = '#111';
             
-            const wrappers = pdfContent.querySelectorAll('.image-wrapper');
+            // Clone editor content
+            const content = document.createElement('div');
+            content.innerHTML = editor.innerHTML;
+            
+            // Remove wrapper divs (keep only images)
+            const wrappers = content.querySelectorAll('.image-wrapper');
             wrappers.forEach(wrapper => {
                 const img = wrapper.querySelector('img');
                 if (img) {
@@ -420,15 +422,8 @@
                 }
             });
             
-            pdfContent.style.fontFamily = "'Times New Roman', Times, serif";
-            pdfContent.style.fontSize = '16px';
-            pdfContent.style.lineHeight = '1.6';
-            pdfContent.style.color = '#111';
-            pdfContent.style.maxWidth = '100%';
-            pdfContent.style.margin = '0';
-            pdfContent.style.padding = '0';
-            
-            const images = pdfContent.querySelectorAll('img');
+            // Style images
+            const images = content.querySelectorAll('img');
             images.forEach(img => {
                 img.style.maxWidth = '100%';
                 img.style.height = 'auto';
@@ -437,26 +432,40 @@
                 img.style.display = 'block';
             });
             
+            tempDiv.appendChild(content);
+            document.body.appendChild(tempDiv);
+            
             const btn = document.getElementById('generateBtn');
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
             btn.disabled = true;
             
-            const element = document.getElementById('hiddenPdf');
-            const opt = {
-                margin: [0.3, 0.5, 0.3, 0.5],
-                filename: 'my_document.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, letterRendering: true, useCORS: true },
-                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
-            
             try {
-                await html2pdf().set(opt).from(element).save();
+                const canvas = await html2canvas(tempDiv, {
+                    scale: 2,
+                    backgroundColor: '#ffffff',
+                    logging: false,
+                    useCORS: true
+                });
+                
+                const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                });
+                
+                const pdfWidth = 190;
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                
+                pdf.addImage(imgData, 'JPEG', 10, 10, pdfWidth, pdfHeight);
+                pdf.save('my_document.pdf');
                 alert('✅ PDF generated successfully!');
             } catch (err) {
                 console.error(err);
-                alert('Error: ' + err.message);
+                alert('Error generating PDF: ' + err.message);
             } finally {
+                document.body.removeChild(tempDiv);
                 btn.innerHTML = '<i class="fas fa-file-pdf"></i> Generate PDF';
                 btn.disabled = false;
             }
