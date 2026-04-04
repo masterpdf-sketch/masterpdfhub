@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Text to PDF Converter | Text + Images Editor - Master PDF Hub</title>
-    <meta name="description" content="Create PDF with text and images in sequence. Add text blocks, add images, rearrange, then convert to PDF. Free, secure, no upload.">
+    <title>Text to PDF Converter | Text + Images - Master PDF Hub</title>
+    <meta name="description" content="Convert text and images to PDF. Write text, add images, arrange them, then convert to PDF. Free, secure, no upload.">
     <link rel="canonical" href="https://masterpdfhub.com/text-to-pdf.html">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -84,7 +84,7 @@
             margin: 0.5rem 0;
         }
         
-        .container { max-width: 800px; margin: 0 auto 2rem auto; }
+        .container { max-width: 700px; margin: 0 auto 2rem auto; }
         .card {
             background: rgba(20, 25, 45, 0.7);
             backdrop-filter: blur(12px);
@@ -96,77 +96,79 @@
         h1 i { color: #60a5fa; margin-right: 0.5rem; }
         .subtitle { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem; text-align: center; }
         
-        /* Editor Area */
-        .editor-area {
-            margin: 1.5rem 0;
+        /* Text Area */
+        .text-area {
+            margin-bottom: 1.5rem;
         }
-        .content-item {
-            background: rgba(0,0,0,0.3);
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .content-item.text-item textarea {
+        .text-area textarea {
             width: 100%;
             background: rgba(0,0,0,0.4);
             border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 0.8rem;
-            padding: 0.8rem;
+            border-radius: 1rem;
+            padding: 1rem;
             color: white;
             font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             resize: vertical;
         }
-        .content-item.image-item {
+        
+        /* Image Section */
+        .image-section {
+            border: 2px dashed rgba(96,165,250,0.4);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
-        .content-item.image-item img {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 0.8rem;
-        }
-        .item-controls {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: flex-end;
-            margin-top: 0.5rem;
-        }
-        .item-controls button {
-            background: rgba(255,255,255,0.1);
-            border: none;
-            padding: 0.3rem 0.8rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-size: 0.7rem;
-            color: white;
-            margin: 0;
-        }
-        .item-controls button:hover { background: rgba(59,130,246,0.5); }
-        .remove-btn:hover { background: rgba(239,68,68,0.5) !important; }
-        
-        .add-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-        .add-btn {
-            background: rgba(96,165,250,0.2);
-            border: 1px dashed rgba(96,165,250,0.5);
-            padding: 0.6rem 1.2rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            font-size: 0.85rem;
-            color: #60a5fa;
+        .image-label {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            background: rgba(96,165,250,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
-        .add-btn:hover { background: rgba(96,165,250,0.3); }
+        .image-label:hover { background: rgba(96,165,250,0.3); }
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .image-preview-item {
+            position: relative;
+            display: inline-block;
+        }
+        .image-preview-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: move;
+        }
+        .image-preview-item button {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: rgba(239,68,68,0.9);
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         
-        .generate-btn {
+        button {
             background: linear-gradient(135deg, #60a5fa, #3b82f6);
             border: none;
             color: white;
@@ -182,7 +184,7 @@
             gap: 0.5rem;
             width: 100%;
         }
-        .generate-btn:hover { transform: scale(1.02); }
+        button:hover { transform: scale(1.02); }
         
         .article-box {
             margin-top: 2rem;
@@ -233,6 +235,7 @@
             .card { padding: 1.2rem; }
             h1 { font-size: 1.4rem; }
             .back-btn { width: 40px; height: 40px; bottom: 1rem; left: 1rem; }
+            .image-preview-item img { width: 70px; height: 70px; }
         }
     </style>
 </head>
@@ -267,30 +270,33 @@
 
         <div class="container">
             <div class="card">
-                <h1><i class="fas fa-edit"></i> Text + Images Editor</h1>
-                <p class="subtitle">Add text and images in any order, then convert to PDF.</p>
+                <h1><i class="fas fa-file-alt"></i> Text to PDF Converter</h1>
+                <p class="subtitle">Write text, add images, then convert to PDF.</p>
                 
-                <div class="editor-area" id="editorArea">
-                    <!-- Content items will appear here -->
+                <div class="text-area">
+                    <textarea id="textContent" rows="8" placeholder="Enter your text here..."></textarea>
                 </div>
                 
-                <div class="add-buttons">
-                    <button class="add-btn" id="addTextBtn"><i class="fas fa-font"></i> Add Text</button>
-                    <button class="add-btn" id="addImageBtn"><i class="fas fa-image"></i> Add Image</button>
+                <div class="image-section">
+                    <label class="image-label">
+                        <i class="fas fa-plus-circle"></i> Add Image
+                        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/jpg" style="display:none;" multiple>
+                    </label>
+                    <div id="imagePreview" class="image-preview"></div>
+                    <p style="font-size:0.7rem; margin-top:0.5rem; color:#94a3b8;">Click on image to drag and reposition (coming soon)</p>
                 </div>
                 
-                <button class="generate-btn" id="generateBtn"><i class="fas fa-file-pdf"></i> Generate PDF</button>
+                <button id="convertBtn"><i class="fas fa-file-pdf"></i> Convert to PDF</button>
             </div>
         </div>
 
         <div class="article-box">
             <h3><i class="fas fa-question-circle"></i> How to Use?</h3>
-            <p>1. Click <strong>"Add Text"</strong> to add a text block. Write your content.</p>
-            <p>2. Click <strong>"Add Image"</strong> to add an image. Select JPG/PNG file.</p>
-            <p>3. Use <strong>↑ ↓</strong> arrows to rearrange items in any order.</p>
-            <p>4. Click <strong>✖</strong> to remove any item.</p>
-            <p>5. Click <strong>"Generate PDF"</strong> to create PDF with your content in sequence.</p>
-            <p>✅ <strong>Perfect for:</strong> Reports, assignments, documents with text and images mixed together.</p>
+            <p>1. Write your text in the box above.</p>
+            <p>2. Click "Add Image" to add one or more images.</p>
+            <p>3. Click ✖ on any image to remove it.</p>
+            <p>4. Click "Convert to PDF" to create your PDF with text + images.</p>
+            <p>✅ <strong>Perfect for:</strong> Documents, reports, assignments with text and images.</p>
         </div>
 
         <div class="footer">
@@ -322,175 +328,105 @@
             });
         });
         
-        // Editor Logic
-        let items = [];
-        let nextId = 1;
-        let imageDataCache = {};
-
-        function renderEditor() {
-            const editorArea = document.getElementById('editorArea');
-            editorArea.innerHTML = '';
-            
-            items.forEach((item, index) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = `content-item ${item.type}-item`;
-                itemDiv.setAttribute('data-id', item.id);
-                
-                if (item.type === 'text') {
-                    itemDiv.innerHTML = `
-                        <textarea class="text-content" data-id="${item.id}" rows="3" placeholder="Enter your text here...">${escapeHtml(item.content)}</textarea>
-                        <div class="item-controls">
-                            <button class="move-up" data-id="${item.id}" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}><i class="fas fa-arrow-up"></i></button>
-                            <button class="move-down" data-id="${item.id}" ${index === items.length - 1 ? 'disabled style="opacity:0.3"' : ''}><i class="fas fa-arrow-down"></i></button>
-                            <button class="remove-btn" data-id="${item.id}"><i class="fas fa-trash"></i> Remove</button>
-                        </div>
-                    `;
-                } else {
-                    itemDiv.innerHTML = `
-                        <div style="text-align:center;">
-                            <img src="${item.content}" style="max-width:100%; max-height:200px; border-radius:0.8rem;">
-                            <div style="margin-top:0.5rem; font-size:0.7rem; color:#94a3b8;">${item.fileName || 'Image'}</div>
-                        </div>
-                        <div class="item-controls">
-                            <button class="move-up" data-id="${item.id}" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}><i class="fas fa-arrow-up"></i></button>
-                            <button class="move-down" data-id="${item.id}" ${index === items.length - 1 ? 'disabled style="opacity:0.3"' : ''}><i class="fas fa-arrow-down"></i></button>
-                            <button class="remove-btn" data-id="${item.id}"><i class="fas fa-trash"></i> Remove</button>
-                        </div>
-                    `;
-                }
-                
-                editorArea.appendChild(itemDiv);
+        // Image handling
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        let images = [];
+        
+        imageInput.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    images.push({
+                        data: event.target.result,
+                        name: file.name
+                    });
+                    renderImages();
+                };
+                reader.readAsDataURL(file);
             });
-            
-            // Attach event listeners
-            document.querySelectorAll('.text-content').forEach(textarea => {
-                textarea.addEventListener('input', (e) => {
-                    const id = parseInt(e.target.getAttribute('data-id'));
-                    const item = items.find(i => i.id === id);
-                    if (item) item.content = e.target.value;
-                });
-            });
-            
-            document.querySelectorAll('.move-up').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    const index = items.findIndex(i => i.id === id);
-                    if (index > 0) {
-                        [items[index - 1], items[index]] = [items[index], items[index - 1]];
-                        renderEditor();
-                    }
-                });
-            });
-            
-            document.querySelectorAll('.move-down').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    const index = items.findIndex(i => i.id === id);
-                    if (index < items.length - 1) {
-                        [items[index], items[index + 1]] = [items[index + 1], items[index]];
-                        renderEditor();
-                    }
-                });
-            });
-            
-            document.querySelectorAll('.remove-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    items = items.filter(i => i.id !== id);
-                    renderEditor();
-                });
+        });
+        
+        function renderImages() {
+            imagePreview.innerHTML = '';
+            images.forEach((img, index) => {
+                const div = document.createElement('div');
+                div.className = 'image-preview-item';
+                div.innerHTML = `
+                    <img src="${img.data}" alt="${img.name}" draggable="true" data-index="${index}">
+                    <button onclick="removeImage(${index})">✖</button>
+                `;
+                imagePreview.appendChild(div);
             });
         }
         
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>]/g, function(m) {
-                if (m === '&') return '&amp;';
-                if (m === '<') return '&lt;';
-                if (m === '>') return '&gt;';
-                return m;
-            });
-        }
+        window.removeImage = function(index) {
+            images.splice(index, 1);
+            renderImages();
+        };
         
-        document.getElementById('addTextBtn').addEventListener('click', () => {
-            items.push({
-                id: nextId++,
-                type: 'text',
-                content: ''
-            });
-            renderEditor();
-        });
-        
-        document.getElementById('addImageBtn').addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/jpeg,image/png,image/jpg';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        items.push({
-                            id: nextId++,
-                            type: 'image',
-                            content: event.target.result,
-                            fileName: file.name
-                        });
-                        renderEditor();
-                    };
-                    reader.readAsDataURL(file);
-                }
-            };
-            input.click();
-        });
-        
-        document.getElementById('generateBtn').addEventListener('click', async () => {
-            if (items.length === 0) {
-                alert('Please add at least one text or image');
+        // Convert to PDF
+        document.getElementById('convertBtn').addEventListener('click', async function() {
+            const text = document.getElementById('textContent').value;
+            if (!text.trim() && images.length === 0) {
+                alert('Please add some text or at least one image');
                 return;
             }
             
-            const btn = document.getElementById('generateBtn');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            const btn = this;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
             btn.disabled = true;
             
             const { jsPDF } = window.jspdf;
             let pdf = new jsPDF();
             let yPosition = 20;
-            const pageWidth = pdf.internal.pageSize.getWidth();
             const margin = 20;
+            const pageWidth = pdf.internal.pageSize.getWidth();
             const maxWidth = pageWidth - (margin * 2);
             
-            for (const item of items) {
-                if (item.type === 'text' && item.content.trim()) {
-                    const lines = pdf.splitTextToSize(item.content, maxWidth);
-                    const textHeight = lines.length * 7;
-                    
-                    if (yPosition + textHeight > 280) {
-                        pdf.addPage();
-                        yPosition = 20;
-                    }
-                    
-                    pdf.text(lines, margin, yPosition);
-                    yPosition += textHeight + 5;
+            // Add text if present
+            if (text.trim()) {
+                const lines = pdf.splitTextToSize(text, maxWidth);
+                pdf.text(lines, margin, yPosition);
+                yPosition += lines.length * 7 + 10;
+            }
+            
+            // Add images
+            for (let i = 0; i < images.length; i++) {
+                const img = await loadImage(images[i].data);
+                let imgWidth = img.width;
+                let imgHeight = img.height;
+                
+                if (imgWidth > maxWidth) {
+                    const ratio = maxWidth / imgWidth;
+                    imgWidth = maxWidth;
+                    imgHeight = imgHeight * ratio;
                 }
-                else if (item.type === 'image') {
-                    const imgData = item.content;
-                    const img = await loadImage(imgData);
-                    let imgWidth = img.width;
-                    let imgHeight = img.height;
-                    
-                    if (imgWidth > maxWidth) {
-                        const ratio = maxWidth / imgWidth;
-                        imgWidth = maxWidth;
-                        imgHeight = imgHeight * ratio;
-                    }
-                    
-                    if (yPosition + imgHeight + 10 > 280) {
-                        pdf.addPage();
-                        yPosition = 20;
-                    }
-                    
-                    pdf.addImage(imgData, 'JPEG', margin, yPosition, imgWidth, imgHeight);
-                    yPosition += imgHeight + 10;
+                
+                if (yPosition + imgHeight + 10 > 280) {
+                    pdf.addPage();
+                    yPosition = 20;
                 }
+                
+                pdf.addImage(images[i].data, 'JPEG', margin, yPosition, imgWidth, imgHeight);
+                yPosition += imgHeight + 10;
+            }
+            
+            pdf.save('text_with_images.pdf');
+            alert('✅ PDF created successfully!');
+            
+            btn.innerHTML = '<i class="fas fa-file-pdf"></i> Convert to PDF';
+            btn.disabled = false;
+        });
+        
+        function loadImage(src) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.src = src;
+            });
+        }
+    </script>
+</body>
+</html>
