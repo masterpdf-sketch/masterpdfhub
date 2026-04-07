@@ -378,18 +378,20 @@
     </div>
 
     <!-- CONTACT SECTION (Hidden by default) -->
-    <div id="contact-section" class="section" style="display:none;">
-        <div class="glass-card" style="padding:2rem; max-width:600px; margin:0 auto;">
-            <h2 style="font-size:2rem; margin-bottom:1rem;">Contact Us</h2>
-            <form id="contactForm">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <textarea rows="4" name="message" placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn-glow" style="width:100%; justify-content:center;">Send Message</button>
-                <p>mail=masterpdfhub26@gmail.com</p>
-            </form>
-        </div>
+<div id="contact-section" class="section" style="display:none;">
+    <div class="glass-card" style="padding:2rem; max-width:600px; margin:0 auto;">
+        <h2 style="font-size:2rem; margin-bottom:1rem;">Contact Us</h2>
+        <form action="https://formspree.io/f/mkopyaay" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <textarea rows="4" name="message" placeholder="Your Message" required></textarea>
+            <input type="text" name="_gotcha" style="display:none;">
+            <input type="hidden" name="_next" value="https://masterpdfhub.com/">
+            <button type="submit" class="btn-glow" style="width:100%; justify-content:center;">Send Message</button>
+        </form>
+        <p style="text-align:center; margin-top:1rem; font-size:0.8rem;">We'll get back to you within 24 hours.</p>
     </div>
+</div>
 
     <!-- PRIVACY SECTION (Hidden by default) -->
     <div id="privacy-section" class="section" style="display:none;">
