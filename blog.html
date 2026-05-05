@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Blog - Professional PDF & Image Guides | Master PDF Hub</title>
+    <meta name="description" content="Expert guides and tips for managing, converting, and compressing PDF files online. Master your documents with Master PDF Hub.">
+    <link rel="canonical" href="https://masterpdfhub.com/blog.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0c15;
+            color: white;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        /* Header Consistency */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        .logo i { font-size: 2rem; color: #34d399; }
+        
+        .menu-container { position: relative; }
+        .menu-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .menu-btn:hover { background: rgba(52,211,153,0.2); border-color: #34d399; }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: rgba(20, 25, 45, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.8rem;
+            min-width: 200px;
+            z-index: 100;
+            display: none;
+        }
+        .dropdown-menu.show { display: block; }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .dropdown-menu a:hover { background: rgba(52,211,153,0.2); color: #34d399; }
+        .dropdown-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 0.5rem 0; }
+
+        /* Blog Section Design */
+        .blog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .blog-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #34d399, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .blog-header p { color: #94a3b8; font-size: 1.1rem; }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-card {
+            background: rgba(20, 25, 45, 0.7);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: #34d399;
+            background: rgba(20, 25, 45, 0.9);
+        }
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(52,211,153,0.3);
+        }
+        .blog-content { padding: 1.5rem; flex-grow: 1; }
+        .blog-tag {
+            display: inline-block;
+            background: rgba(52,211,153,0.1);
+            color: #34d399;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .blog-card h2 { font-size: 1.25rem; margin-bottom: 0.8rem; line-height: 1.3; font-weight: 700; }
+        .blog-card p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 1.5rem; }
+        
+        .blog-meta {
+            margin-top: auto;
+            font-size: 0.8rem;
+            color: #64748b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            font-size: 0.85rem;
+            color: #64748b;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid { grid-template-columns: 1fr; }
+            .blog-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <a href="index.html" class="logo">
+                <i class="fas fa-file-pdf"></i>
+                <span>Master PDF Hub</span>
+            </a>
+            <div class="menu-container">
+                <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i> Tools</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="index.html">🏠 Home</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="text-to-pdf.html">📄 Text to PDF</a>
+                    <a href="image-to-pdf.html">🖼️ Image to PDF</a>
+                    <a href="merge-pdf.html">🔗 Merge PDF</a>
+                    <a href="compress-pdf.html">🗜️ Compress PDF</a>
+                    <a href="pdf-editor.html">✏️ PDF Editor</a>
+                    <a href="image-compressor.html">📸 Image Compressor</a>
+                    <a href="jpg-to-png.html">🔄 JPG to PNG</a>
+                    <a href="png-to-jpg.html">🔄 PNG to JPG</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="index.html#about">📖 About</a>
+                    <a href="blog.html">📝 Blog</a>
+                    <a href="index.html#contact">📧 Contact</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="blog-header">
+                <h1>Global Document Guides</h1>
+                <p>Expert tips and tutorials used by millions worldwide.</p>
+            </div>
+
+            <div class="blog-grid">
+                <!-- Article 1 Card -->
+                <a href="#" class="blog-card">
+                    <div class="blog-img"><i class="fas fa-compress-alt"></i></div>
+                    <div class="blog-content">
+                        <span class="blog-tag">OPTIMIZATION</span>
+                        <h2>How to compress PDFs for fast web sharing</h2>
+                        <p>A global guide to reducing document size while maintaining high-resolution quality for professional business use.</p>
+                        <div class="blog-meta">
+                            <span>May 5, 2026</span>
+                            <span>5 min read</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article 2 Card -->
+                <a href="#" class="blog-card">
+                    <div class="blog-img"><i class="fas fa-user-shield"></i></div>
+                    <div class="blog-content">
+                        <span class="blog-tag">SECURITY</span>
+                        <h2>Understanding "In-Browser" PDF security</h2>
+                        <p>Why browser-based tools are the world standard for handling sensitive and private data without cloud uploads.</p>
+                        <div class="blog-meta">
+                            <span>May 4, 2026</span>
+                            <span>4 min read</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article 3 Card -->
+                <a href="#" class="blog-card">
+                    <div class="blog-img"><i class="fas fa-exchange-alt"></i></div>
+                    <div class="blog-content">
+                        <span class="blog-tag">CONVERSION</span>
+                        <h2>Universal Image Formats: JPG vs PNG</h2>
+                        <p>Learn which format to choose for international document standards and how to convert them instantly.</p>
+                        <div class="blog-meta">
+                            <span>May 3, 2026</span>
+                            <span>6 min read</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>©️ 2026 Master PDF Hub — Global PDF & Image Tools</p>
+        </footer>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
