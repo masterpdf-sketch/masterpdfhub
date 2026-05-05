@@ -18,11 +18,38 @@ if (window.location.pathname.endsWith("index.html")) {
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="description" content="Master PDF Hub - Free online tools to convert, merge, compress, edit PDFs and images. All-in-one platform.">
-    <meta name="keywords" content="PDF editor, text to PDF, image to PDF, merge PDF, compress PDF, image compressor, JPG to PNG, PNG to JPG">
+    <meta name="description" content="Free online PDF tools — convert, merge, compress & edit PDFs in your browser. No file uploads, 100% private. Master PDF Hub.">
+    <meta name="keywords" content="PDF editor, text to PDF, image to PDF, merge PDF, compress PDF, image compressor, JPG to PNG, PNG to JPG, free PDF tools online">
     <meta name="author" content="Master PDF Hub">
-    <title>Master PDF Hub | All-in-One PDF & Image Tools</title>
+    <title>Master PDF Hub | Free Online PDF & Image Tools — Convert, Merge, Compress</title>
     <link rel="canonical" href="https://masterpdfhub.com/">
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://masterpdfhub.com/">
+    <meta property="og:title" content="Master PDF Hub | Free Online PDF & Image Tools">
+    <meta property="og:description" content="Free browser-based PDF tools — convert, merge, compress & edit. Your files never leave your device.">
+    <meta property="og:site_name" content="Master PDF Hub">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Master PDF Hub | Free Online PDF & Image Tools">
+    <meta name="twitter:description" content="Free browser-based PDF tools — convert, merge, compress & edit. No upload needed.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://masterpdfhub.com/favicon.png">
+    <link rel="shortcut icon" href="https://masterpdfhub.com/favicon.ico">
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Master PDF Hub",
+      "url": "https://masterpdfhub.com",
+      "description": "Free browser-based PDF and image tools. Convert, merge, compress and edit PDFs without uploading files.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["Text to PDF", "Image to PDF", "Merge PDF", "Compress PDF", "PDF Editor", "Image Compressor", "JPG to PNG", "PNG to JPG"]
+    }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -142,9 +169,58 @@ if (window.location.pathname.endsWith("index.html")) {
             align-items: center;
             gap: 0.5rem;
         }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--card-border);
+            border-radius: 0.5rem;
+            padding: 0.4rem 0.7rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+        }
+        /* Privacy trust badge */
+        .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(52, 211, 153, 0.15);
+            border: 1px solid rgba(52, 211, 153, 0.4);
+            border-radius: 100px;
+            padding: 5px 14px;
+            font-size: 0.82rem;
+            color: #34d399;
+            margin: 0 auto 1.2rem auto;
+            width: fit-content;
+        }
         @media (max-width: 768px) {
             .section { padding: 2rem 1rem; }
-            .nav-links { justify-content: center; margin-top: 1rem; }
+            .hamburger { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--bg-secondary);
+                backdrop-filter: blur(12px);
+                border: 1px solid var(--card-border);
+                border-radius: 1rem;
+                padding: 1rem;
+                margin-top: 0.5rem;
+                gap: 0.8rem;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                z-index: 100;
+            }
+            .nav-links.open { display: flex; }
+            .nav-wrapper {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
         }
     </style>
 </head>
@@ -156,18 +232,21 @@ if (window.location.pathname.endsWith("index.html")) {
     <!-- Header -->
     <div style="max-width:1280px; margin:0 auto; padding:1rem 1.25rem; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;">
         <div style="display:flex; align-items:center; gap:12px;">
-            <i class="fas fa-file-pdf" style="font-size:2rem; color:#60a5fa;"></i>
+            <i class="fas fa-file-pdf" style="font-size:2rem; color:#60a5fa;" aria-label="Master PDF Hub logo"></i>
             <span style="font-size:1.6rem; font-weight:bold;">Master PDF Hub</span>
         </div>
-        <div style="display:flex; align-items:center; gap:1rem;">
-            <div class="nav-links">
+        <div class="nav-wrapper" style="display:flex; align-items:center; gap:1rem;">
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks" role="navigation" aria-label="Main navigation">
                 <a data-section="home">Home</a>
                 <a data-section="about">About</a>
                 <a data-section="blog">Blog</a>
                 <a data-section="contact">Contact</a>
                 <a data-section="privacy">Privacy</a>
             </div>
-            <button class="theme-toggle" id="themeToggle">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
                 <i class="fas fa-moon"></i>
                 <span>Dark</span>
             </button>
@@ -185,7 +264,8 @@ if (window.location.pathname.endsWith("index.html")) {
                 Convert, Merge,<br> 
                 <span style="background:linear-gradient(135deg,#60a5fa,#c084fc); -webkit-background-clip:text; background-clip:text; color:transparent;">Compress & Edit PDFs Easily</span>
             </h1>
-            <p style="font-size:1.2rem; margin-bottom:1.5rem;">Master PDF Hub — free online platform with powerful tools to manage PDF files and images.</p>
+            <p style="font-size:1.2rem; margin-bottom:1.2rem;">Master PDF Hub — free online platform with powerful tools to manage PDF files and images.</p>
+            <div class="privacy-badge"><i class="fas fa-lock"></i> Your files never leave your device — 100% private</div>
             <button class="btn-glow" id="scrollToTools"><i class="fas fa-bolt"></i> Explore Tools</button>
         </div>
 
@@ -343,9 +423,8 @@ if (window.location.pathname.endsWith("index.html")) {
         <div class="glass-card" style="padding:2rem;">
             <h2 style="font-size:2.5rem; margin-bottom:1rem;">About Us</h2>
             <p style="margin-bottom:1rem;">Master PDF Hub is a free online platform designed to simplify PDF management. We provide fast, secure, and browser-based tools to convert text to PDF, images to PDF, merge multiple PDFs, compress PDF files, and edit PDFs with advanced features.</p>
-            <p>All conversions happen locally in your browser. No files are uploaded to any server. Your data stays private and secure.</p>
-            <p>We are passionate about creating useful tools that save time and effort. If you have any suggestions or feedback, please contact us.</p>
-            <p>We are passionate about creating useful tools that save time and effort. If you have any suggestions or feedback, please contact us.</p>
+            <p style="margin-bottom:1rem;">All conversions happen locally in your browser. No files are uploaded to any server. Your data stays private and secure.</p>
+            <p>We are passionate about creating useful tools that save time and effort. If you have any suggestions or feedback, please <a data-section="contact" style="color:#60a5fa; cursor:pointer;">contact us</a>.</p>
         </div>
     </div>
 
@@ -562,6 +641,25 @@ If you have any questions about this Privacy Policy, please contact us.
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
     
+    // Hamburger Menu
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburgerBtn.setAttribute('aria-expanded', isOpen);
+            hamburgerBtn.querySelector('i').className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+        });
+        // Close menu when a nav link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                hamburgerBtn.querySelector('i').className = 'fas fa-bars';
+            });
+        });
+    }
+
     // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
